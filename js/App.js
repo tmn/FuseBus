@@ -90,12 +90,7 @@ stop_search.addSubscriber(function () {
 
 // placeholder for search field
 stop_search.addSubscriber(function () {
-  if (stop_search.value.length > 0) {
-    search_placeholder.value = '';
-  }
-  else {
-    search_placeholder.value = 'Søk etter holdeplass';
-  }
+  search_placeholder.value = stop_search.value.length > 0 ? '' : 'Søk etter holdeplass';
 });
 
 fetch('http://bybussen.api.tmn.io/stops')
