@@ -1,21 +1,13 @@
 <Panel ux:Class="Stop" ClipToBounds="true">
   <Panel ux:Name="details" Alignment="Right" Background="#969C0E" Width="170" Margin="0, -40, 0, -40">
     <Translation ux:Name="detailsTranslation" X="180" />
-
-    <StackPanel Margin="10, 0, 0, 0" Alignment="CenterLeft">
-      <Text Font="Bold" TextColor="#fff" Value="Laster" FontSize="14" />
-    </StackPanel>
-    
+    <Text Margin="25, 0, 0, 0" Alignment="CenterLeft" Font="Bold" TextColor="#fff" FontSize="14">Laster</Text>
     <Mask File="Assets/Images/mask.png" />
   </Panel>
 
-  <WhileTrue ux:Name="clicked">
+  <WhileTrue Value="{active}">
     <Change detailsTranslation.X="90" Duration="0.2" Easing="QuadraticOut" />
   </WhileTrue>
-
-  <Clicked>
-    <Toggle Target="clicked" />
-  </Clicked>
 
   <DockPanel Background="#fff" Padding="0, 10, 0, 0" Clicked="{stop_clicked}">
     <StackPanel>
