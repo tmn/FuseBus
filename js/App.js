@@ -42,7 +42,14 @@ var go_back = function () {
 };
 
 var stop_clicked = function (args) {
-  stop_info.clear();
+  var current_element = null;
+  filtered_view.forEach(function (e, index) {
+    if (e.id === args.data.id) {
+      current_element = e;
+      current_element.active.value = true;
+    }
+  });
+
   stop_info.value = args.data;
   stop_info.value.name = stop_info.value.name.toUpperCase();
 
@@ -57,7 +64,10 @@ var stop_clicked = function (args) {
       departures.add(new Departure(e.l, e.t, e.ts, e.rt, e.d));
     });
 
-    current_page.value = 'departures';
+    setTimeout(function () {
+      current_element.active.value = false;
+      current_page.value = 'departures';
+    }, 200);
   });
 }
 
