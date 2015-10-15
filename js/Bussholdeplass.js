@@ -1,3 +1,5 @@
+var Observable = require('FuseJS/Observable');
+
 var get_direction = function (locationId) {
   if (locationId.length == 8) {
     switch (parseInt(get_direction_code(locationId))) {
@@ -36,4 +38,5 @@ module.exports = function (id, locationId, name, lon, lat) {
   this.lon = lon;
   this.lat = lat;
   this.direction = get_direction(locationId);
+  this.active = Observable(false);
 }
