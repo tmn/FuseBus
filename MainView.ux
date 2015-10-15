@@ -11,11 +11,6 @@
     <StatusBarBackground Dock="Top" Background="#222" />
     <iOS.StatusBarConfig Style="Light" />
 
-    <Panel ux:Class="HorizontalBar" Margin="10, 10, 0, 0" Alignment="VerticalCenter">
-      <Rectangle Height="1" Fill="#dcdee3" />
-    </Panel>
-
-
     <Panel Dock="Top" Padding="0, 0, 0, 0" Background="#222">
       <Button ux:Name="backButton" Dock="Left" Alignment="Left" Width="75" Opacity="0" IgnoreStyle="true" Padding="0,0,0,0" Height="50" Clicked="{go_back}" HitTestMode="LocalBounds">
         <DockPanel>
