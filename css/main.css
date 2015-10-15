@@ -1,0 +1,32 @@
+body {
+  font: 16px/26px Georgia, Times, serif;
+  background-color: #efefef;
+  color: #666;
+}
+
+a { text-decoration: none; color: #0591B4; }
+a:hover { text-decoration: underline; }
+
+p { margin-bottom: 15px; }
+h1 { font-size: 46px; color: #444; }
+
+header {
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+
+img {
+  width: 320px;
+}
+
+section {
+  margin-bottom: 25px;
+}
+
+#container {
+  width: 760px;
+  box-sizing: border-box;
+  padding: 25px;
+  margin: 0 auto;
+}
+
