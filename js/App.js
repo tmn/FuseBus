@@ -1,4 +1,4 @@
-var DEV = true;
+var DEV = false;
 
 var Bussholdeplass    = require('Bussholdeplass')
 , Departure           = require('Departure')
@@ -34,7 +34,6 @@ if (DEV) {
   filtered_view.add(new Bussholdeplass('102714', '16011265', 'Gløshaugen Syd', 10.406111, 63.418309));
 }
 
-
 /* Func
 -----------------------------------------------------------------------------*/
 var go_back = function () {
@@ -60,7 +59,7 @@ var stop_clicked = function (args) {
   .then(function (responseObject) {
     departures.clear();
 
-    responseObject['next'].map(function (e) {
+    responseObject['next'].forEach(function (e) {
       departures.add(new Departure(e.l, e.t, e.ts, e.rt, e.d));
     });
 
@@ -74,6 +73,7 @@ var stop_clicked = function (args) {
 
 /* Data fetching
 -----------------------------------------------------------------------------*/
+// fill search list while typing
 stop_search.addSubscriber(function () {  
   if (stop_search.value.length < 3) {
     return;
@@ -88,6 +88,7 @@ stop_search.addSubscriber(function () {
   });
 });
 
+// placeholder for search field
 stop_search.addSubscriber(function () {
   if (stop_search.value.length > 0) {
     search_placeholder.value = '';
@@ -102,7 +103,6 @@ fetch('http://bybussen.api.tmn.io/stops')
   return response.json();
 })
 .then(function (responseObject) { 
-  debug_log('heihei')
   responseObject.map(function (e) {
     data.add(new Bussholdeplass(e.busStopId, e.locationId, e.name, e.longitude, e.latitude));
   });

@@ -27,7 +27,6 @@
       </TextInput>
     </Panel>
 
-
     <DirectNavigation Active="{current_page}" />
 
     <Page Name="home">
