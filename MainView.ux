@@ -1,5 +1,6 @@
 <App Theme="Basic" Background="#eee">
   <DockPanel>
+    <JavaScript File="js/Stops.js" ux:Global="Stops" />
     <JavaScript File="js/Bussholdeplass.js" ux:Global="Bussholdeplass" />
     <JavaScript File="js/Departure.js" ux:Global="Departure" />
     <JavaScript File="js/App.js" />
