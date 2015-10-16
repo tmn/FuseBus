@@ -1,4 +1,4 @@
-<App Theme="Basic" Background="#eee">
+<App Theme="Basic" Background="#fff">
   <DockPanel>
     <JavaScript File="js/Stops.js" ux:Global="Stops" />
     <JavaScript File="js/Bussholdeplass.js" ux:Global="Bussholdeplass" />
@@ -12,53 +12,62 @@
     <StatusBarBackground Dock="Top" Background="#222" />
     <iOS.StatusBarConfig Style="Light" />
 
-    <Panel Dock="Top" Padding="0, 0, 0, 0" Background="#222">
-      <Button ux:Name="backButton" Dock="Left" Alignment="Left" Width="75" Opacity="0" IgnoreStyle="true" Padding="0,0,0,0" Height="50" Clicked="{go_back}" HitTestMode="LocalBounds">
-        <DockPanel>
-          <Text Value="Tilbake" TextAlignment="Left" Alignment="Center" FontSize="14" TextColor="#fff" Dock="Left" Margin="15, 0, 0, 0" />
-        </DockPanel>
-      </Button>
-
-      <Text ux:Name="search_placeholder" Value="{search_placeholder}" FontSize="14" Alignment="Center" TextColor="#888" Opacity="1" />
-
-      <TextInput IsMultiline="false" Margin="10, 5, 10, 0" FontSize="14" ux:Name="search" Value="{stop_search}" TextColor="#fff" Width="100%">
-        <WhileFocused>
-          <Change search_placeholder.Opacity="0" Duration=".1" />
-        </WhileFocused>
-      </TextInput>
-    </Panel>
-
     <DirectNavigation Active="{current_page}" />
 
     <Page Name="home">
-      <ScrollView>
-        <StackPanel>
-          <Style>
-            <Text Margin="15, 0, 0, 0" />
-          </Style>
+      <Panel>
+        <Panel ux:Name="mainheader" TransformOrigin="Anchor" Alignment="Top" Anchor="50%, 0%" Dock="Top" Padding="0, 0, 0, 0" Background="#efefef" Height="280">
+          <StackPanel ux:Name="search_bar" Alignment="Center" Width="100%" Margin="0, 100, 0, 0">
+            <Text ux:Name="search_placeholder" Value="Søk etter holdeplass" FontSize="14" Alignment="Center" TextColor="#888" Opacity="1" />
 
-          <Each Items="{filtered_view}">
-            <Stop />
-          </Each>
-        </StackPanel>
-      </ScrollView>
+            <TextInput IsMultiline="false" FontSize="14" ux:Name="search" Value="{stop_search}" TextColor="#444" Margin="10, 5, 10, 0" />
+          </StackPanel>
+        </Panel>
+
+        <ScrollView>
+          <ScrollingAnimation From="0" To="280">
+
+            <Move Target="mainheader" RelativeTo="Size" Y="-0.8" Easing="QuadraticOut" />
+            <Move Target="search_bar" RelativeTo="ParentSize" Y=".22" Easing="QuadraticOut" />
+            <Change search_placeholder.Opacity="0" Easing="QuadraticOut" />
+          </ScrollingAnimation>
+
+          <StackPanel Padding="0, 280, 0, 0">
+            <Style>
+              <Text Margin="15, 0, 0, 0" />
+            </Style>
+
+            <Each Items="{filtered_view}">
+              <Stop />
+            </Each>
+          </StackPanel>
+        </ScrollView>
+      </Panel>
 
       <ExitingAnimation>
         <Move X="-1" RelativeTo="Size" Duration="0.3" Easing="CircularInOut" />
-        <Change backButton.Opacity="1" Duration="0.3" />
         <Change search.Opacity="0" Duration=".3" />
         <Change search_placeholder.Opacity="0" Duration=".3" />
       </ExitingAnimation>
     </Page>
 
+
+
     <Page Name="departures">
       <Panel>
-        <Panel ux:Name="headerPanel" HitTestMode="None" Alignment="Top" Height="130">
+        <Panel ux:Name="headerPanel" Alignment="Top" Height="130">
+          <Button ux:Name="backButton" Alignment="TopLeft" Width="75" Opacity="1" IgnoreStyle="true" Padding="0,0,0,0" Height="50" Clicked="{go_back}" HitTestMode="LocalBounds">
+            <DockPanel>
+              <Text Value="Tilbake" TextAlignment="Left" Alignment="Center" FontSize="14" TextColor="#fff" Dock="Left" Margin="15, 0, 0, 0" />
+            </DockPanel>
+          </Button>
+
           <StackPanel ux:Name="textPanel" Alignment="Center">
             <Style><Text TextColor="#FFF" TextAlignment="Center" /></Style>
             <Text ux:Name="busStop" FontSize="18" Margin="5" Value="{stop_info.name}" />
             <Text ux:Name="direction" FontSize="14" Value="{stop_info.direction}" />
           </StackPanel>
+
 
           <Panel ux:Name="departureBackgroundPicture" TransformOrigin="Anchor" Alignment="Top" Anchor="50%, 0%" Background="#222">
             <Image File="Assets/Images/bus.png" StretchMode="UniformToFill" Background="#222" StretchDirection="UpOnly" Color="#8D8D8D">
@@ -67,10 +76,10 @@
           </Panel>
         </Panel>
 
-        <ScrollView>
+        <ScrollView Dock="Top">
           <ScrollingAnimation From="0" To="130">
-            <Move Target="departureBackgroundPicture" RelativeTo="Size" Y="-0.70" Easing="QuadraticOut" />
-            <Move Target="textPanel" RelativeTo="ParentSize" Y="-0.28" Easing="QuadraticOut" />
+            <Move Target="departureBackgroundPicture" RelativeTo="Size" Y="-0.60" Easing="QuadraticOut" />
+            <Move Target="textPanel" RelativeTo="ParentSize" Y="-0.23" Easing="QuadraticOut" />
             <Move Target="direction" RelativeTo="ParentSize" Y="-0.3" Easing="QuadraticOut" />
 
             <Change direction.Opacity="0" Easing="QuadraticOut" />
