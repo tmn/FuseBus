@@ -1,11 +1,11 @@
-var DEV = false;
+var DEV = true;
 
 var Bussholdeplass    = require('Bussholdeplass')
 , Departure           = require('Departure')
-, Observable          = require('FuseJS/Observable');
+, Observable          = require('FuseJS/Observable')
+, Stops               = require('Stops');
 
 var current_page      = Observable('home')
-, data                = Observable()
 , departures          = Observable()
 , filtered_view       = Observable()
 , search_placeholder  = Observable('Søk etter holdeplass')
@@ -32,11 +32,21 @@ if (DEV) {
   filtered_view.add(new Bussholdeplass('100268', '16011333', 'Gløshaugen Nord', 10.406111, 63.418309));
   filtered_view.add(new Bussholdeplass('100295', '16010333', 'Gløshaugen Nord', 10.405967, 63.418184));
   filtered_view.add(new Bussholdeplass('102714', '16011265', 'Gløshaugen Syd', 10.406111, 63.418309));
+  filtered_view.add(new Bussholdeplass('100268', '16011333', 'Gløshaugen Nord', 10.406111, 63.418309));
+  filtered_view.add(new Bussholdeplass('100295', '16010333', 'Gløshaugen Nord', 10.405967, 63.418184));
+  filtered_view.add(new Bussholdeplass('102714', '16011265', 'Gløshaugen Syd', 10.406111, 63.418309));
+  filtered_view.add(new Bussholdeplass('100268', '16011333', 'Gløshaugen Nord', 10.406111, 63.418309));
+  filtered_view.add(new Bussholdeplass('100295', '16010333', 'Gløshaugen Nord', 10.405967, 63.418184));
+  filtered_view.add(new Bussholdeplass('102714', '16011265', 'Gløshaugen Syd', 10.406111, 63.418309));
+  filtered_view.add(new Bussholdeplass('100268', '16011333', 'Gløshaugen Nord', 10.406111, 63.418309));
+  filtered_view.add(new Bussholdeplass('100295', '16010333', 'Gløshaugen Nord', 10.405967, 63.418184));
+  filtered_view.add(new Bussholdeplass('102714', '16011265', 'Gløshaugen Syd', 10.406111, 63.418309));
 }
 
 /* Func
 -----------------------------------------------------------------------------*/
 var go_back = function () {
+  console.log('hei');
   current_page.value = 'home';
 };
 
@@ -81,9 +91,9 @@ stop_search.addSubscriber(function () {
 
   filtered_view.clear();
 
-  data.forEach(function (e) {
+  Stops.forEach(function (e) {
     if (e.name.toUpperCase().indexOf(stop_search.value.toUpperCase()) > -1) {
-      filtered_view.add(e);
+      filtered_view.add(new Bussholdeplass(e.busStopId, e.locationId, e.name, e.longitude, e.latitude));
     }
   });
 });
@@ -93,22 +103,11 @@ stop_search.addSubscriber(function () {
   search_placeholder.value = stop_search.value.length > 0 ? '' : 'Søk etter holdeplass';
 });
 
-fetch('http://bybussen.api.tmn.io/stops')
-.then(function (response) { 
-  return response.json();
-})
-.then(function (responseObject) { 
-  responseObject.map(function (e) {
-    data.add(new Bussholdeplass(e.busStopId, e.locationId, e.name, e.longitude, e.latitude));
-  });
-});
-
 
 /* Exports
 -----------------------------------------------------------------------------*/
 module.exports = {
   current_page: current_page,
-  data: data,
   departures: departures,
   filtered_view: filtered_view,
   go_back: go_back,
