@@ -1,0 +1,14 @@
+<Panel ux:Class="Departure" ClipToBounds="true">
+  <DockPanel>
+    <Text Dock="Left" Width="50" Margin="10, 15, 15, 15" TextAlignment="Center" Value="{line}" FontSize="22" TextColor="#969C0E" />
+
+    <StackPanel Dock="Left" Alignment="Center">
+      <Text Value="{destination}" FontSize="15" TextAlignment="Left" />
+      <Text Value="{time}" FontSize="10" TextColor="#aaa" />
+    </StackPanel>
+
+    <Text Value="{timeLeft}" Dock="Right" Margin="0, 0, 15, 0" Alignment="Center" FontSize="14" />
+  </DockPanel>
+
+  <HorizontalBar Alignment="Bottom" Margin="10, 0, 0, 0" />
+</Panel>
