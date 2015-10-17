@@ -1,0 +1,6 @@
+<Button ux:Class="BackButton" Alignment="CenterLeft" Width="60" IgnoreStyle="true" Padding="0,0,0,0" Height="50" Clicked="{go_back}" HitTestMode="LocalBounds" Dock="Left">
+  <DockPanel>
+    <Image Dock="Left" File="Assets/Images/left-arrow.png" Width="10" />
+    <Text Dock="Left" Value="Tilbake" TextColor="#fff" Alignment="CenterLeft" FontSize="14" Margin="5, 0, 0, 0" />
+  </DockPanel>
+</Button>
