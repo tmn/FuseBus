@@ -8,7 +8,8 @@ var Bussholdeplass    = require('Bussholdeplass')
 var current_page      = Observable('home')
 , departures          = Observable()
 , filtered_view       = Observable()
-, search_placeholder  = Observable('Søk etter holdeplass')
+, loading_indicator   = Observable(false)
+, departures_active   = Observable(false)
 , stop_info           = Observable()
 , stop_search         = Observable('');
 
@@ -48,16 +49,11 @@ if (DEV) {
 var go_back = function () {
   console.log('hei');
   current_page.value = 'home';
+  departures_active.value = false;
 };
 
 var stop_clicked = function (args) {
-  var current_element = null;
-  filtered_view.forEach(function (e, index) {
-    if (e.id === args.data.id) {
-      current_element = e;
-      current_element.active.value = true;
-    }
-  });
+  loading_indicator.value = true;
 
   stop_info.value = args.data;
   stop_info.value.name = stop_info.value.name.toUpperCase();
@@ -74,7 +70,8 @@ var stop_clicked = function (args) {
     });
 
     setTimeout(function () {
-      current_element.active.value = false;
+      loading_indicator.value = false;
+      departures_active.value = true;
       current_page.value = 'departures';
     }, 200);
   });
@@ -98,20 +95,16 @@ stop_search.addSubscriber(function () {
   });
 });
 
-// placeholder for search field
-stop_search.addSubscriber(function () {
-  search_placeholder.value = stop_search.value.length > 0 ? '' : 'Søk etter holdeplass';
-});
-
 
 /* Exports
 -----------------------------------------------------------------------------*/
 module.exports = {
   current_page: current_page,
   departures: departures,
+  departures_active: departures_active,
   filtered_view: filtered_view,
   go_back: go_back,
-  search_placeholder: search_placeholder,
+  loading_indicator: loading_indicator,
   stop_clicked: stop_clicked,
   stop_info: stop_info,
   stop_search: stop_search
