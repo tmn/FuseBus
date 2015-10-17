@@ -5,19 +5,15 @@
     <JavaScript File="js/Departure.js" ux:Global="Departure" />
     <JavaScript File="js/App.js" />
 
-    <Font File="Assets/Fonts/RobotoCondensed-Bold.ttf" ux:Global="Bold" />
-    <Font File="Assets/Fonts/RobotoCondensed-Regular.ttf" ux:Global="Regular" />
-    <Font File="Assets/Fonts/RobotoCondensed-Light.ttf" ux:Global="Light" />
-
-    <Font File="Assets/Fonts/OpenSans-Bold.ttf" ux:Global="OSBold" />
-    <Font File="Assets/Fonts/OpenSans-Semibold.ttf" ux:Global="OSSemiBold" />
-    <Font File="Assets/Fonts/OpenSans-Regular.ttf" ux:Global="OSRegular" />
-    <Font File="Assets/Fonts/OpenSans-Light.ttf" ux:Global="OSLight" />
+    <Font File="Assets/Fonts/OpenSans-Bold.ttf" ux:Global="Bold" />
+    <Font File="Assets/Fonts/OpenSans-Semibold.ttf" ux:Global="SemiBold" />
+    <Font File="Assets/Fonts/OpenSans-Regular.ttf" ux:Global="Regular" />
+    <Font File="Assets/Fonts/OpenSans-Light.ttf" ux:Global="Light" />
 
     <StatusBarBackground Dock="Top" Background="#222" />
     <iOS.StatusBarConfig Style="Light" />
 
-    <Style><Text Font="OSRegular" /></Style>
+    <Style><Text Font="Regular" /></Style>
 
     <Panel ux:Name="top_panel" Alignment="Top">
       <Panel Height="160" Background="#222">
@@ -41,7 +37,7 @@
 
           <StackPanel Alignment="CenterLeft">
             <Style><Text FontSize="12" /></Style>
-            <Text Font="OSBold" Value="{stop_info.name}" />
+            <Text Font="Bold" Value="{stop_info.name}" />
             <Text Value="{stop_info.direction}" />
           </StackPanel>
         </DockPanel>
@@ -57,7 +53,7 @@
     </Panel>
 
 
-    <ScrollView ux:Name="favorites" >
+    <ScrollView ux:Name="favorites">
       <StackPanel Padding="0, 160, 0, 0" Background="#fff">
         <Style><Text Margin="15, 0, 0, 0" /></Style>
 
@@ -84,7 +80,7 @@
       <Move Target="top_panel" Y="-0.5" RelativeTo="Size" Duration="0.3" Easing="QuadraticOut" />
       <Move Target="favorites" RelativeTo="Size" Y="-1" Duration="0.3" Easing="CircularInOut" />
       <Change top_panel_home.Opacity="0" Duration=".3" Easing="QuadraticOut" />
-      <Change top_panel_departures.Opacity="1" Duration=".3" Easing="QuadraticIn" />
+      <Change top_panel_departures.Opacity="1" Duration=".3" Easing="QuadraticOut" />
     </WhileTrue>
 
   </DockPanel>
