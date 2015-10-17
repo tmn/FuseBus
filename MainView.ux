@@ -17,98 +17,75 @@
     <StatusBarBackground Dock="Top" Background="#222" />
     <iOS.StatusBarConfig Style="Light" />
 
-    <Panel>
-      <Style>
-        <Text Font="OSRegular" />
-      </Style>
-      <Panel ux:Name="top_panel" Alignment="Top">
-        <Panel Height="170" Background="#222">
-          <Style>
-            <Text TextColor="#fff" />
-          </Style>
+    <Style><Text Font="OSRegular" /></Style>
 
-          <Panel ux:Name="top_panel_home">
-            <StackPanel Alignment="BottomCenter" Width="100%">
-              <Text Value="Søk etter holdeplass" FontSize="11" TextAlignment="Center" />
-              <TextInput ux:Name="search_box" TextColor="#fff" IsMultiline="false" />
-            </StackPanel>
+    <Panel ux:Name="top_panel" Alignment="Top">
+      <Panel Height="160" Background="#222">
+        <Style><Text TextColor="#fff" /></Style>
 
-            <Text Value="FuseBus" FontSize="32" TextAlignment="Center" Margin="0, 35, 0, 0" />
+        <Panel ux:Name="top_panel_home">
+          <StackPanel Alignment="BottomCenter" Width="100%">
+            <Text Value="Søk etter holdeplass" FontSize="11" TextAlignment="Center" />
+            <TextInput ux:Name="search_box" Value="{stop_search}" TextColor="#fff" IsMultiline="false" />
+          </StackPanel>
+
+          <Text Value="FuseBus" FontSize="32" TextAlignment="Center" Margin="0, 30, 0, 0" />
+        </Panel>
+
+        <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="85" Opacity="0" Margin="15, 0, 0, 0">
+          <BackButton />
+
+          <Panel Dock="Left" Margin="20, 25, 20, 25" Alignment="HorizontalCenter">
+            <Rectangle Width="1" Fill="#fff" />
           </Panel>
 
-          <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="85" Opacity="0" Margin="15, 0, 0, 0">
-              <Button ux:Name="backButton" Alignment="CenterLeft" Width="60" IgnoreStyle="true" Padding="0,0,0,0" Height="50" Clicked="{go_back}" HitTestMode="LocalBounds" Dock="Left">
-              <DockPanel>
-                <Image Dock="Left" File="Assets/Images/left-arrow.png" Width="10" />
-                <Text Dock="Left" Value="Tilbake" TextColor="#fff" Alignment="CenterLeft" FontSize="14" Margin="5, 0, 0, 0" />
-              </DockPanel>
-            </Button>
-
-            
-
-            <Panel Dock="Left" Margin="15, 25, 15, 25" Alignment="HorizontalCenter">
-              <Rectangle Width="1" Fill="#fff" />
-            </Panel>
-
-            <StackPanel Alignment="CenterLeft">
-              <Style><Text FontSize="12" /></Style>
-              <Text Font="OSBold" Value="{stop_info.name}" />
-              <Text Value="{stop_info.direction}" />
-            </StackPanel>
-          </DockPanel>
-        </Panel>
-
-        <Panel ux:Name="loading_indicator" Height="25" Alignment="Bottom" Background="#AEC726">
-          <Text Value="Laster sanntidsdata..." TextColor="#fff" FontSize="12" Alignment="Center" />
-
-          <WhileTrue Value="{loading_indicator}">
-            <Move RelativeTo="Size" Y="1" Duration="0.1" Easing="CircularInOut" />
-          </WhileTrue>
-        </Panel>
+          <StackPanel Alignment="CenterLeft">
+            <Style><Text FontSize="12" /></Style>
+            <Text Font="OSBold" Value="{stop_info.name}" />
+            <Text Value="{stop_info.direction}" />
+          </StackPanel>
+        </DockPanel>
       </Panel>
 
-      <ScrollView>
-        <StackPanel ux:Name="favorites" Margin="0, 170, 0, -170" Background="#fff">
-          <Style>
-            <Text Margin="15, 0, 0, 0" />
-          </Style>
+      <Panel ux:Name="loading_indicator" Height="25" Alignment="Bottom" Background="#AEC726">
+        <Text Value="Laster sanntidsdata..." TextColor="#fff" FontSize="12" Alignment="Center" />
 
-          <Each Items="{filtered_view}">
-            <Stop />
-          </Each>
-        </StackPanel>
-
-        <WhileTrue Value="{departures_active}">
-          <Move RelativeTo="Size" Y="-1" Duration="0.2" Easing="CircularInOut" />
+        <WhileTrue Value="{loading_indicator}">
+          <Move RelativeTo="Size" Y="1" Duration="0.1" Easing="CircularInOut" />
         </WhileTrue>
-      </ScrollView>
-
-      <ScrollView>
-        <StackPanel ux:Name="departures" Margin="0, 85, 0, -85" Background="#fff">
-          <Each Items="{departures}">
-            <DockPanel>
-              <Text Dock="Left" Width="50" Margin="10, 15, 15, 15" TextAlignment="Center" Value="{line}" FontSize="22" TextColor="#969C0E" />
-              <StackPanel Dock="Left" Alignment="Center">
-                <Text Value="{destination}" FontSize="15" TextAlignment="Left" />
-                <Text Value="{time}" FontSize="10" TextColor="#aaa" />
-              </StackPanel>
-              <Text Value="{timeLeft}" Dock="Right" Margin="0, 0, 15, 0" Alignment="Center" FontSize="14" />
-            </DockPanel>
-            <HorizontalBar Margin="10, 0, 0, 0" />
-          </Each>
-
-          <WhileFalse Value="{departures_active}">
-            <Move RelativeTo="Size" Y="1" Duration="0.3" Easing="CircularInOut" />
-          </WhileFalse>
-          <WhileTrue Value="{departures_active}">
-            <Move Target="top_panel" Y="-0.5" RelativeTo="Size" Duration="0.3" Easing="QuadraticOut" />
-
-            <Change top_panel_home.Opacity="0" Duration=".3" Easing="QuadraticOut" />
-            <Change top_panel_departures.Opacity="1" Duration=".3" Easing="QuadraticIn" />
-          </WhileTrue>
-        </StackPanel>
-
-      </ScrollView>
+      </Panel>
     </Panel>
+
+
+    <ScrollView ux:Name="favorites" >
+      <StackPanel Padding="0, 160, 0, 0" Background="#fff">
+        <Style><Text Margin="15, 0, 0, 0" /></Style>
+
+        <Each Items="{filtered_view}">
+          <Stop />
+        </Each>
+      </StackPanel>
+    </ScrollView>
+
+
+    <ScrollView ux:Name="departures">
+      <StackPanel Padding="0, 80, 0, 0" Background="#fff">
+        <Each Items="{departures}">
+          <Departure />
+        </Each>
+      </StackPanel>
+    </ScrollView>
+
+    <WhileFalse Value="{departures_active}">
+      <Move Target="departures" RelativeTo="Size" Y="1" Duration="0.3" Easing="CircularInOut" />
+    </WhileFalse>
+
+    <WhileTrue Value="{departures_active}">
+      <Move Target="top_panel" Y="-0.5" RelativeTo="Size" Duration="0.3" Easing="QuadraticOut" />
+      <Move Target="favorites" RelativeTo="Size" Y="-1" Duration="0.3" Easing="CircularInOut" />
+      <Change top_panel_home.Opacity="0" Duration=".3" Easing="QuadraticOut" />
+      <Change top_panel_departures.Opacity="1" Duration=".3" Easing="QuadraticIn" />
+    </WhileTrue>
+
   </DockPanel>
 </App>
