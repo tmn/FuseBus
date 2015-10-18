@@ -5,8 +5,7 @@ var Bussholdeplass    = require('Bussholdeplass')
 , Observable          = require('FuseJS/Observable')
 , Stops               = require('Stops');
 
-var current_page      = Observable('home')
-, departures          = Observable()
+var departures        = Observable()
 , filtered_view       = Observable()
 , loading_indicator   = Observable(false)
 , departures_active   = Observable(false)
@@ -39,7 +38,6 @@ if (DEV) {
 /* Func
 -----------------------------------------------------------------------------*/
 var go_back = function () {
-  current_page.value = 'home';
   departures_active.value = false;
 };
 
@@ -89,7 +87,6 @@ stop_search.addSubscriber(function () {
 /* Exports
 -----------------------------------------------------------------------------*/
 module.exports = {
-  current_page: current_page,
   departures: departures,
   departures_active: departures_active,
   filtered_view: filtered_view,
