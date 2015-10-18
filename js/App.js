@@ -39,7 +39,6 @@ if (DEV) {
 /* Func
 -----------------------------------------------------------------------------*/
 var go_back = function () {
-  console.log('hei');
   current_page.value = 'home';
   departures_active.value = false;
 };
