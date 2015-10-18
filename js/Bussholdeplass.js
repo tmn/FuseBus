@@ -38,5 +38,4 @@ module.exports = function (id, locationId, name, lon, lat) {
   this.lon = lon;
   this.lat = lat;
   this.direction = get_direction(locationId);
-  this.active = Observable(false);
 }
