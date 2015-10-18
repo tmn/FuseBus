@@ -49,26 +49,25 @@ var stop_clicked = function (args) {
 
   fetch('http://bybussen.api.tmn.io/rt/' + args.data.locationId)
   .then(function (response) {
-    return response.json();
-  })
-  .then(function (responseObject) {
-    departures.clear();
+    response.json().then(function (responseObject) {
+      var newDepartures = responseObject['next'].map(function (e) {
+        return new Departure(e.l, e.t, e.ts, e.rt, e.d);
+      });
 
-    responseObject['next'].forEach(function (e) {
-      departures.add(new Departure(e.l, e.t, e.ts, e.rt, e.d));
+      departures.replaceAll(newDepartures);
+
+      setTimeout(function () {
+        loading_indicator.value = false;
+        departures_active.value = true;
+      }, 300);
     });
-
-    setTimeout(function () {
-      departures_active.value = true;
-      loading_indicator.value = false;
-    }, 200);
   });
+  
 }
 
 
 /* Data fetching
 -----------------------------------------------------------------------------*/
-// fill search list while typing
 stop_search.addSubscriber(function () {  
   if (stop_search.value.length < 3) {
     return;
