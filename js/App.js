@@ -39,6 +39,7 @@ if (DEV) {
 -----------------------------------------------------------------------------*/
 var go_back = function () {
   departures_active.value = false;
+  departures.clear();
 };
 
 var stop_clicked = function (args) {
@@ -62,24 +63,22 @@ var stop_clicked = function (args) {
       }, 300);
     });
   });
-  
-}
+};
 
 
 /* Data fetching
 -----------------------------------------------------------------------------*/
 stop_search.addSubscriber(function () {  
   if (stop_search.value.length < 3) {
+
     return;
   }
 
-  filtered_view.clear();
+  var search_string = stop_search.value.toUpperCase();
 
-  Stops.forEach(function (e) {
-    if (e.name.toUpperCase().indexOf(stop_search.value.toUpperCase()) > -1) {
-      filtered_view.add(new Bussholdeplass(e.busStopId, e.locationId, e.name, e.longitude, e.latitude));
-    }
-  });
+  filtered_view.replaceAll(Stops.filter(function (e) {
+    return e.name.toUpperCase().indexOf(search_string) > -1;
+  }));
 });
 
 
