@@ -28,10 +28,10 @@
           <Text Value="FuseBus" FontSize="32" TextAlignment="Center" Margin="0, 30, 0, 0" />
         </Panel>
 
-        <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="85" Opacity="0" Margin="15, 0, 0, 0">
+        <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="63" Opacity="0" Margin="15, 0, 0, 0">
           <BackButton />
 
-          <Panel Dock="Left" Margin="20, 25, 20, 25" Alignment="HorizontalCenter">
+          <Panel Dock="Left" Margin="20, 17, 20, 17" Alignment="HorizontalCenter">
             <Rectangle Width="1" Fill="#fff" />
           </Panel>
 
@@ -65,7 +65,8 @@
 
 
     <ScrollView ux:Name="departures">
-      <StackPanel Padding="0, 80, 0, 0" Background="#fff">
+      <StackPanel Padding="0, 63, 0, 0" Background="#fff">
+        <Panel ux:Name="departures_top" Height="1" Alignment="Top" />
         <Each Items="{departures}">
           <Departure />
         </Each>
@@ -77,7 +78,7 @@
     </WhileFalse>
 
     <WhileTrue Value="{departures_active}">
-      <Move Target="top_panel" Y="-0.5" RelativeTo="Size" Duration="0.3" Easing="QuadraticOut" />
+      <Move Target="top_panel" Y="-0.6" RelativeTo="Size" Duration="0.3" Easing="QuadraticOut" />
       <Move Target="favorites" RelativeTo="Size" Y="-1" Duration="0.3" Easing="CircularInOut" />
       <Change top_panel_home.Opacity="0" Duration=".3" Easing="QuadraticOut" />
       <Change top_panel_departures.Opacity="1" Duration=".3" Easing="QuadraticOut" />
