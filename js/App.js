@@ -6,6 +6,7 @@ var Bussholdeplass    = require('Bussholdeplass')
 , Stops               = require('Stops');
 
 var departures        = Observable()
+, favorites           = Observable()
 , filtered_view       = Observable()
 , loading_indicator   = Observable(false)
 , departures_active   = Observable(false)
@@ -29,11 +30,11 @@ if (DEV) {
   departures.add(new Departure('4', '10.10.2015 22:03', '10.10.2015 22:03', 0, 'Lade'));
   departures.add(new Departure('6', '10.10.2015 22:28', '10.10.2015 22:28', 0, 'Værestrøa'));
 
-  filtered_view.add(new Bussholdeplass('100268', '16011333', 'Gløshaugen Nord', 10.406111, 63.418309));
-  filtered_view.add(new Bussholdeplass('100295', '16010333', 'Gløshaugen Nord', 10.405967, 63.418184));
-  filtered_view.add(new Bussholdeplass('102714', '16011265', 'Gløshaugen Syd', 10.406111, 63.418309));
-  filtered_view.add(new Bussholdeplass('100268', '16011333', 'Gløshaugen Nord', 10.406111, 63.418309));
 }
+favorites.add(new Bussholdeplass('100268', '16011333', 'Gløshaugen Nord', 10.406111, 63.418309));
+favorites.add(new Bussholdeplass('100295', '16010333', 'Gløshaugen Nord', 10.405967, 63.418184));
+favorites.add(new Bussholdeplass('102714', '16011265', 'Gløshaugen Syd', 10.406111, 63.418309));
+favorites.add(new Bussholdeplass('100268', '16011333', 'Gløshaugen Nord', 10.406111, 63.418309));
 
 /* Func
 -----------------------------------------------------------------------------*/
@@ -87,6 +88,7 @@ stop_search.addSubscriber(function () {
 module.exports = {
   departures: departures,
   departures_active: departures_active,
+  favorites: favorites,
   filtered_view: filtered_view,
   go_back: go_back,
   loading_indicator: loading_indicator,
