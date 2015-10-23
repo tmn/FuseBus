@@ -1,4 +1,6 @@
-module.exports = [
+var Bussholdeplass = require('Bussholdeplass');
+
+var Stops = [
     {
         "busStopId": 100000,
         "locationId": "16482728",
@@ -19243,3 +19245,20 @@ module.exports = [
         "latitude": 63.412612
     }
 ];
+
+var convertedStops = Stops.map(function (e) {
+    return new Bussholdeplass(e.busStopId, e.locationId, e.name, e.longitude, e.latitude);
+});
+
+convertedStops = convertedStops.sort(function (a, b) {
+    if (a.name.toUpperCase() > b.name.toUpperCase()) {
+        return 1;
+    }
+    else if (a.name.toUpperCase() < b.name.toUpperCase()) {
+        return -1;
+    }
+
+    return 0;
+});
+
+module.exports = convertedStops;
