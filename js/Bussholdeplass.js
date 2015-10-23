@@ -1,5 +1,3 @@
-var Observable = require('FuseJS/Observable');
-
 var get_direction = function (locationId) {
   if (locationId.length == 8) {
     switch (parseInt(get_direction_code(locationId))) {
