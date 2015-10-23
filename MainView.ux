@@ -60,6 +60,10 @@
         <Each Items="{filtered_view}">
           <Stop />
         </Each>
+
+        <Each Items="{favorites}">
+          <Stop />
+        </Each>
       </StackPanel>
     </ScrollView>
 
