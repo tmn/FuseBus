@@ -1,5 +1,3 @@
-var DEV = true;
-
 var Bussholdeplass    = require('Bussholdeplass')
 , Departure           = require('Departure')
 , Observable          = require('FuseJS/Observable')
@@ -16,21 +14,6 @@ var departures        = Observable()
 
 /* Mock data
 -----------------------------------------------------------------------------*/
-if (DEV) {
-  departures.add(new Departure('4', '10.10.2015 21:38', '10.10.2015 21:33', 1, 'Munkegata M5'));
-  departures.add(new Departure('6', '10.10.2015 21:58', '10.10.2015 21:58', 0, 'Værestrøa'));
-  departures.add(new Departure('38', '10.10.2015 22:01', '10.10.2015 21:44', 1, 'Stjørdal st.'));
-  departures.add(new Departure('46', '10.10.2015 22:02', '10.10.2015 22:02', 0, 'Pirbadet'));
-  departures.add(new Departure('4', '10.10.2015 22:03', '10.10.2015 22:03', 0, 'Lade'));
-  departures.add(new Departure('6', '10.10.2015 22:28', '10.10.2015 22:28', 0, 'Værestrøa'));
-  departures.add(new Departure('4', '10.10.2015 21:38', '10.10.2015 21:33', 1, 'Munkegata M5'));
-  departures.add(new Departure('6', '10.10.2015 21:58', '10.10.2015 21:58', 0, 'Værestrøa'));
-  departures.add(new Departure('38', '10.10.2015 22:01', '10.10.2015 21:44', 1, 'Stjørdal st.'));
-  departures.add(new Departure('46', '10.10.2015 22:02', '10.10.2015 22:02', 0, 'Pirbadet'));
-  departures.add(new Departure('4', '10.10.2015 22:03', '10.10.2015 22:03', 0, 'Lade'));
-  departures.add(new Departure('6', '10.10.2015 22:28', '10.10.2015 22:28', 0, 'Værestrøa'));
-
-}
 favorites.add(new Bussholdeplass('100268', '16011333', 'Gløshaugen Nord', 10.406111, 63.418309));
 favorites.add(new Bussholdeplass('100295', '16010333', 'Gløshaugen Nord', 10.405967, 63.418184));
 favorites.add(new Bussholdeplass('102714', '16011265', 'Gløshaugen Syd', 10.406111, 63.418309));
