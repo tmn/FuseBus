@@ -54,7 +54,10 @@ var stop_clicked = function (args) {
 -----------------------------------------------------------------------------*/
 stop_search.addSubscriber(function () {  
   if (stop_search.value.length < 3) {
-
+    if (stop_search.value.length === 0) {
+      filtered_view.clear();
+    }
+    
     return;
   }
 
