@@ -6,14 +6,14 @@
     <JavaScript File="js/App.js" />
 
     <Font File="Assets/Fonts/OpenSans-Bold.ttf" ux:Global="Bold" />
-    <Font File="Assets/Fonts/OpenSans-Semibold.ttf" ux:Global="SemiBold" />
+    <Font File="Assets/Fonts/OpenSans-SemiBold.ttf" ux:Global="SemiBold" />
     <Font File="Assets/Fonts/OpenSans-Regular.ttf" ux:Global="Regular" />
     <Font File="Assets/Fonts/OpenSans-Light.ttf" ux:Global="Light" />
 
     <StatusBarBackground Dock="Top" Background="#222" />
     <iOS.StatusBarConfig Style="Light" />
 
-    <Style><Text Font="Regular" /></Style>
+    <Style><Text Font="Regular" TextColor="#222" /></Style>
 
     <Panel ux:Name="top_panel" Alignment="Top">
       <Panel Height="160" Background="#222">
@@ -25,7 +25,7 @@
             <TextInput ux:Name="search_box" Value="{stop_search}" TextColor="#fff" IsMultiline="false" />
           </StackPanel>
 
-          <Text Value="FuseBus" FontSize="32" TextAlignment="Center" Margin="0, 30, 0, 0" />
+          <Text Value="Sanntidsappen" FontSize="32" TextAlignment="Center" Margin="0, 30, 0, 0" />
         </Panel>
 
         <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="63" Opacity="0" Margin="15, 0, 0, 0">
@@ -41,6 +41,12 @@
             <Text Value="{stop_info.direction}" />
           </StackPanel>
         </DockPanel>
+
+        <Panel ux:Name="backgroundPicture" TransformOrigin="Anchor" Alignment="Top" Anchor="50%,0%" Background="Black">
+          <Image File="Assets/Images/Bus.jpg" StretchMode="UniformToFill" Background="Black" Opacity="0.35">
+            <Blur Radius="1" />
+          </Image>
+        </Panel>
       </Panel>
 
       <Panel ux:Name="loading_indicator" Height="25" Alignment="Bottom" Background="#AEC726">
