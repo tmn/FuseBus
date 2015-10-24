@@ -1,14 +1,48 @@
 <Panel ux:Class="Departure" ClipToBounds="true">
-  <DockPanel>
-    <Text Dock="Left" Width="50" Margin="10, 15, 15, 15" TextAlignment="Center" Value="{line}" FontSize="22" TextColor="#969C0E" />
+  <StackPanel>
+    <DockPanel>
+      <Text Dock="Left" Width="50" Margin="10, 15, 15, 15" TextAlignment="Center" Value="{line}" FontSize="22" TextColor="#969C0E" />
 
-    <StackPanel Dock="Left" Alignment="Center">
-      <Text Value="{destination}" FontSize="15" TextAlignment="Left" />
-      <Text Value="{time}" FontSize="10" TextColor="#aaa" />
-    </StackPanel>
+      <StackPanel Dock="Left" Alignment="Center">
+        <Text Value="{destination}" FontSize="15" TextAlignment="Left" />
+        <DockPanel>
+          <Style><Text FontSize="10" TextColor="#aaa" /></Style>
+          <Text Dock="Left" Value="Rutetid: " />
+          <Text Dock="Left" Value="{org_time}" />
+        </DockPanel>
+      </StackPanel>
 
-    <Text Value="{timeLeft}" Dock="Right" Margin="0, 0, 15, 0" Alignment="Center" FontSize="14" />
-  </DockPanel>
+      <Text Value="{timeLeft}" Dock="Right" Margin="0, 0, 15, 0" Alignment="Center" FontSize="14" />
+
+    </DockPanel>
+
+    <Panel ux:Name="departure_controllers" Height="0" Alignment="Bottom" Background="#AEC726">
+      <Text Value="Departure controller bar..." TextColor="#fff" FontSize="12" Opacity="1" Font="Regular" TextAlignment="Left" Alignment="CenterLeft" Margin="15, 0, 0, 0" />
+
+      <WhileTrue ux:Name="departure_controllers_trueTrigger">
+        <Change departure_controllers.Height="40" Duration=".3" Easing="QuadraticOut" />
+      </WhileTrue>
+    </Panel>
+  </StackPanel>
+
+    <Circle Alignment="TopRight" Width="24" Height="24" Fill="#fafafa" Margin="0, 20, 75, 0">
+      <Stroke Width="1" Brush="#eaeaea" />
+      <StackPanel Orientation="Horizontal" Alignment="Center">
+        <Style>
+          <Circle Width="2" Height="2" Fill="#d8d8d8" Margin="1, 0, 1, 0" />
+        </Style>
+        <Circle />
+        <Circle />
+        <Circle />
+      </StackPanel>
+
+      <Clicked>
+        <Toggle Target="departure_controllers_trueTrigger" />
+      </Clicked>
+    </Circle>
+
+
+    
 
   <HorizontalBar Alignment="Bottom" Margin="10, 0, 0, 0" />
 </Panel>
