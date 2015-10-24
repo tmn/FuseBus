@@ -32,6 +32,7 @@ module.exports = function (line, time, realtime, is_realtime, destination) {
   this.realtime = realtime;
   this.is_realtime = is_realtime;
   this.destination = destination;
+  this.org_time = time.split(' ')[1];
 
   this.timeLeft = calculate_timeleft(time, realtime, is_realtime);
 };
