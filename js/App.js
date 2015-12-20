@@ -32,32 +32,41 @@ var stop_clicked = function (args) {
   stop_info.value = args.data;
   stop_info.value.name = stop_info.value.name.toUpperCase();
 
-  fetch('http://bybussen.api.tmn.io/rt/' + args.data.locationId)
+  var url = 'http://bybussen.api.tmn.io:8080/rt/' + args.data.locationId;
+
+  fetch(url, {
+    method: 'GET',
+    headers: { "Content-type": "application/json" }
+  })
   .then(function (response) {
-    response.json().then(function (responseObject) {
-      var newDepartures = responseObject['next'].map(function (e) {
-        return new Departure(e.l, e.t, e.ts, e.rt, e.d);
-      });
-
-      departures.replaceAll(newDepartures);
-
-      setTimeout(function () {
-        loading_indicator.value = false;
-        departures_active.value = true;
-      }, 300);
+    return response.json();
+  })
+  .then(function (responseObject) {
+    var newDepartures = responseObject['next'].map(function (e) {
+      return new Departure(e.l, e.t, e.ts, e.rt, e.d);
     });
+
+    departures.replaceAll(newDepartures);
+
+    setTimeout(function () {
+      loading_indicator.value = false;
+      departures_active.value = true;
+    }, 300);
+  })
+  .catch(function (err) {
+    console.log('ERROR: ' + err.message);
   });
 };
 
 
 /* Data fetching
 -----------------------------------------------------------------------------*/
-stop_search.addSubscriber(function () {  
+stop_search.addSubscriber(function () {
   if (stop_search.value.length < 3) {
     if (stop_search.value.length === 0) {
       filtered_view.clear();
     }
-    
+
     return;
   }
 
@@ -72,6 +81,7 @@ stop_search.addSubscriber(function () {
 
 // Debug output
 console.log('\n-- Reloaded: ' + new Date());
+
 
 /* Exports
 -----------------------------------------------------------------------------*/
