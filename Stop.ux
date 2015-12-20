@@ -3,12 +3,21 @@
     <StackPanel>
       <Text Value="{name}" FontSize="16" Font="Light" />
       <Text Value="{direction}" TextColor="#aaa" FontSize="12" />
-
       <WhilePressed>
         <Move X="5" Duration=".1" Easing="BounceOut" EasingBack="BounceIn" />
       </WhilePressed>
     </StackPanel>
-      
+
+    <Panel Alignment="CenterRight" Margin="0, 0, 20, 0">
+      <Rectangle Width="1" Height="8" Margin="0, 6, 0, 0" Fill="#afafaf">
+        <Rotation Degrees="40" />
+      </Rectangle>
+
+      <Rectangle Width="1" Height="8" Margin="0, 0, 0, 6" Fill="#afafaf">
+        <Rotation Degrees="-40" />
+      </Rectangle>
+    </Panel>
+
     <HorizontalBar Dock="Bottom" />
   </DockPanel>
 </Panel>
