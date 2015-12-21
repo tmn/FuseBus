@@ -10,22 +10,44 @@
     <Font File="Assets/Fonts/OpenSans-Regular.ttf" ux:Global="Regular" />
     <Font File="Assets/Fonts/OpenSans-Light.ttf" ux:Global="Light" />
 
-    <StatusBarBackground Dock="Top" Background="#222" />
+    <StatusBarBackground Dock="Top" Background="#ddd" />
     <iOS.StatusBarConfig Style="Light" />
 
-    <Style><Text Font="Regular" TextColor="#222" /></Style>
+    <Style>
+      <Text Font="Regular" TextColor="#222" />
+      <TextInput PlaceholderColor="#eee" TextColor="#fff" SelectionColor="#fff" />
+    </Style>
 
-    <Panel ux:Name="top_panel" Alignment="Top">
-      <Panel Height="160" Background="#222">
+    <Panel ux:Name="top_panel" Alignment="Top" Background="#A2A21F">
+      <Panel Height="160">
         <Style><Text TextColor="#fff" /></Style>
 
         <Panel ux:Name="top_panel_home">
-          <StackPanel Alignment="BottomCenter" Width="100%">
-            <Text Value="Søk etter holdeplass" FontSize="11" TextAlignment="Center" />
-            <TextInput ux:Name="search_box" Value="{stop_search}" TextColor="#fff" IsMultiline="false" />
-          </StackPanel>
+          <PageControl ux:Name="favoriteControl">
+            <Page>
+              <Text FontSize="28" TextAlignment="Center" Margin="0, 25, 0, 0">
+                Gløshaugen nord
+              </Text>
+            </Page>
+            <Page>
+              <Text>This is text</Text>
+            </Page>
 
-          <Text Value="Sanntidsappen" FontSize="32" TextAlignment="Center" Margin="0, 30, 0, 0" />
+            <Page>
+              <Text>This is text</Text>
+            </Page>
+          </PageControl>
+
+          <PageIndicator Navigation="favoriteControl" Alignment="BottomCenter">
+            <Circle ux:Generate="Factory" ux:Binding="DotFactory" Margin="4" Width="5" Height="5">
+              <SolidColor ux:Name="favDotIndicator" Color="#fff" Opacity="0.3" />
+              <ActivatingAnimation>
+                <Change favDotIndicator.Opacity="1" />
+              </ActivatingAnimation>
+            </Circle>
+          </PageIndicator>
+
+
         </Panel>
 
         <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="63" Opacity="0" Margin="15, 0, 0, 0">
@@ -41,41 +63,33 @@
             <Text Value="{stop_info.direction}" />
           </StackPanel>
         </DockPanel>
-
-        <Panel ux:Name="backgroundPicture" TransformOrigin="Anchor" Alignment="Top" Anchor="50%,0%" Background="Black">
-          <Image File="Assets/Images/Bus.jpg" StretchMode="UniformToFill" Background="Black" Opacity="0.35">
-            <Blur Radius="1" />
-          </Image>
-        </Panel>
-      </Panel>
-
-      <Panel ux:Name="loading_indicator" Height="25" Alignment="Bottom" Background="#AEC726">
-        <Text Value="Laster sanntidsdata..." TextColor="#fff" FontSize="12" Alignment="Center" />
-
-        <WhileTrue Value="{loading_indicator}">
-          <Move RelativeTo="Size" Y="1" Duration="0.1" Easing="CircularInOut" />
-        </WhileTrue>
       </Panel>
     </Panel>
 
+    <Panel Padding="0, 160, 0, 0" Height="100%" ux:Name="favorites" Background="#BFBF27">
+      <TextInput Alignment="Top" PlaceholderText="Søk etter holdeplass" Value="{stop_search}" TextColor="#fff" IsMultiline="false" Margin="15, 30, 15, 0" />
 
-    <ScrollView ux:Name="favorites">
-      <StackPanel Padding="0, 160, 0, 0" Background="#fff">
-        <Style><Text Margin="15, 0, 0, 0" /></Style>
+      <ScrollView Margin="0, 80, 0, 0">
+        <StackPanel Padding="0, 0, 0, 0">
+          <Style>
+            <Text Margin="15, 0, 0, 0" />
+          </Style>
 
-        <Each Items="{filtered_view}">
-          <Stop />
-        </Each>
+          <Each Items="{filtered_view}">
+            <Stop />
+          </Each>
 
-        <Each Items="{favorites}">
-          <Stop />
-        </Each>
-      </StackPanel>
-    </ScrollView>
+          <Each Items="{favorites}">
+            <Stop />
+          </Each>
+        </StackPanel>
+      </ScrollView>
+    </Panel>
+
 
 
     <ScrollView ux:Name="departures">
-      <StackPanel Padding="0, 63, 0, 0" Background="#fff">
+      <StackPanel Padding="0, 63, 0, 0">
         <Panel ux:Name="departures_top" Height="1" Alignment="Top" />
         <Each Items="{departures}">
           <Departure />
@@ -93,6 +107,5 @@
       <Change top_panel_home.Opacity="0" Duration=".3" Easing="QuadraticOut" />
       <Change top_panel_departures.Opacity="1" Duration=".3" Easing="QuadraticOut" />
     </WhileTrue>
-
   </DockPanel>
 </App>
