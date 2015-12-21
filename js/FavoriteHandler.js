@@ -13,14 +13,14 @@ var addFavorite
 
 /* Functions
 -----------------------------------------------------------------------------*/
-addFavorite = function(id) {
+addFavorite = function(id, favName) {
   var favorite = getFavorites();
 
   if (favorite[id]) {
     return;
   }
 
-  favorite[id] = { name: 'woop' };
+  favorite[id] = { name: favName };
   Storage.writeSync(data, JSON.stringify(favorite));
 };
 
