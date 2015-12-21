@@ -25,24 +25,5 @@
     </Panel>
   </StackPanel>
 
-    <Circle Alignment="TopRight" Width="24" Height="24" Fill="#fafafa" Margin="0, 20, 75, 0">
-      <Stroke Width="1" Brush="#eaeaea" />
-      <StackPanel Orientation="Horizontal" Alignment="Center">
-        <Style>
-          <Circle Width="2" Height="2" Fill="#d8d8d8" Margin="1, 0, 1, 0" />
-        </Style>
-        <Circle />
-        <Circle />
-        <Circle />
-      </StackPanel>
-
-      <Clicked>
-        <Toggle Target="departure_controllers_trueTrigger" />
-      </Clicked>
-    </Circle>
-
-
-    
-
   <HorizontalBar Alignment="Bottom" Margin="10, 0, 0, 0" />
 </Panel>
