@@ -3,6 +3,8 @@
     <JavaScript File="js/Stops.js" ux:Global="Stops" />
     <JavaScript File="js/Bussholdeplass.js" ux:Global="Bussholdeplass" />
     <JavaScript File="js/Departure.js" ux:Global="Departure" />
+    <JavaScript File="js/FavoriteHandler.js" ux:Global="FavoriteHandler" />
+
     <JavaScript File="js/App.js" />
 
     <Font File="Assets/Fonts/OpenSans-Bold.ttf" ux:Global="Bold" />
