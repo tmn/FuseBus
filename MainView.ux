@@ -20,7 +20,9 @@
 
     <Panel ux:Name="top_panel" Alignment="Top" Background="#A2A21F">
       <Panel Height="160">
-        <Style><Text TextColor="#fff" /></Style>
+        <Style>
+          <Text TextColor="#fff" />
+        </Style>
 
         <Panel ux:Name="top_panel_home">
           <PageControl ux:Name="favoriteControl">
@@ -58,7 +60,10 @@
           </Panel>
 
           <StackPanel Alignment="CenterLeft">
-            <Style><Text FontSize="12" /></Style>
+            <Style>
+              <Text FontSize="12" />
+            </Style>
+
             <Text Font="Bold" Value="{stop_info.name}" />
             <Text Value="{stop_info.direction}" />
           </StackPanel>
@@ -85,8 +90,6 @@
         </StackPanel>
       </ScrollView>
     </Panel>
-
-
 
     <ScrollView ux:Name="departures">
       <StackPanel Padding="0, 63, 0, 0">
