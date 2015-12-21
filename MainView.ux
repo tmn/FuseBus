@@ -10,7 +10,7 @@
     <Font File="Assets/Fonts/OpenSans-Regular.ttf" ux:Global="Regular" />
     <Font File="Assets/Fonts/OpenSans-Light.ttf" ux:Global="Light" />
 
-    <StatusBarBackground Dock="Top" Background="#ddd" />
+    <StatusBarBackground Dock="Top" Background="#A2A21F" />
     <iOS.StatusBarConfig Style="Light" />
 
     <Style>
