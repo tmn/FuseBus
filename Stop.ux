@@ -1,23 +1,21 @@
 <Panel ux:Class="Stop" ClipToBounds="true">
-  <DockPanel Background="#fff" Padding="0, 10, 0, 0" Clicked="{stop_clicked}">
+  <DockPanel Padding="0, 10, 0, 0" Clicked="{stop_clicked}">
     <StackPanel>
-      <Text Value="{name}" FontSize="16" Font="Light" />
-      <Text Value="{direction}" TextColor="#aaa" FontSize="12" />
+      <Text Value="{name}" FontSize="16" TextColor="#fff" />
+      <Text Value="{direction}" TextColor="#fff" FontSize="12" Font="Light" />
       <WhilePressed>
         <Move X="5" Duration=".1" Easing="BounceOut" EasingBack="BounceIn" />
       </WhilePressed>
     </StackPanel>
 
     <Panel Alignment="CenterRight" Margin="0, 0, 20, 0">
-      <Rectangle Width="1" Height="8" Margin="0, 6, 0, 0" Fill="#afafaf">
-        <Rotation Degrees="40" />
+      <Rectangle Width="1" Height="8" Margin="0, 5, 0, 0" Fill="#fff">
+        <Rotation Degrees="45" />
       </Rectangle>
 
-      <Rectangle Width="1" Height="8" Margin="0, 0, 0, 6" Fill="#afafaf">
-        <Rotation Degrees="-40" />
+      <Rectangle Width="1" Height="8" Margin="0, 0, 0, 5" Fill="#fff">
+        <Rotation Degrees="-45" />
       </Rectangle>
     </Panel>
-
-    <HorizontalBar Dock="Bottom" />
   </DockPanel>
 </Panel>
