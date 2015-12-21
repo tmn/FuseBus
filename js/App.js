@@ -3,6 +3,8 @@ var Bussholdeplass    = require('Bussholdeplass')
 , Observable          = require('FuseJS/Observable')
 , Stops               = require('Stops');
 
+var FavoriteHandler = require('FavoriteHandler');
+
 var departures        = Observable()
 , favorites           = Observable()
 , filtered_view       = Observable()
