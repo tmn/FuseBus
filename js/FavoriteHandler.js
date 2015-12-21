@@ -16,10 +16,6 @@ var addFavorite
 addFavorite = function(id) {
   var favorite = getFavorites();
 
-  if (favorite === null) {
-    favorite = {};
-  }
-
   if (favorite[id]) {
     return;
   }
