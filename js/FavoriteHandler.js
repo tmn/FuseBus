@@ -22,7 +22,7 @@ addFavorite = function(id) {
 
   favorite[id] = { name: 'woop' };
   Storage.writeSync(data, JSON.stringify(favorite));
-}
+};
 
 deleteFavorite = function(id) {
   var favorite = getFavorites();
@@ -31,18 +31,18 @@ deleteFavorite = function(id) {
     delete favorite[id];
     Storage.writeSync(data, JSON.stringify(favorite));
   }
-}
+};
 
 getFavorites = function() {
   var favorites = JSON.parse(Storage.readSync(data));
+
   if (favorites === null) {
     favorites = {};
-
     Storage.write(data, JSON.stringify(favorites));
   }
 
   return favorites;
-}
+};
 
 
 /* Exports
