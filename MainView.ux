@@ -10,7 +10,6 @@
     <Font File="Assets/Fonts/SF-UI-Text-Regular.otf" ux:Global="Regular" />
     <Font File="Assets/Fonts/SF-UI-Text-Light.otf" ux:Global="Light" />
 
-    <StatusBarBackground Dock="Top" Background="#ddd" />
     <iOS.StatusBarConfig Style="Light" />
 
     <Style>
