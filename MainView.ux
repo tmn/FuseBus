@@ -17,16 +17,51 @@
       <TextInput PlaceholderColor="#eee" TextColor="#fff" SelectionColor="#fff" />
     </Style>
 
-    <Panel ux:Name="top_panel" Alignment="Top" Background="#A2A21F">
-      <Panel Height="160">
+    <Panel ux:Name="top_panel" Alignment="Top" Height="200">
+      <Panel>
         <Style><Text TextColor="#fff" /></Style>
 
         <Panel ux:Name="top_panel_home">
           <PageControl ux:Name="favoriteControl">
             <Page>
-              <Text FontSize="28" TextAlignment="Center" Margin="0, 25, 0, 0">
-                Gløshaugen nord
-              </Text>
+              <StackPanel>
+                <Style>
+                  <Text FontSize="14" />
+                  <DockPanel Margin="0, 0, 0, 5" />
+                </Style>
+                <Text Font="Light" FontSize="28" TextAlignment="Center" Margin="0, 30, 0, 0">
+                  Gløshaugen nord
+                </Text>
+                <Text Alignment="Center" TextColor="#aaa" FontSize="14">
+                  mot midtbyen
+                </Text>
+
+                <StackPanel Margin="0, 12, 0, 0">
+                  <DockPanel Width="260">
+                    <Text Dock="Left" Width="50" TextColor="#DDFF99" Value="5" />
+                    <Text Dock="Left" Value="Buenget" />
+                    <Text Dock="Right" Value="15 min" />
+                  </DockPanel>
+
+                  <DockPanel Width="260">
+                    <Text Dock="Left" Width="50" TextColor="#DDFF99" Value="22" />
+                    <Text Dock="Left" Value="Tyholt" />
+                    <Text Dock="Right" Value="15 min" />
+                  </DockPanel>
+
+                  <DockPanel Width="260">
+                    <Text Dock="Left" Width="50" TextColor="#DDFF99" Value="5" />
+                    <Text Dock="Left" Value="Buenget" />
+                    <Text Dock="Right" Value="20 min" />
+                  </DockPanel>
+
+                  <DockPanel Width="260">
+                    <Text Dock="Left" Width="50" TextColor="#DDFF99" Value="5" />
+                    <Text Dock="Left" Value="Buenget" />
+                    <Text Dock="Right" Value="30 min" />
+                  </DockPanel>
+                </StackPanel>
+              </StackPanel>
             </Page>
             <Page>
               <Text>This is text</Text>
@@ -45,14 +80,12 @@
               </ActivatingAnimation>
             </Circle>
           </PageIndicator>
-
-
         </Panel>
 
-        <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="63" Opacity="0" Margin="15, 0, 0, 0">
-          <BackButton />
+       <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="70" Opacity="0" Padding="0, 20, 0, 0" Margin="0">
+          <BackButton Margin="15, 0, 0, 0" />
 
-          <Panel Dock="Left" Margin="20, 17, 20, 17" Alignment="HorizontalCenter">
+          <Panel Dock="Left" Margin="20, 10, 20, 10" Alignment="HorizontalCenter">
             <Rectangle Width="1" Fill="#fff" />
           </Panel>
 
@@ -63,24 +96,36 @@
           </StackPanel>
         </DockPanel>
       </Panel>
+
+      <Rectangle Height="200" Opacity=".95">
+        <LinearGradient StartPoint="0, 0" EndPoint="0, 1">
+          <GradientStop Offset="-.6" Color="#5E6F83" />
+          <GradientStop Offset="1" Color="#303C4C" />
+        </LinearGradient>
+      </Rectangle>
+      
+      <Image File="Assets/Images/bus.jpg" StretchMode="UniformToFill" />
     </Panel>
 
-    <Panel Padding="0, 160, 0, 0" Height="100%" ux:Name="favorites" Background="#BFBF27">
-      <TextInput Alignment="Top" PlaceholderText="Søk etter holdeplass" Value="{stop_search}" TextColor="#fff" IsMultiline="false" Margin="15, 30, 15, 0" />
 
-      <ScrollView Margin="0, 80, 0, 0">
+
+
+
+    <Panel Padding="0, 200, 0, 0" Height="100%" ux:Name="favorites">
+      <Panel Alignment="Top" Background="#A2A21F">
+        <TextInput Font="Light" FontSize="14" PlaceholderText="Søk etter holdeplass" Value="{stop_search}" TextColor="#fff" IsMultiline="false" Margin="15, 15, 15, 5" />
+      </Panel>
+
+      <ScrollView Margin="0, 53, 0, 0">
         <StackPanel Padding="0, 0, 0, 0">
           <Style>
             <Text Margin="15, 0, 0, 0" />
           </Style>
 
           <Each Items="{filtered_view}">
-            <Stop />
+            <Stop Margin="0, 0, 0, 5" />
           </Each>
 
-          <Each Items="{favorites}">
-            <Stop />
-          </Each>
         </StackPanel>
       </ScrollView>
     </Panel>
@@ -88,17 +133,19 @@
 
 
     <ScrollView ux:Name="departures">
-      <StackPanel Padding="0, 63, 0, 0">
+      <StackPanel Padding="0, 70, 0, 0">
         <Panel ux:Name="departures_top" Height="1" Alignment="Top" />
         <Each Items="{departures}">
           <Departure />
         </Each>
       </StackPanel>
+
+      <WhileFalse Value="{departures_active}">
+        <Move RelativeTo="Size" Y="1" Duration="0.3" Easing="CircularInOut" />
+      </WhileFalse>
     </ScrollView>
 
-    <WhileFalse Value="{departures_active}">
-      <Move Target="departures" RelativeTo="Size" Y="1" Duration="0.3" Easing="CircularInOut" />
-    </WhileFalse>
+    
 
     <WhileTrue Value="{departures_active}">
       <Move Target="top_panel" Y="-0.65" RelativeTo="Size" Duration="0.35" Easing="CircularInOut" />
