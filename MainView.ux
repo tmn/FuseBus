@@ -5,10 +5,10 @@
     <JavaScript File="js/Departure.js" ux:Global="Departure" />
     <JavaScript File="js/App.js" />
 
-    <Font File="Assets/Fonts/OpenSans-Bold.ttf" ux:Global="Bold" />
-    <Font File="Assets/Fonts/OpenSans-SemiBold.ttf" ux:Global="SemiBold" />
-    <Font File="Assets/Fonts/OpenSans-Regular.ttf" ux:Global="Regular" />
-    <Font File="Assets/Fonts/OpenSans-Light.ttf" ux:Global="Light" />
+    <Font File="Assets/Fonts/SF-UI-Text-Bold.otf" ux:Global="Bold" />
+    <Font File="Assets/Fonts/SF-UI-Text-Semibold.otf" ux:Global="SemiBold" />
+    <Font File="Assets/Fonts/SF-UI-Text-Regular.otf" ux:Global="Regular" />
+    <Font File="Assets/Fonts/SF-UI-Text-Light.otf" ux:Global="Light" />
 
     <StatusBarBackground Dock="Top" Background="#ddd" />
     <iOS.StatusBarConfig Style="Light" />
