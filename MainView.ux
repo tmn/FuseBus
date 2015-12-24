@@ -26,7 +26,7 @@
         <Panel ux:Name="top_panel_home">
           <PageControl ux:Name="favoriteControl">
             <Each Items="{favorite_departures}">
-              <Page>
+              <Page Clicked="{reload_favs}">
               <StackPanel>
                 <Style>
                   <Text FontSize="14" />
