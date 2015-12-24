@@ -2,7 +2,7 @@
 
 http://tmn.github.io/FuseBus/
 
-![sanntid](https://www.dropbox.com/s/hfw55m71nkpwila/IMG_2334_min.jpg?raw=1) ![sanntid2](https://www.dropbox.com/s/s2n3b0gea60o1an/IMG_2335_min.jpg?raw=1)
+[![sanntid](https://www.dropbox.com/s/hfw55m71nkpwila/IMG_2334_min.jpg?raw=1)](https://www.dropbox.com/s/mn2sedpd019sp9u/IMG_2334.jpg?dl=0) [![sanntid2](https://www.dropbox.com/s/s2n3b0gea60o1an/IMG_2335_min.jpg?raw=1)](https://www.dropbox.com/s/9b0sksxxlo811ww/IMG_2335.jpg?dl=0)
 
 ## Build and run
 
