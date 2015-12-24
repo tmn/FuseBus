@@ -2,6 +2,8 @@
 
 http://tmn.github.io/FuseBus/
 
+![sanntid](https://www.dropbox.com/s/hfw55m71nkpwila/IMG_2334_min.jpg?raw=1) ![sanntid2](https://www.dropbox.com/s/s2n3b0gea60o1an/IMG_2335_min.jpg?raw=1)
+
 ## Build and run
 
 First of all, get the source code!
@@ -18,6 +20,4 @@ Now, use Xcode to deploy it on your device! :)
 
 
 
-## Work in progress Screenshot!
 
-![sanntid](https://www.dropbox.com/s/jkmd19j0e65uo68/IMG_2332.jpg?raw=1)
