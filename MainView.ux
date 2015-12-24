@@ -19,11 +19,9 @@
       <TextInput PlaceholderColor="#eee" TextColor="#fff" SelectionColor="#fff" />
     </Style>
 
-    <Panel ux:Name="top_panel" Alignment="Top" Background="#A2A21F">
-      <Panel Height="160">
-        <Style>
-          <Text TextColor="#fff" />
-        </Style>
+    <Panel ux:Name="top_panel" Alignment="Top" Height="200">
+      <Panel>
+        <Style><Text TextColor="#fff" /></Style>
 
         <Panel ux:Name="top_panel_home">
           <PageControl ux:Name="favoriteControl">
@@ -65,12 +63,6 @@
                     <Text Dock="Right" Value="30 min" />
                   </DockPanel>
                 </StackPanel>
-                <Text FontSize="22" TextAlignment="Center" Margin="0, 10, 0, 0">
-                  Gløshaugen nord
-                </Text>
-                <Text FontSize="12" TextAlignment="Center" Opacity=".6">
-                  til midtbyen
-                </Text>
               </StackPanel>
             </Page>
             <Page>
