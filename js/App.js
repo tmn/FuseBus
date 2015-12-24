@@ -104,6 +104,10 @@ function loadFavDepartures(arr, id) {
   });
 }
 
+function reload_favs() {
+  loadFavData();
+}
+
 
 /* Geolocation + nearest stops
 -----------------------------------------------------------------------------*/
@@ -183,6 +187,7 @@ module.exports = {
   filtered_view: filtered_view,
   go_back: go_back,
   loading_indicator: loading_indicator,
+  reload_favs: reload_favs,
   stop_clicked: stop_clicked,
   stop_info: stop_info,
   stop_search: stop_search
