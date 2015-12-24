@@ -5,10 +5,11 @@ var Bussholdeplass    = require('Bussholdeplass')
 , GeoLocation         = require('FuseJS/GeoLocation')
 , Stops               = require('Stops');
 
-var FavoriteHandler = require('FavoriteHandler');
+var FavoriteHandler   = require('FavoriteHandler');
 
 var departures        = Observable()
 , favorites           = Observable()
+, favorite_departures = Observable()
 , filtered_view       = Observable()
 , loading_indicator   = Observable(false)
 , departures_active   = Observable(false)
@@ -64,18 +65,52 @@ var stop_clicked = function (args) {
 };
 
 
+/* Load favorites
+-----------------------------------------------------------------------------*/
+loadFavData();
+function loadFavData() {
+    var favs = [];
+
+    favorites.forEach(function (s) {
+      var stop = new Bussholdeplass(s.id, s.locationId, s.name, s.latitude, s.longitude);
+
+      var stopDep = {
+        name: stop.name,
+        direction: stop.direction,
+        departures: new Observable()
+      };
+
+      fillFavDepartures(stopDep.departures, s.locationId)
+
+      favs.push(stopDep)
+    });
+
+    favorite_departures.replaceAll(favs);
+}
+
+function fillFavDepartures(arr, id) {
+  fetch('http://bybussen.api.tmn.io/rt/' + id, { method: 'GET' })
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (responseObject) {
+    var departures = responseObject.next.slice(0, 4).map(function (d) {
+      return new Departure(d.l, d.t, d.ts, d.rt, d.d);
+    });
+
+    arr.replaceAll(departures);
+  })
+  .catch(function (err) {
+    console.log(JSON.stringify(err));
+  });
+}
+
+
 /* Geolocation + nearest stops
 -----------------------------------------------------------------------------*/
 GeoLocation.onChanged = function (location) {
-  console.log('CHANGED');
   updateNearestStops(location);  
 }
-
-if (GeoLocation.location !== null) {
-  updateNearestStops(GeoLocation.location);
-}
-
-updateNearestStops();
 
 var minimumReportInterval = 1000, desiredAccuracyInMeters = 10;
 GeoLocation.startListening(minimumReportInterval, desiredAccuracyInMeters);
@@ -141,6 +176,7 @@ module.exports = {
   departures: departures,
   departures_active: departures_active,
   favorites: favorites,
+  favorite_departures: favorite_departures,
   filtered_view: filtered_view,
   go_back: go_back,
   loading_indicator: loading_indicator,
