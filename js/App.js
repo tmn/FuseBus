@@ -67,7 +67,6 @@ var stop_clicked = function (args) {
 
 /* Load favorites
 -----------------------------------------------------------------------------*/
-loadFavData();
 function loadFavData() {
     var favs = [];
 
@@ -80,15 +79,15 @@ function loadFavData() {
         departures: new Observable()
       };
 
-      fillFavDepartures(stopDep.departures, s.locationId)
-
-      favs.push(stopDep)
+      loadFavDepartures(stopDep.departures, s.locationId)
+      
+      favs.push(stopDep);
     });
 
     favorite_departures.replaceAll(favs);
 }
 
-function fillFavDepartures(arr, id) {
+function loadFavDepartures(arr, id) {
   fetch('http://bybussen.api.tmn.io/rt/' + id, { method: 'GET' })
   .then(function (response) {
     return response.json();
@@ -101,7 +100,7 @@ function fillFavDepartures(arr, id) {
     arr.replaceAll(departures);
   })
   .catch(function (err) {
-    console.log(JSON.stringify(err));
+    console.log('ERROR: ' + err.message);
   });
 }
 
@@ -110,7 +109,7 @@ function fillFavDepartures(arr, id) {
 -----------------------------------------------------------------------------*/
 GeoLocation.onChanged = function (location) {
   updateNearestStops(location);  
-}
+};
 
 var minimumReportInterval = 1000, desiredAccuracyInMeters = 10;
 GeoLocation.startListening(minimumReportInterval, desiredAccuracyInMeters);
@@ -150,7 +149,7 @@ function updateNearestStops(location) {
 }
 
 
-/* Data fetching
+/* Search typing handler
 -----------------------------------------------------------------------------*/
 stop_search.addSubscriber(function () {
   if (stop_search.value.length < 3) {
@@ -168,6 +167,10 @@ stop_search.addSubscriber(function () {
   }));
 });
 
+
+/*
+-----------------------------------------------------------------------------*/
+loadFavData();
 
 
 /* Exports
