@@ -101,10 +101,10 @@
     </WhileFalse>
 
     <WhileTrue Value="{departures_active}">
-      <Move Target="top_panel" Y="-0.6" RelativeTo="Size" Duration="0.3" Easing="QuadraticOut" />
-      <Move Target="favorites" RelativeTo="Size" Y="-1" Duration="0.3" Easing="CircularInOut" />
-      <Change top_panel_home.Opacity="0" Duration=".3" Easing="QuadraticOut" />
-      <Change top_panel_departures.Opacity="1" Duration=".3" Easing="QuadraticOut" />
+      <Move Target="top_panel" Y="-0.65" RelativeTo="Size" Duration="0.35" Easing="CircularInOut" />
+      <Move Target="favorites" RelativeTo="Size" Y="-1" Duration="0.35" Easing="CircularInOut" />
+      <Change top_panel_home.Opacity="0" Duration=".35" Easing="CircularInOut" />
+      <Change top_panel_departures.Opacity="1" Duration=".35" Easing="CircularInOut" />
     </WhileTrue>
   </DockPanel>
 </App>
