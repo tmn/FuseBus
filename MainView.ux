@@ -13,7 +13,7 @@
     <iOS.StatusBarConfig Style="Light" />
 
     <Style>
-      <Text Font="Regular" TextColor="#222" />
+      <Text Font="Light" TextColor="#222" />
       <TextInput PlaceholderColor="#eee" TextColor="#fff" SelectionColor="#fff" />
     </Style>
 
