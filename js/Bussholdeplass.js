@@ -21,6 +21,7 @@ var get_direction_code = function (locationId) {
   }
 
   directionCode = parseInt(locationId.substring(4, 6));
+
   if (directionCode === 20 || directionCode === 83 || directionCode === 40 || directionCode === 87) {
     return directionCode;
   }
@@ -29,11 +30,15 @@ var get_direction_code = function (locationId) {
 
 /* ...
 -----------------------------------------------------------------------------*/
-module.exports = function (id, locationId, name, lon, lat) {
+module.exports = function (id, locationId, name, lon, lat, distance) {
   this.id = id;
   this.locationId = locationId;
   this.name = name;
   this.lon = lon;
   this.lat = lat;
   this.direction = get_direction(locationId);
+
+  if (distance) {
+    this.distance = parseInt(distance) + ' m';
+  }
 }
