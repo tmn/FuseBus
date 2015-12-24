@@ -79,10 +79,6 @@ stop_search.addSubscriber(function () {
 
 
 
-// Debug output
-console.log('\n-- Reloaded: ' + new Date());
-
-
 /* Exports
 -----------------------------------------------------------------------------*/
 module.exports = {
