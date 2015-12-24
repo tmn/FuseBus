@@ -32,7 +32,7 @@ var stop_clicked = function (args) {
   stop_info.value = args.data;
   stop_info.value.name = stop_info.value.name.toUpperCase();
 
-  var url = 'http://bybussen.api.tmn.io:8080/rt/' + args.data.locationId;
+  var url = 'http://bybussen.api.tmn.io/rt/' + args.data.locationId;
 
   fetch(url, {
     method: 'GET',
