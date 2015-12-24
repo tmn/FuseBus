@@ -1,5 +1,6 @@
 var Bussholdeplass    = require('Bussholdeplass')
 , Departure           = require('Departure')
+, env                 = require('FuseJS/Environment')
 , Observable          = require('FuseJS/Observable')
 , GeoLocation         = require('FuseJS/GeoLocation')
 , Stops               = require('Stops');
@@ -84,6 +85,10 @@ function stop() {
 }
 
 function updateNearestStops(location) {
+  if (!env.mobile) {
+    return;
+  }
+
   if (location === undefined) {
     if (GeoLocation.location !== null) {
       location = GeoLocation.location;
@@ -95,7 +100,6 @@ function updateNearestStops(location) {
 
   fetch('http://bybussen.api.tmn.io/stops/nearest/' + location.latitude + '/' + location.longitude)
   .then(function (response) {
-    console.log('asdf');
     return response.json();
   })
   .then(function (responseObject) {
