@@ -1,21 +1,26 @@
-<Panel ux:Class="Stop" ClipToBounds="true">
-  <DockPanel Padding="0, 10, 0, 0" Clicked="{stop_clicked}">
-    <StackPanel>
-      <Text Value="{name}" FontSize="16" TextColor="#fff" />
-      <Text Value="{direction}" TextColor="#fff" FontSize="12" Font="Light" />
-      <WhilePressed>
-        <Move X="5" Duration=".1" Easing="BounceOut" EasingBack="BounceIn" />
-      </WhilePressed>
+<Panel ux:Class="Stop" Clicked="{stop_clicked}">
+  <DockPanel Padding="0, 10, 0, 10">
+    <StackPanel ux:Name="StopText">
+      <Text Value="{name}" FontSize="16" TextColor="#303C4C" />
+      <Text Value="{direction}" FontSize="12" TextColor="#888" />
     </StackPanel>
 
+    <Text Value="{distance}" FontSize="12" TextColor="#ddd" Alignment="CenterRight" Padding="0, 0, 55, 0" />
+
     <Panel Alignment="CenterRight" Margin="0, 0, 20, 0">
-      <Rectangle Width="1" Height="8" Margin="0, 5, 0, 0" Fill="#fff">
+      <Rectangle Width="1" Height="8" Margin="0, 5, 0, 0" Fill="#303C4C">
         <Rotation Degrees="45" />
       </Rectangle>
 
-      <Rectangle Width="1" Height="8" Margin="0, 0, 0, 5" Fill="#fff">
+      <Rectangle Width="1" Height="8" Margin="0, 0, 0, 5" Fill="#303C4C">
         <Rotation Degrees="-45" />
       </Rectangle>
     </Panel>
   </DockPanel>
+
+  <Rectangle Margin="5, 0, 0, 0" Alignment="Bottom" Height="1" Fill="#e6e6e6" />
+
+  <WhilePressed>
+    <Move Target="StopText" X="5" Duration=".1" Easing="BounceOut" EasingBack="BounceIn" />
+  </WhilePressed>
 </Panel>
