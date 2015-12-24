@@ -3,6 +3,8 @@
     <JavaScript File="js/Stops.js" ux:Global="Stops" />
     <JavaScript File="js/Bussholdeplass.js" ux:Global="Bussholdeplass" />
     <JavaScript File="js/Departure.js" ux:Global="Departure" />
+    <JavaScript File="js/FavoriteHandler.js" ux:Global="FavoriteHandler" />
+
     <JavaScript File="js/App.js" />
 
     <Font File="Assets/Fonts/SF-UI-Text-Bold.otf" ux:Global="Bold" />
@@ -17,9 +19,11 @@
       <TextInput PlaceholderColor="#eee" TextColor="#fff" SelectionColor="#fff" />
     </Style>
 
-    <Panel ux:Name="top_panel" Alignment="Top" Height="200">
-      <Panel>
-        <Style><Text TextColor="#fff" /></Style>
+    <Panel ux:Name="top_panel" Alignment="Top" Background="#A2A21F">
+      <Panel Height="160">
+        <Style>
+          <Text TextColor="#fff" />
+        </Style>
 
         <Panel ux:Name="top_panel_home">
           <PageControl ux:Name="favoriteControl">
@@ -61,14 +65,34 @@
                     <Text Dock="Right" Value="30 min" />
                   </DockPanel>
                 </StackPanel>
+                <Text FontSize="22" TextAlignment="Center" Margin="0, 10, 0, 0">
+                  Gløshaugen nord
+                </Text>
+                <Text FontSize="12" TextAlignment="Center" Opacity=".6">
+                  til midtbyen
+                </Text>
               </StackPanel>
             </Page>
             <Page>
-              <Text>This is text</Text>
+              <StackPanel>
+                <Text FontSize="22" TextAlignment="Center" Margin="0, 10, 0, 0">
+                  Studentersamfundet (E6)
+                </Text>
+                <Text FontSize="12" TextAlignment="Center" Opacity=".6">
+                  til midtbyen
+                </Text>
+              </StackPanel>
             </Page>
 
             <Page>
-              <Text>This is text</Text>
+              <StackPanel>
+                <Text FontSize="22" TextAlignment="Center" Margin="0, 10, 0, 0">
+                  Studentersamfundet (Klostergata)
+                </Text>
+                <Text FontSize="12" TextAlignment="Center" Opacity=".6">
+                  til midtbyen
+                </Text>
+              </StackPanel>
             </Page>
           </PageControl>
 
@@ -90,7 +114,10 @@
           </Panel>
 
           <StackPanel Alignment="CenterLeft">
-            <Style><Text FontSize="12" /></Style>
+            <Style>
+              <Text FontSize="12" />
+            </Style>
+
             <Text Font="Bold" Value="{stop_info.name}" />
             <Text Value="{stop_info.direction}" />
           </StackPanel>
@@ -106,10 +133,6 @@
       
       <Image File="Assets/Images/bus.jpg" StretchMode="UniformToFill" />
     </Panel>
-
-
-
-
 
     <Panel Padding="0, 200, 0, 0" Height="100%" ux:Name="favorites">
       <Panel Alignment="Top" Background="#A2A21F">
@@ -129,8 +152,6 @@
         </StackPanel>
       </ScrollView>
     </Panel>
-
-
 
     <ScrollView ux:Name="departures">
       <StackPanel Padding="0, 70, 0, 0">

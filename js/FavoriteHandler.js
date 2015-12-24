@@ -1,38 +1,54 @@
 var Storage = require('FuseJS/Storage');
 
-var filename = 'favorites.json';
+var data = 'favorites';
 
-function saveFavorite(stop) {
-  console.log(getFavorites);
-}
 
-function getFavorites() {
-  Storage.read(filename).then(function (content) {
-    return content;
-  }, function (error) {
-    if (error === 'File does not exist.') {
-      console.log('CREATING FILE');
-      Storage.write(filename, JSON.stringify([]));
-    }
-    else {
-      console.log('error: ' + error);
-    }
-  })
+/* ...
+-----------------------------------------------------------------------------*/
+var addFavorite
+, deleteFavorite
+, getFavorites;
 
-}
 
-function isFavorite(stop) {
-  var favorites = getFavorites();
 
-  for (var i = 0; i < favorites.length; i++) {
-    if (favorites[i].id === stop.id) {
-      return true;
-    }
+/* Functions
+-----------------------------------------------------------------------------*/
+addFavorite = function(id, favName) {
+  var favorite = getFavorites();
+
+  if (favorite[id]) {
+    return;
   }
-}
 
+  favorite[id] = { name: favName };
+  Storage.writeSync(data, JSON.stringify(favorite));
+};
+
+deleteFavorite = function(id) {
+  var favorite = getFavorites();
+
+  if (favorite[id]) {
+    delete favorite[id];
+    Storage.writeSync(data, JSON.stringify(favorite));
+  }
+};
+
+getFavorites = function() {
+  var favorites = JSON.parse(Storage.readSync(data));
+
+  if (favorites === null) {
+    favorites = {};
+    Storage.write(data, JSON.stringify(favorites));
+  }
+
+  return favorites;
+};
+
+
+/* Exports
+-----------------------------------------------------------------------------*/
 module.exports = {
-  getFavorites: getFavorites,
-  isFavorite: isFavorite,
-  saveFavorite: saveFavorite
+  addFavorite: addFavorite,
+  deleteFavorite: deleteFavorite,
+  getFavorites: getFavorites
 };
