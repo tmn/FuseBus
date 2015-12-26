@@ -86,25 +86,22 @@
     <DockPanel>
       <Translation ux:Name="mainAppTranslation" />
 
-
       <Panel ux:Name="top_panel" Alignment="Top" Height="200">
-        <Style><Text TextColor="#fff" /></Style>
+        <Style>
+          <Text TextColor="#fff" FontSize="14" />
+        </Style>
 
         <Panel ux:Name="top_panel_home">
           <PageControl ux:Name="favoriteControl">
             <Each Items="{favorite_departures}">
               <Page Clicked="{reload_favs}">
                 <StackPanel>
-                  <Style>
-                    <Text FontSize="14" />
-                    <DockPanel Margin="0, 0, 0, 5" />
-                  </Style>
-                  <Text Font="Light" Value="{name}" FontSize="28" TextAlignment="Center" Margin="0, 30, 0, 0" />
+                  <Text Value="{name}" FontSize="28" TextAlignment="Center" Margin="0, 30, 0, 0" />
                   <Text Alignment="Center" Value="{direction}" TextColor="#aaa" FontSize="14" />
 
                   <StackPanel Margin="0, 12, 0, 0">
                     <Each Items="{departures}">
-                      <DockPanel Width="260">
+                      <DockPanel Width="260" Margin="0, 0, 0, 5">
                         <Text Dock="Left" Width="50" TextColor="#DDFF99" Value="{line}" />
                         <Text Dock="Left" Value="{destination}" />
                         <Text Dock="Right" Value="{timeLeft}" />
@@ -126,7 +123,7 @@
           </PageIndicator>
         </Panel>
 
-       <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="70" Opacity="0" Padding="0, 20, 0, 0" Margin="0">
+        <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="70" Opacity="0" Padding="0, 20, 0, 0" Margin="0">
           <BackButton Margin="15, 0, 0, 0" />
 
           <Panel Dock="Left" Margin="20, 10, 20, 10" Alignment="HorizontalCenter">
@@ -142,8 +139,6 @@
             <Text Value="{stop_info.direction}" />
           </StackPanel>
         </DockPanel>
-
-
 
         <Rectangle Height="200" Opacity=".95">
           <LinearGradient StartPoint="0, 0" EndPoint="0, 1">
