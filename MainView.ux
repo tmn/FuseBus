@@ -1,53 +1,119 @@
 <App Theme="Basic" Background="#fff">
-  <DockPanel>
-    <JavaScript File="js/Stops.js" ux:Global="Stops" />
-    <JavaScript File="js/Bussholdeplass.js" ux:Global="Bussholdeplass" />
-    <JavaScript File="js/Departure.js" ux:Global="Departure" />
-    <JavaScript File="js/FavoriteHandler.js" ux:Global="FavoriteHandler" />
+  <JavaScript File="js/Stops.js" ux:Global="Stops" />
+  <JavaScript File="js/Bussholdeplass.js" ux:Global="Bussholdeplass" />
+  <JavaScript File="js/Departure.js" ux:Global="Departure" />
+  <JavaScript File="js/FavoriteHandler.js" ux:Global="FavoriteHandler" />
+  <JavaScript File="js/App.js" />
 
-    <JavaScript File="js/App.js" />
+  <Font File="Assets/Fonts/SF-UI-Text-Bold.otf" ux:Global="Bold" />
+  <Font File="Assets/Fonts/SF-UI-Text-Semibold.otf" ux:Global="SemiBold" />
+  <Font File="Assets/Fonts/SF-UI-Text-Regular.otf" ux:Global="Regular" />
+  <Font File="Assets/Fonts/SF-UI-Text-Light.otf" ux:Global="Light" />
 
-    <Font File="Assets/Fonts/SF-UI-Text-Bold.otf" ux:Global="Bold" />
-    <Font File="Assets/Fonts/SF-UI-Text-Semibold.otf" ux:Global="SemiBold" />
-    <Font File="Assets/Fonts/SF-UI-Text-Regular.otf" ux:Global="Regular" />
-    <Font File="Assets/Fonts/SF-UI-Text-Light.otf" ux:Global="Light" />
-
-    <iOS.StatusBarConfig Style="Light" />
-
+  <iOS.StatusBarConfig Style="Light" />
+  
+  <EdgeNavigator ux:Name="EdgeNavigator">
     <Style>
       <Text Font="Light" TextColor="#222" />
-      <TextInput PlaceholderColor="#eee" TextColor="#fff" SelectionColor="#fff" />
     </Style>
 
-    <Panel ux:Name="top_panel" Alignment="Top" Height="200">
-      <Panel>
+    <DockPanel Background="#303C4C" ux:Name="sideMenu" Width="315" EdgeNavigation.Edge="Left">
+      <Style>
+        <Text TextColor="#fff" />
+      </Style>
+
+      <WhileInactive Threshold="0.4">
+        <Move Target="appLogo" X="-320" Duration="0.2" Delay="0.3" Easing="CircularIn" />
+        <Move Target="settingsFavTitle" X="-320" Duration="0.2" Delay="0.2" Easing="CircularIn" />
+        <Move Target="settingsFavSearch" X="-320" Duration="0.2" Delay="0.15" Easing="CircularIn" />
+        <Move Target="settingsFavList" X="-320" Duration="0.2" Delay="0.1" Easing="CircularIn" />
+      </WhileInactive>
+      
+      <Panel Dock="Top" Height="90" />
+
+      <DockPanel ux:Name="appLogo" Dock="Top">
+        <Image Dock="Left" Margin="80, 0, 0, 0" Width="50" File="Assets/Images/bus_logo.png" />
+        <StackPanel Dock="Right" Margin="0, 0, 80, 9" Alignment="Bottom" Opacity="0.5">
+          <Text FontSize="12" Alignment="Bottom">SANNTIDSAPPEN</Text>
+          <Rectangle Height="1" Fill="#fff" Alignment="Left" Width="58" Margin="1, 0, 0, 0" />
+        </StackPanel>
+      </DockPanel>
+
+
+      <StackPanel ux:Name="settingsFavTitle" Dock="Top" Margin="20, 50, 20, 20">
+        <Text TextAlignment="Center" Font="Bold">FAVORITTER</Text>
+      </StackPanel>
+      
+      <StackPanel ux:Name="settingsFavSearch" Dock="Top" Margin="0, 15, 0, 0">
+        <TextInput PlaceholderText="finn holdeplass" PlaceholderColor="#ddd" TextColor="#fff" FontSize="14" Margin="20, 0, 20, 0" />
+      </StackPanel>
+
+
+      <ScrollView ux:Name="settingsFavList" Dock="Fill" Margin="0, 15, 0, 15">
+        <Style>
+          <Text FontSize="14" />
+        </Style>
+        <StackPanel>
+            <Each Items="{favorites}">
+              <StackPanel Margin="20, 0, 0, 0">
+                <StackPanel Padding="0, 12, 0, 12">
+                  <Text Value="{name}" />
+                  <Text Value="{direction}" Opacity=".5" FontSize="12" />
+                </StackPanel>
+
+                <Rectangle Height="1" Fill="#FFF" Opacity=".1" />
+              </StackPanel>
+            </Each>
+        </StackPanel>
+      </ScrollView>
+
+      <Panel Dock="Bottom" Background="#232C39" Height="50">
+        <Style><Text FontSize="12" /></Style>
+        <Text TextAlignment="Center" Alignment="VerticalCenter">en sanntidsapplikasjon av tmn</Text>
+      </Panel>
+
+      <ActivatingAnimation>
+        <Change Duration="0.1" Easing="Linear" mainAppTranslation.X="315" />
+      </ActivatingAnimation>
+    </DockPanel>
+
+
+
+
+
+
+
+    <DockPanel>
+      <Translation ux:Name="mainAppTranslation" />
+
+
+      <Panel ux:Name="top_panel" Alignment="Top" Height="200">
         <Style><Text TextColor="#fff" /></Style>
 
         <Panel ux:Name="top_panel_home">
           <PageControl ux:Name="favoriteControl">
             <Each Items="{favorite_departures}">
               <Page Clicked="{reload_favs}">
-              <StackPanel>
-                <Style>
-                  <Text FontSize="14" />
-                  <DockPanel Margin="0, 0, 0, 5" />
-                </Style>
-                <Text Font="Light" Value="{name}" FontSize="28" TextAlignment="Center" Margin="0, 30, 0, 0" />
-                <Text Alignment="Center" Value="{direction}" TextColor="#aaa" FontSize="14" />
+                <StackPanel>
+                  <Style>
+                    <Text FontSize="14" />
+                    <DockPanel Margin="0, 0, 0, 5" />
+                  </Style>
+                  <Text Font="Light" Value="{name}" FontSize="28" TextAlignment="Center" Margin="0, 30, 0, 0" />
+                  <Text Alignment="Center" Value="{direction}" TextColor="#aaa" FontSize="14" />
 
-                <StackPanel Margin="0, 12, 0, 0">
-                  <Each Items="{departures}">
-                    <DockPanel Width="260">
-                      <Text Dock="Left" Width="50" TextColor="#DDFF99" Value="{line}" />
-                      <Text Dock="Left" Value="{destination}" />
-                      <Text Dock="Right" Value="{timeLeft}" />
-                    </DockPanel>
-                  </Each>
+                  <StackPanel Margin="0, 12, 0, 0">
+                    <Each Items="{departures}">
+                      <DockPanel Width="260">
+                        <Text Dock="Left" Width="50" TextColor="#DDFF99" Value="{line}" />
+                        <Text Dock="Left" Value="{destination}" />
+                        <Text Dock="Right" Value="{timeLeft}" />
+                      </DockPanel>
+                    </Each>
+                  </StackPanel>
                 </StackPanel>
-              </StackPanel>
-            </Page>
+              </Page>
             </Each>
-           
           </PageControl>
 
           <PageIndicator Navigation="favoriteControl" Alignment="BottomCenter">
@@ -76,57 +142,64 @@
             <Text Value="{stop_info.direction}" />
           </StackPanel>
         </DockPanel>
+
+
+
+        <Rectangle Height="200" Opacity=".95">
+          <LinearGradient StartPoint="0, 0" EndPoint="0, 1">
+            <GradientStop Offset="-.6" Color="#5E6F83" />
+            <GradientStop Offset="1" Color="#303C4C" />
+          </LinearGradient>
+        </Rectangle>
+
+        <Image File="Assets/Images/bus.jpg" StretchMode="UniformToFill" />
       </Panel>
 
-      <Rectangle Height="200" Opacity=".95">
-        <LinearGradient StartPoint="0, 0" EndPoint="0, 1">
-          <GradientStop Offset="-.6" Color="#5E6F83" />
-          <GradientStop Offset="1" Color="#303C4C" />
-        </LinearGradient>
-      </Rectangle>
-      
-      <Image File="Assets/Images/bus.jpg" StretchMode="UniformToFill" />
-    </Panel>
 
-    <Panel Padding="0, 200, 0, 0" Height="100%" ux:Name="favorites">
-      <Panel Alignment="Top" Background="#A2A21F">
-        <TextInput Font="Light" FontSize="14" PlaceholderText="Søk etter holdeplass" Value="{stop_search}" TextColor="#fff" IsMultiline="false" Margin="15, 15, 15, 5" />
+
+
+      <Panel ux:Name="stopList" Padding="0, 200, 0, 0">
+        <Panel Alignment="Top" Background="#A2A21F">
+          <TextInput PlaceholderText="Søk etter holdeplass" PlaceholderColor="#eee" Value="{stop_search}" FontSize="14" TextColor="#fff" IsMultiline="false" Margin="15, 15, 15, 5" />
+        </Panel>
+
+        <ScrollView Margin="0, 53, 0, 0">
+          <StackPanel Padding="0, 0, 0, 0">
+            <Style>
+              <Text Margin="15, 0, 0, 0" />
+            </Style>
+
+            <Each Items="{filtered_view}">
+              <Stop Margin="0, 0, 0, 5" />
+            </Each>
+          </StackPanel>
+        </ScrollView>
       </Panel>
 
-      <ScrollView Margin="0, 53, 0, 0">
-        <StackPanel Padding="0, 0, 0, 0">
-          <Style>
-            <Text Margin="15, 0, 0, 0" />
-          </Style>
 
-          <Each Items="{filtered_view}">
-            <Stop Margin="0, 0, 0, 5" />
+
+
+      <ScrollView ux:Name="departures">
+        <StackPanel Padding="0, 70, 0, 0">
+          <Panel ux:Name="departures_top" Height="1" Alignment="Top" />
+          <Each Items="{departures}">
+            <Departure />
           </Each>
-
         </StackPanel>
+
+        <WhileFalse Value="{departures_active}">
+          <Move RelativeTo="Size" Y="1" Duration="0.3" Easing="CircularInOut" />
+        </WhileFalse>
       </ScrollView>
-    </Panel>
 
-    <ScrollView ux:Name="departures">
-      <StackPanel Padding="0, 70, 0, 0">
-        <Panel ux:Name="departures_top" Height="1" Alignment="Top" />
-        <Each Items="{departures}">
-          <Departure />
-        </Each>
-      </StackPanel>
 
-      <WhileFalse Value="{departures_active}">
-        <Move RelativeTo="Size" Y="1" Duration="0.3" Easing="CircularInOut" />
-      </WhileFalse>
-    </ScrollView>
 
-    
-
-    <WhileTrue Value="{departures_active}">
-      <Move Target="top_panel" Y="-0.65" RelativeTo="Size" Duration="0.35" Easing="CircularInOut" />
-      <Move Target="favorites" RelativeTo="Size" Y="-1" Duration="0.35" Easing="CircularInOut" />
-      <Change top_panel_home.Opacity="0" Duration=".35" Easing="CircularInOut" />
-      <Change top_panel_departures.Opacity="1" Duration=".35" Easing="CircularInOut" />
-    </WhileTrue>
-  </DockPanel>
+      <WhileTrue Value="{departures_active}">
+        <Move Target="top_panel" Y="-0.65" RelativeTo="Size" Duration="0.35" Easing="CircularInOut" />
+        <Move Target="stopList" RelativeTo="Size" Y="-1" Duration="0.35" Easing="CircularInOut" />
+        <Change top_panel_home.Opacity="0" Duration=".35" Easing="CircularInOut" />
+        <Change top_panel_departures.Opacity="1" Duration=".35" Easing="CircularInOut" />
+      </WhileTrue>
+    </DockPanel>
+  </EdgeNavigator>
 </App>
