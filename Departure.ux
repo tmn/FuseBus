@@ -25,5 +25,5 @@
     </Panel>
   </StackPanel>
 
-  <HorizontalBar Alignment="Bottom" Margin="10, 0, 0, 0" />
+  <Rectangle Margin="15, 0, 0, 0" Alignment="Bottom" Height="1" Fill="#e6e6e6" />
 </Panel>
