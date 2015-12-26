@@ -1,11 +1,11 @@
 var Bussholdeplass    = require('Bussholdeplass')
 , Departure           = require('Departure')
-, env                 = require('FuseJS/Environment')
-, Observable          = require('FuseJS/Observable')
-, GeoLocation         = require('FuseJS/GeoLocation')
+, FavoriteHandler     = require('FavoriteHandler')
 , Stops               = require('Stops');
 
-var FavoriteHandler   = require('FavoriteHandler');
+var env               = require('FuseJS/Environment')
+, Observable          = require('FuseJS/Observable')
+, GeoLocation         = require('FuseJS/GeoLocation');
 
 var departures        = Observable()
 , favorites           = Observable()
@@ -13,7 +13,6 @@ var departures        = Observable()
 , filtered_view       = Observable()
 , loading_indicator   = Observable(false)
 , departures_active   = Observable(false)
-, nearest_stops       = Observable()
 , stop_info           = Observable()
 , stop_search         = Observable('');
 
@@ -25,8 +24,21 @@ favorites.add(new Bussholdeplass('100295', '16010333', 'Gløshaugen Nord', 10.40
 favorites.add(new Bussholdeplass('102714', '16011265', 'Gløshaugen Syd', 10.406111, 63.418309));
 favorites.add(new Bussholdeplass('100268', '16011333', 'Gløshaugen Nord', 10.406111, 63.418309));
 
+
 /* Func
 -----------------------------------------------------------------------------*/
+var ApiReq = {
+  url: 'http://bybussen.api.tmn.io/',
+  get: function (path, callback) {
+    return fetch(ApiReq.url + path, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    }).then(function (response) {
+      return response.json();
+    })
+  }
+};
+
 var go_back = function () {
   departures_active.value = false;
   departures.clear();
@@ -38,16 +50,7 @@ var stop_clicked = function (args) {
   stop_info.value = args.data;
   stop_info.value.name = stop_info.value.name.toUpperCase();
 
-  var url = 'http://bybussen.api.tmn.io/rt/' + args.data.locationId;
-
-  fetch(url, {
-    method: 'GET',
-    headers: { "Content-type": "application/json" }
-  })
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (responseObject) {
+  ApiReq.get('rt/' + args.data.locationId).then(function (responseObject) {
     var newDepartures = responseObject['next'].map(function (e) {
       return new Departure(e.l, e.t, e.ts, e.rt, e.d);
     });
@@ -67,7 +70,7 @@ var stop_clicked = function (args) {
 
 /* Load favorites
 -----------------------------------------------------------------------------*/
-function loadFavData() {
+function load_fav_data() {
     var favs = [];
 
     favorites.forEach(function (s) {
@@ -79,7 +82,7 @@ function loadFavData() {
         departures: new Observable()
       };
 
-      loadFavDepartures(stopDep.departures, s.locationId)
+      load_fav_departures(stopDep.departures, s.locationId)
       
       favs.push(stopDep);
     });
@@ -87,12 +90,8 @@ function loadFavData() {
     favorite_departures.replaceAll(favs);
 }
 
-function loadFavDepartures(arr, id) {
-  fetch('http://bybussen.api.tmn.io/rt/' + id, { method: 'GET' })
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (responseObject) {
+function load_fav_departures(arr, id) {
+  ApiReq.get('rt/' + id).then(function (responseObject) {
     var departures = responseObject.next.slice(0, 4).map(function (d) {
       return new Departure(d.l, d.t, d.ts, d.rt, d.d);
     });
@@ -105,14 +104,13 @@ function loadFavDepartures(arr, id) {
 }
 
 function reload_favs() {
-  loadFavData();
+  // load_fav_data();
 }
 
 
 /* Geolocation + nearest stops
 -----------------------------------------------------------------------------*/
-
-function updateNearestStops(location) {
+function update_nearest_stop(location) {
   if (!env.mobile) {
     return;
   }
@@ -126,11 +124,7 @@ function updateNearestStops(location) {
     }
   }
 
-  fetch('http://bybussen.api.tmn.io/stops/nearest/' + location.latitude + '/' + location.longitude)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (responseObject) {
+  ApiReq.get('stops/nearest/' + location.latitude + '/' + location.longitude).then(function (responseObject) {
     var convertedStops = responseObject.map(function (e) {
       return new Bussholdeplass(e.busStopId, e.locationId, e.name, e.longitude, e.latitude, e.distance);
     });
@@ -146,25 +140,26 @@ function updateNearestStops(location) {
 /* Search typing handler
 -----------------------------------------------------------------------------*/
 stop_search.addSubscriber(function () {
-  if (stop_search.value.length < 3) {
-    if (stop_search.value.length === 0) {
+  var search_string = stop_search.value;
+
+  if (search_string.length < 3) {
+    if (search_string.length === 0) {
       filtered_view.clear();
-      updateNearestStops();
+      update_nearest_stop();
     }
 
     return;
   }
 
-  var search_string = stop_search.value.toUpperCase();
   filtered_view.replaceAll(Stops.filter(function (e) {
-    return e.name.toUpperCase().indexOf(search_string) > -1;
+    return e.name.toUpperCase().indexOf(search_string.toUpperCase()) > -1;
   }));
 });
 
 
-/*
+/* Init
 -----------------------------------------------------------------------------*/
-loadFavData();
+load_fav_data();
 
 
 /* Exports
