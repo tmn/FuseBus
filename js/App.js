@@ -111,16 +111,6 @@ function reload_favs() {
 
 /* Geolocation + nearest stops
 -----------------------------------------------------------------------------*/
-GeoLocation.onChanged = function (location) {
-  updateNearestStops(location);  
-};
-
-var minimumReportInterval = 1000, desiredAccuracyInMeters = 10;
-GeoLocation.startListening(minimumReportInterval, desiredAccuracyInMeters);
-
-function stop() {
-   GeoLocation.stopListening();
-}
 
 function updateNearestStops(location) {
   if (!env.mobile) {
