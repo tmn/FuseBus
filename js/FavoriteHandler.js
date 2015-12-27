@@ -36,7 +36,6 @@ deleteFavorite = function(id) {
 };
 
 getFavorites = function() {
-  Storage.write(data, '');
   var favorites = Storage.readSync(data);
 
   if (favorites === null || Storage.readSync(data) === '') {
