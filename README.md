@@ -24,13 +24,15 @@ Now, use Xcode to deploy it on your device! :)
 # Roadmap
 
 * _Pull-2-refresh_
-  * Oversikt over avganger __[in progress]__
-  * Nærmeste holdeplasser __[later]__
-* _Favoritter_ - innstillinger
-  * Slette __[in progress]__
-  * Legge til __[in progress]__
-  * Gjøre om rekkefølgen __[planned]__
-* _Favoritter_ - visning
-  * Manuelt oppdater data __[planned]__
-* _Ruteoversikt_ - vise ruteoversikt over en gitt avgang slik at du ser hvilke holdeplasser som finnes langs gitt rute. Denne krever ny datagrunnlag __[planned]__
-* _Varsling_ - få varsel på en avgang ved å velge fra sanntidsoversikt __[later]__
+  * Departures __[in progress]__
+  * Nearest stops __[later]__
+* _Favorites_ - settings/sidebar
+  * Delete __[in progress]__
+  * Add __[in progress]__
+  * Re-arrange __[planned]__
+* _Favorites_ - departure view on home screen
+  * Trigger update on departure time __[planned]__
+* _Route_ - get route of a chosen departure. Let the user see which stops are on the current route. This requires new data from the API __[planned]__
+* _Notifications_ - attach alarm to departures __[later]__
+* _Loading indicator_ - get a loading indication on chosen stop
+* Better search mechanism on stops
