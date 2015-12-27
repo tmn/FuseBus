@@ -18,7 +18,7 @@
     </Panel>
   </DockPanel>
 
-  <Rectangle Margin="5, 0, 0, 0" Alignment="Bottom" Height="1" Fill="#e6e6e6" />
+  <Rectangle Margin="15, 0, 0, 0" Alignment="Bottom" Height="1" Fill="#e6e6e6" />
 
   <WhilePressed>
     <Move Target="StopText" X="5" Duration=".1" Easing="BounceOut" EasingBack="BounceIn" />
