@@ -17,14 +17,6 @@ var departures        = Observable()
 , stop_search         = Observable('');
 
 
-/* Mock data
------------------------------------------------------------------------------*/
-favorites.add(new Bussholdeplass('100268', '16011333', 'Gløshaugen Nord', 10.406111, 63.418309));
-favorites.add(new Bussholdeplass('100295', '16010333', 'Gløshaugen Nord', 10.405967, 63.418184));
-favorites.add(new Bussholdeplass('102714', '16011265', 'Gløshaugen Syd', 10.406111, 63.418309));
-favorites.add(new Bussholdeplass('100268', '16011333', 'Gløshaugen Nord', 10.406111, 63.418309));
-
-
 /* Func
 -----------------------------------------------------------------------------*/
 var ApiReq = {
@@ -71,23 +63,22 @@ var stop_clicked = function (args) {
 /* Load favorites
 -----------------------------------------------------------------------------*/
 function load_fav_data() {
-    var favs = [];
+  var favs = FavoriteHandler.getFavoriteList();
+  var newFavs = [];
 
-    favorites.forEach(function (s) {
-      var stop = new Bussholdeplass(s.id, s.locationId, s.name, s.latitude, s.longitude);
+  favs.forEach(function (stop) {
+    var stopDep = {
+      name: stop.name,
+      direction: stop.direction,
+      departures: new Observable()
+    };
 
-      var stopDep = {
-        name: stop.name,
-        direction: stop.direction,
-        departures: new Observable()
-      };
-
-      load_fav_departures(stopDep.departures, s.locationId)
+    load_fav_departures(stopDep.departures, stop.locationId)
       
-      favs.push(stopDep);
-    });
+    newFavs.push(stopDep);
+  });
 
-    favorite_departures.replaceAll(favs);
+  favorite_departures.replaceAll(newFavs);
 }
 
 function load_fav_departures(arr, id) {
