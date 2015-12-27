@@ -103,6 +103,15 @@ function load_fav_departures(arr, id) {
   });
 }
 
+function delete_favorite(args) {
+  favorites.remove(args.data);
+
+  setTimeout(function () {
+    FavoriteHandler.deleteFavorite(args.data.id);
+    load_fav_data();
+  }, 980);
+}
+
 function reload_favs() {
   // load_fav_data();
 }
@@ -160,6 +169,7 @@ stop_search.addSubscriber(function () {
 /* Init
 -----------------------------------------------------------------------------*/
 load_fav_data();
+favorites.replaceAll(FavoriteHandler.getFavoriteList());
 
 
 /* Exports
@@ -169,6 +179,7 @@ module.exports = {
   departures_active: departures_active,
   favorites: favorites,
   favorite_departures: favorite_departures,
+  favorite_delete: delete_favorite,
   filtered_view: filtered_view,
   go_back: go_back,
   loading_indicator: loading_indicator,
