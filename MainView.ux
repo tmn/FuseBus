@@ -49,20 +49,43 @@
       </StackPanel>
 
 
-      <ScrollView ux:Name="settingsFavList" Dock="Fill" Margin="0, 15, 0, 15">
+      <ScrollView ux:Name="settingsFavList" Dock="Fill" Padding="0, 15, 0, 15">
         <Style>
           <Text FontSize="14" />
         </Style>
         <StackPanel>
             <Each Items="{favorites}">
-              <StackPanel Margin="20, 0, 0, 0">
-                <StackPanel Padding="0, 12, 0, 12">
-                  <Text Value="{name}" />
-                  <Text Value="{direction}" Opacity=".5" FontSize="12" />
-                </StackPanel>
+              <Panel Margin="20, 0, 0, 0">
+                <DockPanel Alignment="Top">
+                  <Circle ux:Name="delete_button" Clicked="{favorite_delete}" Dock="Left" Width="22" Height="22" Margin="0, 0, 15, 0">
+                    <SolidColor Color="#a00" />
 
-                <Rectangle Height="1" Fill="#FFF" Opacity=".1" />
-              </StackPanel>
+                    <Rectangle Fill="#fff" Width="1" Height="10">
+                      <Rotation Degrees="45" />
+                    </Rectangle>
+
+                    <Rectangle Fill="#fff" Width="1" Height="10">
+                      <Rotation Degrees="-45" />
+                    </Rectangle>
+                  </Circle>
+
+                  <StackPanel Dock="Left" Padding="0, 12, 0, 12">
+                    <Text Value="{name}" />
+                    <Text Value="{direction}" Opacity=".5" FontSize="12" />
+                  </StackPanel>
+                </DockPanel>
+
+                <Rectangle Alignment="Bottom" Height="1" Fill="#FFF" Opacity=".1" />
+
+                <RemovingAnimation>
+                  <Move RelativeTo="Size" Y="-1" Duration=".3" Easing="CircularInOut" />
+                </RemovingAnimation>
+
+                <LayoutAnimation>
+                  <Move RelativeTo="LayoutChange" Y="1" Duration=".8" Easing="CircularInOut" />
+                </LayoutAnimation>
+                <Rectangle Fill="#303C4C" />
+              </Panel>
             </Each>
         </StackPanel>
       </ScrollView>
@@ -165,7 +188,7 @@
             </Style>
 
             <Each Items="{filtered_view}">
-              <Stop Margin="0, 0, 0, 5" />
+              <Stop />
             </Each>
           </StackPanel>
         </ScrollView>
