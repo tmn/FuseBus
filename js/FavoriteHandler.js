@@ -1,4 +1,5 @@
 var Storage = require('FuseJS/Storage');
+var Bussholdeplass = require('Bussholdeplass');
 
 var data = 'favorites';
 
@@ -7,20 +8,21 @@ var data = 'favorites';
 -----------------------------------------------------------------------------*/
 var addFavorite
 , deleteFavorite
+, getFavoriteList
 , getFavorites;
 
 
 
 /* Functions
 -----------------------------------------------------------------------------*/
-addFavorite = function(id, favName) {
+addFavorite = function(favObj) {
   var favorite = getFavorites();
 
-  if (favorite[id]) {
+  if (favorite[favObj.id]) {
     return;
   }
 
-  favorite[id] = { name: favName };
+  favorite[favObj.id] = favObj;
   Storage.writeSync(data, JSON.stringify(favorite));
 };
 
@@ -34,14 +36,34 @@ deleteFavorite = function(id) {
 };
 
 getFavorites = function() {
-  var favorites = JSON.parse(Storage.readSync(data));
+  Storage.write(data, '');
+  var favorites = Storage.readSync(data);
 
-  if (favorites === null) {
-    favorites = {};
-    Storage.write(data, JSON.stringify(favorites));
+  if (favorites === null || Storage.readSync(data) === '') {
+    favorites = {
+      100268: new Bussholdeplass(100268, '16011333', 'Gløshaugen Nord', 10.406111, 63.418309),
+      100616: new Bussholdeplass(100616, '16010005', 'Munkegata - M5', 10.393912, 63.432816),
+      100620: new Bussholdeplass(100620, '16010001', 'Munkegata - M1', 10.393741, 63.432575),
+      101884: new Bussholdeplass(101884, '16010907', 'Kongens gt - K2', 10.391819, 63.430494)
+    };
+
+    favorites = JSON.stringify(favorites);
+    Storage.write(data, favorites);
   }
 
-  return favorites;
+  return JSON.parse(favorites);
+};
+
+getFavoriteList = function () {
+  var favorites = getFavorites();
+
+  var list = [];
+
+  for (var f in favorites) {
+    list.push(favorites[f]);
+  }
+
+  return list;
 };
 
 
@@ -50,5 +72,6 @@ getFavorites = function() {
 module.exports = {
   addFavorite: addFavorite,
   deleteFavorite: deleteFavorite,
+  getFavoriteList: getFavoriteList,
   getFavorites: getFavorites
 };
