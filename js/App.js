@@ -16,6 +16,17 @@ var departures        = Observable()
 , stop_info           = Observable()
 , stop_search         = Observable('');
 
+var isLoading         = Observable(false);
+
+function endLoading() {
+  isLoading.value = false;
+}
+
+function reloadHandler() {
+  isLoading.value = true;
+  setTimeout(endLoading, 3000);
+}
+
 
 /* Func
 -----------------------------------------------------------------------------*/
@@ -40,9 +51,14 @@ var stop_clicked = function (args) {
   loading_indicator.value = true;
 
   stop_info.value = args.data;
-  stop_info.value.name = stop_info.value.name.toUpperCase();
+  stop_info.value.name = stop_info.value.name.length > 20 ? stop_info.value.name.toUpperCase().substring(0, 20) + ' ...' : stop_info.value.name.toUpperCase();
 
-  ApiReq.get('rt/' + args.data.locationId).then(function (responseObject) {
+  load_data();
+};
+
+var load_data = function () {
+  console.log('reaload');
+  ApiReq.get('rt/' + stop_info.value.locationId).then(function (responseObject) {
     var newDepartures = responseObject['next'].map(function (e) {
       return new Departure(e.l, e.t, e.ts, e.rt, e.d);
     });
@@ -183,5 +199,11 @@ module.exports = {
   reload_favs: reload_favs,
   stop_clicked: stop_clicked,
   stop_info: stop_info,
-  stop_search: stop_search
+  stop_search: stop_search,
+
+  isLoading: isLoading,
+  reloadHandler: reloadHandler,
+
+  load_data: load_data,
+  add_favorite: add_favorite
 };
