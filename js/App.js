@@ -103,6 +103,12 @@ function delete_favorite(args) {
   }, 980);
 }
 
+function add_favorite() {
+  console.log('hei');
+  console.log(JSON.stringify(stop_info.value));
+  FavoriteHandler.addFavorite(stop_info.value);
+}
+
 function reload_favs() {
   // load_fav_data();
 }
