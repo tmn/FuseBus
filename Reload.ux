@@ -1,0 +1,33 @@
+<Panel ux:Class="Reload" ClipToBounds="True">
+  <Image ux:Class="BusLogo" File="Assets/Images/bus_logo.png" Width="35" Height="35" />
+
+  <Panel ux:Name="loadingBus" Background="#efefef" Alignment="Top" Dock="Top" Height="0">
+    <BusLogo ux:Name="bus1">
+      <Rotation ux:Name="bus1rotation" />
+    </BusLogo>
+  </Panel>
+
+  <WhileTrue ux:Name="retainSpace">
+    <Change loadingBus.MinHeight="55" Duration="0" DurationBack="0.3" Easing="CircularIn" />
+  </WhileTrue>
+
+  <ScrollingAnimation Range="SnapMin">
+    <Change loadingBus.Height="85" Duration="1" />
+    <Change bus1rotation.Degrees="200" Duration="1" />
+  </ScrollingAnimation>
+
+  <PullToReload IsLoading="{isLoading}" ReloadHandler="{reloadHandler}">
+    <State ux:Binding="Pulling">
+
+    </State>
+
+    <State ux:Binding="PulledPastThreshold">
+
+    </State>
+
+    <State ux:Binding="Loading">
+      <Change retainSpace.Value="true" DurationBack="0.4" />
+      <Spin Target="bus1" Frequency="0.3" />
+    </State>
+  </PullToReload>
+</Panel>
