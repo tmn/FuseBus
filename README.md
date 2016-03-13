@@ -27,9 +27,9 @@ Now, use Xcode to deploy it on your device! :)
   * Departures __[in progress]__
   * Nearest stops __[later]__
 * _Favorites_ - settings/sidebar
-  * Delete __[in progress]__
-  * Add __[in progress]__
   * Re-arrange __[planned]__
+  * ~~Delete~~
+  * ~~Add~~
 * _Favorites_ - departure view on home screen
   * Trigger update on departure time __[planned]__
 * _Route_ - get route of a chosen departure. Let the user see which stops are on the current route. This requires new data from the API __[planned]__
