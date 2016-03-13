@@ -16,6 +16,7 @@ var departures        = Observable()
 , stop_info           = Observable()
 , stop_search         = Observable('');
 
+var isFav             = Observable(false);
 var isLoading         = Observable(false);
 
 function endLoading() {
@@ -49,15 +50,13 @@ var go_back = function () {
 
 var stop_clicked = function (args) {
   loading_indicator.value = true;
-
-  stop_info.value = args.data;
-  stop_info.value.name = stop_info.value.name.length > 20 ? stop_info.value.name.toUpperCase().substring(0, 20) + ' ...' : stop_info.value.name.toUpperCase();
-
+  stop_info.value = JSON.parse(JSON.stringify(args.data));
+  stop_info.value.displayName = stop_info.value.name.length > 20 ? stop_info.value.name.toUpperCase().substring(0, 18) + ' ...' : stop_info.value.name.toUpperCase();
+  isFav.value = FavoriteHandler.hasFavorite(stop_info.value.id);
   load_data();
 };
 
 var load_data = function () {
-  console.log('reaload');
   ApiReq.get('rt/' + stop_info.value.locationId).then(function (responseObject) {
     var newDepartures = responseObject['next'].map(function (e) {
       return new Departure(e.l, e.t, e.ts, e.rt, e.d);
@@ -112,17 +111,21 @@ function load_fav_departures(arr, id) {
 
 function delete_favorite(args) {
   favorites.remove(args.data);
-
-  setTimeout(function () {
-    FavoriteHandler.deleteFavorite(args.data.id);
-    load_fav_data();
-  }, 980);
+  FavoriteHandler.deleteFavorite(args.data.id);
+  load_fav_data();
 }
 
 function add_favorite() {
-  console.log('hei');
-  console.log(JSON.stringify(stop_info.value));
-  FavoriteHandler.addFavorite(stop_info.value);
+  if (FavoriteHandler.hasFavorite(stop_info.value.id)) {
+    FavoriteHandler.deleteFavorite(stop_info.value.id);
+  }
+  else {
+    FavoriteHandler.addFavorite(stop_info.value);
+  }
+  
+  load_fav_data();
+  favorites.replaceAll(FavoriteHandler.getFavoriteList());
+  isFav.value = FavoriteHandler.hasFavorite(stop_info.value.id);
 }
 
 function reload_favs() {
@@ -201,6 +204,7 @@ module.exports = {
   stop_info: stop_info,
   stop_search: stop_search,
 
+  isFav: isFav,
   isLoading: isLoading,
   reloadHandler: reloadHandler,
 
