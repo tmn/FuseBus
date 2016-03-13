@@ -25,7 +25,6 @@
       <WhileInactive Threshold="0.4">
         <Move Target="appLogo" X="-320" Duration="0.2" Delay="0.3" Easing="CircularIn" />
         <Move Target="settingsFavTitle" X="-320" Duration="0.2" Delay="0.2" Easing="CircularIn" />
-        <!-- <Move Target="settingsFavSearch" X="-320" Duration="0.2" Delay="0.15" Easing="CircularIn" /> -->
         <Move Target="settingsFavList" X="-320" Duration="0.2" Delay="0.1" Easing="CircularIn" />
       </WhileInactive>
       
@@ -43,11 +42,6 @@
       <StackPanel ux:Name="settingsFavTitle" Dock="Top" Margin="20, 50, 20, 20">
         <Text TextAlignment="Center" Font="Bold">FAVORITTER</Text>
       </StackPanel>
-      
-      <!-- <StackPanel ux:Name="settingsFavSearch" Dock="Top" Margin="0, 15, 0, 0">
-        <TextInput PlaceholderText="finn holdeplass" PlaceholderColor="#ddd" TextColor="#fff" FontSize="14" Margin="20, 0, 20, 0" />
-      </StackPanel> -->
-
 
       <ScrollView ux:Name="settingsFavList" Dock="Fill" Padding="0, 15, 0, 15">
         <Style>
@@ -114,6 +108,39 @@
           <Text TextColor="#fff" FontSize="14" />
         </Style>
 
+        <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="70" Opacity="0" Padding="0, 20, 0, 0" Margin="0">
+          <BackButton Margin="15, 0, 0, 0" />
+
+          <Panel Dock="Left" Margin="20, 10, 20, 10" Alignment="HorizontalCenter">
+            <Rectangle Width="1" Fill="#fff" />
+          </Panel>
+
+          <StackPanel Alignment="CenterLeft">
+            <Style>
+              <Text FontSize="12" />
+            </Style>
+
+            <Text Font="Bold" Value="{stop_info.displayName}" />
+            <Text Value="{stop_info.direction}" />
+          </StackPanel>
+
+          <Panel Alignment="Right" Width="79" Padding="0, 0, 10, 0">
+            
+            <Circle Clicked="{add_favorite}" Width="22" Height="22" Alignment="CenterLeft">
+              <SolidColor Color="#303C4C" />
+              <WhileTrue Value="{isFav}">
+                <Image File="Assets/Images/StarFilled.png" Width="13" Height="13" />
+              </WhileTrue>
+              <WhileFalse Value="{isFav}">
+                <Image File="Assets/Images/StarUnfilled.png" Width="13" Height="13" />
+              </WhileFalse>
+            </Circle>
+
+            <Text Value="Reload" Clicked="{load_data}" FontSize="11" Alignment="CenterRight" />
+          </Panel>
+
+        </DockPanel>
+
         <Panel ux:Name="top_panel_home">
           <PageControl ux:Name="favoriteControl">
             <Each Items="{favorite_departures}">
@@ -146,34 +173,7 @@
           </PageIndicator>
         </Panel>
 
-        <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="70" Opacity="0" Padding="0, 20, 0, 0" Margin="0">
-          <BackButton Margin="15, 0, 0, 0" />
-
-          <Panel Dock="Left" Margin="20, 10, 20, 10" Alignment="HorizontalCenter">
-            <Rectangle Width="1" Fill="#fff" />
-          </Panel>
-
-          <StackPanel Alignment="CenterLeft">
-            <Style>
-              <Text FontSize="12" />
-            </Style>
-
-            <Text Font="Bold" Value="{stop_info.name}" />
-            <Text Value="{stop_info.direction}" />
-          </StackPanel>
-
-          <Panel Alignment="Right" Width="79" Padding="0, 0, 10, 0">
-            
-            <Circle Clicked="{add_favorite}" Width="22" Height="22" Alignment="CenterLeft">
-              <SolidColor Color="#303C4C" />
-              <Image File="Assets/Images/StarUnfilled.png" Width="13" Height="13" Clicked="{add_favorite}" />
-            </Circle>
-
-            <Text Value="Reload" Clicked="{load_data}" FontSize="11" Alignment="CenterRight" />
-<!--             <Image File="Assets/Images/StarFilled.png" Width="13" Height="13" Margin="0" Clicked="{load_data}" Padding="0" Alignment="Right" />
- -->        
-          </Panel>
-        </DockPanel>
+        
 
         <Rectangle Height="200" Opacity=".95">
           <LinearGradient StartPoint="0, 0" EndPoint="0, 1">
@@ -184,8 +184,6 @@
 
         <Image File="Assets/Images/bus.jpg" StretchMode="UniformToFill" />
       </Panel>
-
-
 
 
       <Panel ux:Name="stopList" Padding="0, 200, 0, 0">
@@ -234,6 +232,7 @@
         <Change top_panel_home.Opacity="0" Duration=".35" Easing="CircularInOut" />
         <Change top_panel_departures.Opacity="1" Duration=".35" Easing="CircularInOut" />
       </WhileTrue>
+
     </DockPanel>
   </EdgeNavigator>
 </App>
