@@ -1,5 +1,6 @@
 .build/
 .cache/
 build/
+.uno/
 
 SF-UI-*
