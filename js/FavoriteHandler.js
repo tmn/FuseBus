@@ -26,6 +26,11 @@ addFavorite = function(favObj) {
   Storage.writeSync(data, JSON.stringify(favorite));
 };
 
+hasFavorite = function (id) {
+  var favorite = getFavorites();
+  return favorite[id] ? true : false;
+}
+
 deleteFavorite = function(id) {
   var favorite = getFavorites();
 
@@ -35,7 +40,7 @@ deleteFavorite = function(id) {
   }
 };
 
-getFavorites = function() {
+getFavorites = function () {
   var favorites = Storage.readSync(data);
 
   if (favorites === null || Storage.readSync(data) === '') {
@@ -72,5 +77,6 @@ module.exports = {
   addFavorite: addFavorite,
   deleteFavorite: deleteFavorite,
   getFavoriteList: getFavoriteList,
-  getFavorites: getFavorites
+  getFavorites: getFavorites,
+  hasFavorite: hasFavorite
 };
