@@ -1,33 +1,31 @@
 <Panel ux:Class="Reload" ClipToBounds="True">
-  <Image ux:Class="BusLogo" File="Assets/Images/bus_logo.png" Width="35" Height="35" />
+  <Image ux:Class="Arrow" File="Assets/Images/arrow.png" Width="30" Height="30" />
 
-  <Panel ux:Name="loadingBus" Background="#efefef" Alignment="Top" Dock="Top" Height="0">
-    <BusLogo ux:Name="bus1">
-      <Rotation ux:Name="bus1rotation" />
-    </BusLogo>
+  <Panel ux:Name="loadingPanel" Background="#fff" Alignment="Top" Dock="Top" Height="0">
+    <Arrow ux:Name="arrow">
+      <Rotation ux:Name="arrowRotation" />
+    </Arrow>
   </Panel>
 
   <WhileTrue ux:Name="retainSpace">
-    <Change loadingBus.MinHeight="55" Duration="0" DurationBack="0.3" Easing="CircularIn" />
+    <Change loadingPanel.MinHeight="55" Duration="0" DurationBack="0.25" Easing="CircularIn" />
   </WhileTrue>
 
   <ScrollingAnimation Range="SnapMin">
-    <Change loadingBus.Height="85" Duration="1" />
-    <Change bus1rotation.Degrees="200" Duration="1" />
+    <Change loadingPanel.Height="100" Duration="1" />
   </ScrollingAnimation>
 
-  <PullToReload IsLoading="{isLoading}" ReloadHandler="{reloadHandler}">
+  <PullToReload  IsLoading="{isLoading}" ReloadHandler="{reloadHandler}">
     <State ux:Binding="Pulling">
 
     </State>
 
     <State ux:Binding="PulledPastThreshold">
-
+      <Change arrowRotation.Degrees="180" Duration=".15" />
     </State>
 
     <State ux:Binding="Loading">
       <Change retainSpace.Value="true" DurationBack="0.4" />
-      <Spin Target="bus1" Frequency="0.3" />
     </State>
   </PullToReload>
 </Panel>
