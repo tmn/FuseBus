@@ -25,7 +25,8 @@ function endLoading() {
 
 function reloadHandler() {
   isLoading.value = true;
-  setTimeout(endLoading, 3000);
+  load_data();
+  // setTimeout(endLoading, 3000);
 }
 
 
@@ -67,6 +68,7 @@ var load_data = function () {
     setTimeout(function () {
       loading_indicator.value = false;
       departures_active.value = true;
+      endLoading();
     }, 300);
   })
   .catch(function (err) {
