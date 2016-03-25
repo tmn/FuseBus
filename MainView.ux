@@ -132,8 +132,6 @@
             <WhileFalse Value="{isFav}">
               <Image Clicked="{add_favorite}" File="Assets/Images/StarUnfilled.png" Width="18" Height="18" Margin="0, 0, 38, 5" />
             </WhileFalse>
-
-            <Text Value="Reload" Clicked="{load_data}" FontSize="11" Alignment="CenterRight" />
           </Panel>
 
         </DockPanel>
