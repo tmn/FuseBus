@@ -5,7 +5,7 @@
       <Text Value="{direction}" FontSize="12" TextColor="#aaa" />
     </StackPanel>
 
-    <Text Value="{distance}" FontSize="12" TextColor="#cdcdcd" Alignment="CenterRight" Padding="0, 0, 55, 0" />
+    <Text Value="{distance}" FontSize="12" TextColor="#aaa" Alignment="CenterRight" Padding="0, 0, 55, 0" />
 
     <Panel Alignment="CenterRight" Margin="0, 0, 20, 0">
       <Rectangle Width="1" Height="8" Margin="0, 5, 0, 0" Fill="#303C4C">
