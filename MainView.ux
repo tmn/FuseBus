@@ -187,11 +187,11 @@
 
 
       <Panel ux:Name="stopList" Padding="0, 200, 0, 0">
-        <Panel Alignment="Top" Background="#A2A21F" Height="40">
+        <Panel Alignment="Top" Background="#A2A21F" Height="43">
           <TextEdit Height="20" PlaceholderText="Søk etter holdeplass" PlaceholderColor="#eee" Value="{stop_search}" FontSize="14" TextColor="#fff" IsMultiline="false" Margin="15, 0, 15, 0" CaretColor="#fff" Padding="0, 4, 0, 0"  />
         </Panel>
 
-        <ScrollView Margin="0, 40, 0, 0">
+        <ScrollView Margin="0, 43, 0, 0">
           <StackPanel Padding="0, 0, 0, 0">
             <Style>
               <Text Margin="15, 0, 0, 0" />
