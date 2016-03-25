@@ -124,13 +124,13 @@
             <Text Value="{stop_info.direction}" />
           </StackPanel>
 
-          <Panel Alignment="Right" Width="79" Padding="0, 0, 10, 0">
+          <Panel Alignment="Right" Width="38" Padding="0, 0, 10, 0">
             
             <WhileTrue Value="{isFav}">
-              <Image Clicked="{add_favorite}" File="Assets/Images/StarFilled.png" Width="18" Height="18" Margin="0, 0, 38, 5" />
+              <Image Clicked="{add_favorite}" File="Assets/Images/StarFilled.png" Width="20" Height="20" Margin="0, 0, 0, 5" />
             </WhileTrue>
             <WhileFalse Value="{isFav}">
-              <Image Clicked="{add_favorite}" File="Assets/Images/StarUnfilled.png" Width="18" Height="18" Margin="0, 0, 38, 5" />
+              <Image Clicked="{add_favorite}" File="Assets/Images/StarUnfilled.png" Width="20" Height="20" Margin="0, 0, 0, 5" />
             </WhileFalse>
           </Panel>
 
