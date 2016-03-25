@@ -126,15 +126,12 @@
 
           <Panel Alignment="Right" Width="79" Padding="0, 0, 10, 0">
             
-            <Circle Clicked="{add_favorite}" Width="22" Height="22" Alignment="CenterLeft">
-              <SolidColor Color="#303C4C" />
-              <WhileTrue Value="{isFav}">
-                <Image File="Assets/Images/StarFilled.png" Width="13" Height="13" />
-              </WhileTrue>
-              <WhileFalse Value="{isFav}">
-                <Image File="Assets/Images/StarUnfilled.png" Width="13" Height="13" />
-              </WhileFalse>
-            </Circle>
+            <WhileTrue Value="{isFav}">
+              <Image Clicked="{add_favorite}" File="Assets/Images/StarFilled.png" Width="18" Height="18" Margin="0, 0, 38, 5" />
+            </WhileTrue>
+            <WhileFalse Value="{isFav}">
+              <Image Clicked="{add_favorite}" File="Assets/Images/StarUnfilled.png" Width="18" Height="18" Margin="0, 0, 38, 5" />
+            </WhileFalse>
 
             <Text Value="Reload" Clicked="{load_data}" FontSize="11" Alignment="CenterRight" />
           </Panel>
