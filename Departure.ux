@@ -5,8 +5,8 @@
 
       <StackPanel Dock="Left" Alignment="Center">
         <Text Value="{destination}" FontSize="15" TextAlignment="Left" />
-        <DockPanel>
-          <Style><Text FontSize="10" TextColor="#aaa" /></Style>
+        <DockPanel Padding="0, 1, 0, 0">
+          <Style><Text FontSize="12" TextColor="#aaa" /></Style>
           <Text Dock="Left" Value="Rutetid: " />
           <Text Dock="Left" Value="{org_time}" />
         </DockPanel>
