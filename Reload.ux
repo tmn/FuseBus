@@ -2,17 +2,17 @@
   <Image ux:Class="Arrow" File="Assets/Images/arrow.png" Width="30" Height="30" />
 
   <Panel ux:Name="loadingPanel" Background="#fff" Alignment="Top" Dock="Top" Height="0">
-    <Arrow ux:Name="arrow">
-      <Rotation ux:Name="arrowRotation" />
-    </Arrow>
+    <Text ux:Name="LoadingText" Value="Oppdater liste" Opacity="0" TextAlignment="Center" FontSize="12" Padding="0, 20, 0, 0" />
   </Panel>
 
   <WhileTrue ux:Name="retainSpace">
     <Change loadingPanel.MinHeight="55" Duration="0" DurationBack="0.25" Easing="CircularIn" />
+    <Change LoadingText.Opacity="1" Duration="1" />
   </WhileTrue>
 
   <ScrollingAnimation Range="SnapMin">
-    <Change loadingPanel.Height="100" Duration="1" />
+    <Change loadingPanel.Height="120" Duration="1" />
+    <Change LoadingText.Opacity="1" Duration="1" />
   </ScrollingAnimation>
 
   <PullToReload  IsLoading="{isLoading}" ReloadHandler="{reloadHandler}">
@@ -21,7 +21,7 @@
     </State>
 
     <State ux:Binding="PulledPastThreshold">
-      <Change arrowRotation.Degrees="180" Duration=".15" />
+      <Change LoadingText.TextColor="#A2A21F" Duration=".15" />
     </State>
 
     <State ux:Binding="Loading">
