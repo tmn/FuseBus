@@ -1,6 +1,8 @@
-.build/
 .cache/
-build/
 .uno/
+
+build/
+
+*.sublime-workspace
 
 SF-UI-*
