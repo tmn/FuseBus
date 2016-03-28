@@ -1,0 +1,15 @@
+<ScrollView ux:Class="Departures" ux:Name="departures" SnapMinTransform="false">
+  <DockPanel Padding="0, 70, 0, 0">
+    <Reload Dock="Top" />
+
+    <StackPanel>
+      <Each Items="{departures}">
+        <Departure />
+      </Each>
+    </StackPanel>
+  </DockPanel>
+
+  <WhileFalse Value="{departures_active}">
+    <Move RelativeTo="Size" Y="1" Duration="0.3" Easing="CircularInOut" />
+  </WhileFalse>
+</ScrollView>
