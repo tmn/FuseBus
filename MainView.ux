@@ -13,7 +13,7 @@
   <iOS.StatusBarConfig Style="Light" />
 
   <ux:Include File="SidePanel.ux" />
-  
+
   <EdgeNavigator ux:Name="EdgeNavigator">
     <Style>
       <Text Font="Light" TextColor="#222" />
@@ -29,6 +29,7 @@
           <Text TextColor="#fff" FontSize="14" />
         </Style>
 
+        <!-- Top Panel while in departures view -->
         <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="70" Opacity="0" Padding="0, 20, 0, 0" Margin="0">
           <BackButton Margin="15, 0, 0, 0" />
 
@@ -46,7 +47,6 @@
           </StackPanel>
 
           <Panel Alignment="Right" Width="38" Padding="0, 0, 10, 0">
-            
             <WhileTrue Value="{isFav}">
               <Image Clicked="{add_favorite}" File="Assets/Images/StarFilled.png" Width="20" Height="20" Margin="0, 0, 0, 5" />
             </WhileTrue>
@@ -54,9 +54,9 @@
               <Image Clicked="{add_favorite}" File="Assets/Images/StarUnfilled.png" Width="20" Height="20" Margin="0, 0, 0, 5" />
             </WhileFalse>
           </Panel>
-
         </DockPanel>
 
+        <!-- Top Panel in main view -->
         <Panel ux:Name="top_panel_home">
           <PageControl ux:Name="favoriteControl">
             <Each Items="{favorite_departures}">
@@ -89,8 +89,7 @@
           </PageIndicator>
         </Panel>
 
-        
-
+        <!-- Background of top_panel -->
         <Rectangle Height="200" Opacity=".95">
           <LinearGradient StartPoint="0, 0" EndPoint="0, 1">
             <GradientStop Offset="-.6" Color="#5E6F83" />
@@ -99,19 +98,17 @@
         </Rectangle>
 
         <Image File="Assets/Images/bus.jpg" StretchMode="UniformToFill" />
-      </Panel>
 
+        <!-- top_panel transitions -->
+        <WhileTrue Value="{departures_active}">
+          <Move Target="top_panel" Y="-0.65" RelativeTo="Size" Duration="0.35" Easing="CircularInOut" />
+          <Change top_panel_home.Opacity="0" Duration=".35" Easing="CircularInOut" />
+          <Change top_panel_departures.Opacity="1" Duration=".35" Easing="CircularInOut" />
+        </WhileTrue>
+      </Panel>
 
       <StopList />
       <Departures />
-
-
-      <WhileTrue Value="{departures_active}">
-        <Move Target="top_panel" Y="-0.65" RelativeTo="Size" Duration="0.35" Easing="CircularInOut" />
-        <Change top_panel_home.Opacity="0" Duration=".35" Easing="CircularInOut" />
-        <Change top_panel_departures.Opacity="1" Duration=".35" Easing="CircularInOut" />
-      </WhileTrue>
-
     </DockPanel>
   </EdgeNavigator>
 </App>
