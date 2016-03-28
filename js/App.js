@@ -46,7 +46,9 @@ var ApiReq = {
 
 var go_back = function () {
   departures_active.value = false;
-  departures.clear();
+  setTimeout(function () {
+    departures.clear();
+  }, 400)
 };
 
 var stop_clicked = function (args) {
