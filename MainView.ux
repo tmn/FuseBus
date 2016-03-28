@@ -11,85 +11,15 @@
   <Font File="Assets/Fonts/SF-UI-Text-Light.otf" ux:Global="Light" />
 
   <iOS.StatusBarConfig Style="Light" />
+
+  <ux:Include File="SidePanel.ux" />
   
   <EdgeNavigator ux:Name="EdgeNavigator">
     <Style>
       <Text Font="Light" TextColor="#222" />
     </Style>
 
-    <DockPanel Background="#303C4C" ux:Name="sideMenu" Width="315" EdgeNavigation.Edge="Left">
-      <Style>
-        <Text TextColor="#fff" />
-      </Style>
-
-      <WhileInactive Threshold="0.4">
-        <Move Target="appLogo" X="-320" Duration="0.2" Delay="0.3" Easing="CircularIn" />
-        <Move Target="settingsFavTitle" X="-320" Duration="0.2" Delay="0.2" Easing="CircularIn" />
-        <Move Target="settingsFavList" X="-320" Duration="0.2" Delay="0.1" Easing="CircularIn" />
-      </WhileInactive>
-      
-      <Panel Dock="Top" Height="90" />
-
-      <DockPanel ux:Name="appLogo" Dock="Top">
-        <Image Dock="Left" Margin="80, 0, 0, 0" Width="50" File="Assets/Images/bus_logo.png" />
-        <StackPanel Dock="Right" Margin="0, 0, 80, 9" Alignment="Bottom" Opacity="0.5">
-          <Text FontSize="12" Alignment="Bottom">SANNTIDSAPPEN</Text>
-          <Rectangle Height="1" Fill="#fff" Alignment="Left" Width="58" Margin="1, 0, 0, 0" />
-        </StackPanel>
-      </DockPanel>
-
-
-      <StackPanel ux:Name="settingsFavTitle" Dock="Top" Margin="20, 50, 20, 20">
-        <Text TextAlignment="Center" Font="Bold">FAVORITTER</Text>
-      </StackPanel>
-
-      <ScrollView ux:Name="settingsFavList" Dock="Fill" Padding="0, 15, 0, 15">
-        <Style>
-          <Text FontSize="14" />
-        </Style>
-        <StackPanel>
-            <Each Items="{favorites}">
-              <Panel Margin="20, 0, 0, 0">
-                <DockPanel Alignment="Top">
-                  <DeleteButton />
-
-                  <StackPanel Dock="Left" Padding="0, 12, 0, 12">
-                    <Text Value="{name}" />
-                    <Text Value="{direction}" Opacity=".5" FontSize="12" />
-                  </StackPanel>
-                </DockPanel>
-
-                <Rectangle Alignment="Bottom" Height="1" Fill="#FFF" Opacity=".1" />
-
-                <RemovingAnimation>
-                  <Move RelativeTo="Size" Y="-1" Duration=".3" Easing="CircularInOut" />
-                </RemovingAnimation>
-
-                <LayoutAnimation>
-                  <Move RelativeTo="LayoutChange" Y="1" Duration=".8" Easing="CircularInOut" />
-                </LayoutAnimation>
-                
-                <Rectangle Fill="#303C4C" />
-              </Panel>
-            </Each>
-        </StackPanel>
-      </ScrollView>
-
-      <Panel Dock="Bottom" Background="#232C39" Height="50">
-        <Style><Text FontSize="12" /></Style>
-        <Text TextAlignment="Center" Alignment="VerticalCenter">en sanntidsapplikasjon av tmn</Text>
-      </Panel>
-
-      <ActivatingAnimation>
-        <Change Duration="0.1" Easing="Linear" mainAppTranslation.X="315" />
-      </ActivatingAnimation>
-    </DockPanel>
-
-
-
-
-
-
+    <SidePanel EdgeNavigation.Edge="Left" />
 
     <DockPanel>
       <Translation ux:Name="mainAppTranslation" />
