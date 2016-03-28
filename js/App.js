@@ -19,6 +19,10 @@ var departures        = Observable()
 var isFav             = Observable(false);
 var isLoading         = Observable(false);
 
+var bottom_panel_active = Observable(function () {
+  return loading_indicator.value || departures_active.value;
+});
+
 function endLoading() {
   isLoading.value = false;
 }
@@ -195,6 +199,7 @@ favorites.replaceAll(FavoriteHandler.getFavoriteList());
 /* Exports
 -----------------------------------------------------------------------------*/
 module.exports = {
+  bottom_panel_active: bottom_panel_active,
   departures: departures,
   departures_active: departures_active,
   favorites: favorites,

@@ -24,20 +24,18 @@
     <DockPanel>
       <Translation ux:Name="mainAppTranslation" />
 
-      <Panel ux:Name="top_panel" Alignment="Top" Height="200">
+      <Panel ux:Name="top_panel" Alignment="Top" Height="200" Dock="Top">
         <Style>
           <Text TextColor="#fff" FontSize="14" />
         </Style>
 
         <!-- Top Panel while in departures view -->
         <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="70" Opacity="0" Padding="0, 20, 0, 0" Margin="0">
-          <BackButton Margin="15, 0, 0, 0" />
-
-          <Panel Dock="Left" Margin="20, 10, 20, 10" Alignment="HorizontalCenter">
+          <!-- <Panel Dock="Left" Margin="20, 10, 20, 10" Alignment="HorizontalCenter">
             <Rectangle Width="1" Fill="#fff" />
-          </Panel>
+          </Panel> -->
 
-          <StackPanel Alignment="CenterLeft">
+          <StackPanel Alignment="CenterLeft" Padding="15, 0, 0, 0">
             <Style>
               <Text FontSize="12" />
             </Style>
@@ -46,12 +44,12 @@
             <Text Value="{stop_info.direction}" />
           </StackPanel>
 
-          <Panel Alignment="Right" Width="38" Padding="0, 0, 10, 0">
+          <Panel Alignment="Right" Width="38" Padding="0, 0, 10, 0" HitTestMode="LocalBoundsAndChildren" Clicked="{add_favorite}">
             <WhileTrue Value="{isFav}">
-              <Image Clicked="{add_favorite}" File="Assets/Images/StarFilled.png" Width="20" Height="20" Margin="0, 0, 0, 5" />
+              <Image File="Assets/Images/StarFilled.png" Width="20" Height="20" Margin="0, 0, 0, 5" />
             </WhileTrue>
             <WhileFalse Value="{isFav}">
-              <Image Clicked="{add_favorite}" File="Assets/Images/StarUnfilled.png" Width="20" Height="20" Margin="0, 0, 0, 5" />
+              <Image File="Assets/Images/StarUnfilled.png" Width="20" Height="20" Margin="0, 0, 0, 5" />
             </WhileFalse>
           </Panel>
         </DockPanel>
@@ -107,8 +105,27 @@
         </WhileTrue>
       </Panel>
 
+      <Panel ux:Name="departures_bottom_panel" Dock="Bottom" IsEnabled="{bottom_panel_active}" Height="50" Background="#A2A21F" >
+        <Text ux:Name="loading_text" Value="Laster avganger" Alignment="Center" TextColor="#fff" FontSize="12" Opacity="0" />
+        <BackButton ux:Name="back_button" Margin="15, 0, 0, 0" Opacity="0" />
+
+        <WhileTrue Value="{loading_indicator}">
+          <Change loading_text.Opacity="1" Duration=".2" Easing="CircularInOut" />
+        </WhileTrue>
+
+        <WhileFalse Value="{loading_indicator}">
+          <Change back_button.Opacity="1" Duration=".2" Easing="CircularInOut" />
+        </WhileFalse>
+
+        <WhileDisabled>
+          <Move RelativeTo="Size" Y="1" Duration=".3" Easing="CircularInOut" />
+        </WhileDisabled>
+      </Panel>
+
       <StopList />
-      <Departures />
+      <Departures Padding="0, -200, 0, 0" />
+
+      
     </DockPanel>
   </EdgeNavigator>
 </App>
