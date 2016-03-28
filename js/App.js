@@ -52,7 +52,7 @@ var go_back = function () {
 var stop_clicked = function (args) {
   loading_indicator.value = true;
   stop_info.value = JSON.parse(JSON.stringify(args.data));
-  stop_info.value.displayName = stop_info.value.name.length > 20 ? stop_info.value.name.toUpperCase().substring(0, 18) + ' ...' : stop_info.value.name.toUpperCase();
+  stop_info.value.displayName = stop_info.value.name; //.length > 30 ? stop_info.value.name.toUpperCase().substring(0, 28) + ' ...' : stop_info.value.name.toUpperCase();
   isFav.value = FavoriteHandler.hasFavorite(stop_info.value.id);
   load_data();
 };
