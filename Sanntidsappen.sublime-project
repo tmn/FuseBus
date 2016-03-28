@@ -6,6 +6,7 @@
             [
                 "build",
                 ".uno",
+                ".cache"
             ],
             "path": "."
         }
