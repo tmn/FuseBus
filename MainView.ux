@@ -51,17 +51,7 @@
             <Each Items="{favorites}">
               <Panel Margin="20, 0, 0, 0">
                 <DockPanel Alignment="Top">
-                  <Circle ux:Name="delete_button" Clicked="{favorite_delete}" Dock="Left" Width="22" Height="22" Margin="0, 0, 15, 0">
-                    <SolidColor Color="#a00" />
-
-                    <Rectangle Fill="#fff" Width="1" Height="10">
-                      <Rotation Degrees="45" />
-                    </Rectangle>
-
-                    <Rectangle Fill="#fff" Width="1" Height="10">
-                      <Rotation Degrees="-45" />
-                    </Rectangle>
-                  </Circle>
+                  <DeleteButton />
 
                   <StackPanel Dock="Left" Padding="0, 12, 0, 12">
                     <Text Value="{name}" />
@@ -78,6 +68,7 @@
                 <LayoutAnimation>
                   <Move RelativeTo="LayoutChange" Y="1" Duration=".8" Easing="CircularInOut" />
                 </LayoutAnimation>
+                
                 <Rectangle Fill="#303C4C" />
               </Panel>
             </Each>
