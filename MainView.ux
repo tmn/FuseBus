@@ -102,33 +102,12 @@
       </Panel>
 
 
-      <Panel ux:Name="stopList" Padding="0, 200, 0, 0">
-        <Panel Alignment="Top" Background="#A2A21F" Height="43">
-          <TextEdit Height="20" PlaceholderText="Søk etter holdeplass" PlaceholderColor="#eee" Value="{stop_search}" FontSize="14" TextColor="#fff" IsMultiline="false" Margin="15, 0, 15, 0" CaretColor="#fff" Padding="0, 4, 0, 0" />
-        </Panel>
-
-        <ScrollView Margin="0, 43, 0, 0">
-          <StackPanel Padding="0, 0, 0, 0">
-            <Style>
-              <Text Margin="15, 0, 0, 0" />
-            </Style>
-
-            <Each Items="{filtered_view}">
-              <Stop />
-            </Each>
-          </StackPanel>
-        </ScrollView>
-      </Panel>
-
-
-        
+      <StopList />
       <Departures />
-
 
 
       <WhileTrue Value="{departures_active}">
         <Move Target="top_panel" Y="-0.65" RelativeTo="Size" Duration="0.35" Easing="CircularInOut" />
-        <Move Target="stopList" RelativeTo="Size" Y="-1" Duration="0.35" Easing="CircularInOut" />
         <Change top_panel_home.Opacity="0" Duration=".35" Easing="CircularInOut" />
         <Change top_panel_departures.Opacity="1" Duration=".35" Easing="CircularInOut" />
       </WhileTrue>
