@@ -105,7 +105,7 @@
         </WhileTrue>
       </Panel>
 
-      <Panel ux:Name="departures_bottom_panel" Dock="Bottom" IsEnabled="{bottom_panel_active}" Height="50" Background="#A2A21F" >
+      <Panel ux:Name="departures_bottom_panel" Alignment="Bottom" IsEnabled="{bottom_panel_active}" Height="50" Background="#A2A21F" Y="50">
         <Text ux:Name="loading_text" Value="Laster avganger" Alignment="Center" TextColor="#fff" FontSize="12" Opacity="0" />
         <BackButton ux:Name="back_button" Margin="15, 0, 0, 0" Opacity="0" />
 
@@ -117,13 +117,14 @@
           <Change back_button.Opacity="1" Duration=".2" Easing="CircularInOut" />
         </WhileFalse>
 
-        <WhileDisabled>
-          <Move RelativeTo="Size" Y="1" Duration=".3" Easing="CircularInOut" />
-        </WhileDisabled>
+        <WhileEnabled>
+          <Move RelativeTo="Size" Y="-1" Duration=".3" Easing="CircularInOut" />
+        </WhileEnabled>
       </Panel>
 
-      <StopList />
-      <Departures Padding="0, -200, 0, 0" />
+
+      <StopList Padding="0, 0, 0, 50"/>
+      <Departures Padding="0, -200, 0, 50" />
 
       
     </DockPanel>
