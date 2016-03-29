@@ -69,13 +69,20 @@ var load_data = function () {
       return new Departure(e.l, e.t, e.ts, e.rt, e.d);
     });
 
-    departures.replaceAll(newDepartures);
-
+    if (isLoading.value) {
+      setTimeout(function () {
+        departures.replaceAll(newDepartures);
+      }, 300);
+    } 
+    else {
+      departures.replaceAll(newDepartures);
+    }
+      
     setTimeout(function () {
       loading_indicator.value = false;
       departures_active.value = true;
       endLoading();
-    }, 300);
+    }, 350);
   })
   .catch(function (err) {
     console.log('ERROR: ' + err.message);
@@ -119,8 +126,11 @@ function load_fav_departures(arr, id) {
 
 function delete_favorite(args) {
   favorites.remove(args.data);
-  FavoriteHandler.deleteFavorite(args.data.id);
-  load_fav_data();
+  setTimeout(function () {
+    FavoriteHandler.deleteFavorite(args.data.id);
+    load_fav_data();
+  }, 1150);
+  
 }
 
 function add_favorite() {
@@ -131,9 +141,10 @@ function add_favorite() {
     FavoriteHandler.addFavorite(stop_info.value);
   }
   
-  load_fav_data();
   favorites.replaceAll(FavoriteHandler.getFavoriteList());
   isFav.value = FavoriteHandler.hasFavorite(stop_info.value.id);
+
+  load_fav_data();
 }
 
 function reload_favs() {
