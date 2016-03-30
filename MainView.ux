@@ -119,7 +119,7 @@
       </Panel>
 
 
-      <StopList Padding="0, 0, 0, 50" />
+      <StopList Padding="0, 0, 0, 0"/>
       <Departures Padding="0, -200, 0, 50" />
 
       
