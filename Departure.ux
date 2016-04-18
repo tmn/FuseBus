@@ -1,28 +1,18 @@
 <Panel ux:Class="Departure" ClipToBounds="true">
   <StackPanel>
     <DockPanel>
-      <Text Dock="Left" Width="50" Margin="10, 15, 15, 15" TextAlignment="Center" Value="{line}" FontSize="22" TextColor="#969C0E" />
+      <Text Dock="Left" Font="Light" FontSize="22" TextColor="#969C0E" Width="50" Margin="10, 15, 15, 15" TextAlignment="Center" Value="{line}" />
 
       <StackPanel Dock="Left" Alignment="Center">
-        <Text Value="{destination}" FontSize="15" TextAlignment="Left" />
+        <Text Font="Light" FontSize="15" TextColor="#222" TextAlignment="Left" Value="{destination}" />
         <DockPanel Padding="0, 1, 0, 0">
-          <Style><Text FontSize="12" TextColor="#aaa" /></Style>
-          <Text Dock="Left" Value="Rutetid: " />
-          <Text Dock="Left" Value="{org_time}" />
+          <Text Dock="Left" Font="Light" FontSize="12" TextColor="#aaa" Value="Rutetid: " />
+          <Text Dock="Left" Font="Light" FontSize="12" TextColor="#aaa" Value="{org_time}" />
         </DockPanel>
       </StackPanel>
 
-      <Text Value="{timeLeft}" Dock="Right" Margin="0, 0, 15, 0" Alignment="Center" FontSize="14" />
-
+      <Text Dock="Right" Font="Light" FontSize="14" TextColor="#222" Margin="0, 0, 15, 0" Alignment="Center" Value="{timeLeft}" />
     </DockPanel>
-
-    <Panel ux:Name="departure_controllers" Height="0" Alignment="Bottom" Background="#AEC726">
-      <Text Value="Departure controller bar..." TextColor="#fff" FontSize="12" Opacity="1" Font="Regular" TextAlignment="Left" Alignment="CenterLeft" Margin="15, 0, 0, 0" />
-
-      <WhileTrue ux:Name="departure_controllers_trueTrigger">
-        <Change departure_controllers.Height="40" Duration=".3" Easing="QuadraticOut" />
-      </WhileTrue>
-    </Panel>
   </StackPanel>
 
   <Rectangle Margin="15, 0, 0, 0" Alignment="Bottom" Height="1" Fill="#e6e6e6" />

@@ -1,8 +1,4 @@
 <DockPanel ux:InnerClass="SidePanel" ux:Name="sidePanel" Background="#303C4C" Width="315">
-  <Style>
-    <Text TextColor="#fff" />
-  </Style>
-
   <WhileInactive Threshold="0.4">
     <Move Target="appLogo" X="-320" Duration="0.2" Delay="0.3" Easing="CircularIn" />
     <Move Target="settingsFavTitle" X="-320" Duration="0.2" Delay="0.2" Easing="CircularIn" />
@@ -14,20 +10,17 @@
   <DockPanel ux:Name="appLogo" Dock="Top">
     <Image Dock="Left" Margin="80, 0, 0, 0" Width="50" File="Assets/Images/bus_logo.png" />
     <StackPanel Dock="Right" Margin="0, 0, 80, 9" Alignment="Bottom" Opacity="0.5">
-      <Text FontSize="12" Alignment="Bottom">SANNTIDSAPPEN</Text>
+      <Text Font="Light" FontSize="12" TextColor="#fff" Alignment="Bottom" Value="SANNTIDSAPPEN" />
       <Rectangle Height="1" Fill="#fff" Alignment="Left" Width="58" Margin="1, 0, 0, 0" />
     </StackPanel>
   </DockPanel>
 
 
   <StackPanel ux:Name="settingsFavTitle" Dock="Top" Margin="20, 50, 20, 20">
-    <Text TextAlignment="Center" Font="Bold">FAVORITTER</Text>
+    <Text Font="Bold" FontSize="16" TextAlignment="Center" TextColor="#fff" Value="FAVORITTER" />
   </StackPanel>
 
   <ScrollView ux:Name="settingsFavList" Dock="Fill" Padding="0, 15, 0, 15">
-    <Style>
-      <Text FontSize="14" />
-    </Style>
     <StackPanel>
         <Each Items="{favorites}">
           <Panel Margin="20, 0, 0, 0">
@@ -35,8 +28,8 @@
               <DeleteButton />
 
               <StackPanel Dock="Left" Padding="0, 12, 0, 12">
-                <Text Value="{name}" />
-                <Text Value="{direction}" Opacity=".5" FontSize="12" />
+                <Text Font="Light" TextColor="#fff" FontSize="14" Value="{name}" />
+                <Text Font="Light" TextColor="#fff" FontSize="12" Opacity=".5" Value="{direction}" />
               </StackPanel>
             </DockPanel>
 
@@ -57,8 +50,7 @@
   </ScrollView>
 
   <Panel Dock="Bottom" Background="#232C39" Height="50">
-    <Style><Text FontSize="12" /></Style>
-    <Text TextAlignment="Center" Alignment="VerticalCenter">en sanntidsapplikasjon av tmn</Text>
+    <Text Font="Light" FontSize="12" TextColor="#fff" TextAlignment="Center" Alignment="VerticalCenter" Value="en sanntidsapplikasjon av tmn" />
   </Panel>
 
   <ActivatingAnimation>

@@ -5,12 +5,8 @@
 
   <ScrollView Margin="0, 43, 0, 0">
     <StackPanel Padding="0, 0, 0, 0">
-      <Style>
-        <Text Margin="15, 0, 0, 0" />
-      </Style>
-
       <Each Items="{filtered_view}">
-        <Stop />
+        <Stop Margin="15, 0, 0, 0"/>
       </Each>
     </StackPanel>
   </ScrollView>

@@ -2,7 +2,7 @@
   <Image ux:Class="Arrow" File="Assets/Images/arrow.png" Width="30" Height="30" />
 
   <Panel ux:Name="loadingPanel" Background="#fff" Alignment="Top" Dock="Top" Height="0">
-    <Text ux:Name="LoadingText" Value="Oppdater liste" Opacity="0" TextAlignment="Center" FontSize="12" Padding="0, 20, 0, 0" />
+    <Text ux:Name="LoadingText" Font="Light" FontSize="12" TextColor="#fff" TextAlignment="Center" Padding="0, 20, 0, 0" Opacity="0" Value="Oppdater liste" />
   </Panel>
 
   <WhileTrue ux:Name="retainSpace">

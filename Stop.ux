@@ -1,11 +1,11 @@
 <Panel ux:Class="Stop" Clicked="{stop_clicked}">
   <DockPanel Padding="0, 10, 0, 10">
     <StackPanel ux:Name="StopText">
-      <Text Value="{name}" FontSize="16" TextColor="#303C4C" />
-      <Text Value="{direction}" FontSize="12" TextColor="#aaa" />
+      <Text Font="Light" FontSize="16" TextColor="#303C4C" Value="{name}" />
+      <Text Font="Light" FontSize="12" TextColor="#aaa" Value="{direction}" />
     </StackPanel>
 
-    <Text Value="{distance}" FontSize="12" TextColor="#aaa" Alignment="CenterRight" Padding="0, 0, 55, 0" />
+    <Text Font="Light" FontSize="12" TextColor="#aaa" Alignment="CenterRight" Padding="0, 0, 55, 0" Value="{distance}" />
 
     <Panel Alignment="CenterRight" Margin="0, 0, 20, 0">
       <Rectangle Width="1" Height="8" Margin="0, 5, 0, 0" Fill="#303C4C">
@@ -18,7 +18,7 @@
     </Panel>
   </DockPanel>
 
-  <Rectangle Margin="15, 0, 0, 0" Alignment="Bottom" Height="1" Fill="#e6e6e6" />
+  <Rectangle Alignment="Bottom" Height="1" Fill="#e6e6e6" />
 
   <WhilePressed>
     <Move Target="StopText" X="5" Duration=".1" Easing="BounceOut" EasingBack="BounceIn" />

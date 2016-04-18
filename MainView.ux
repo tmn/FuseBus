@@ -10,30 +10,19 @@
 
   <ux:Include File="SidePanel.ux" />
 
-  <EdgeNavigator ux:Name="EdgeNavigator">
-    <Style>
-      <Text Font="Light" TextColor="#222" />
-    </Style>
-
+  <EdgeNavigator ux:Name="EdgeNavigator" >
     <SidePanel EdgeNavigation.Edge="Left" />
 
     <DockPanel>
       <Translation ux:Name="mainAppTranslation" />
 
       <Panel ux:Name="top_panel" Alignment="Top" Height="200" Dock="Top">
-        <Style>
-          <Text TextColor="#fff" FontSize="14" />
-        </Style>
 
         <!-- Top Panel while in departures view -->
         <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="70" Opacity="0" Padding="0, 20, 0, 0" Margin="0">
-          <!-- <Panel Dock="Left" Margin="20, 10, 20, 10" Alignment="HorizontalCenter">
-            <Rectangle Width="1" Fill="#fff" />
-          </Panel> -->
-
           <StackPanel Alignment="CenterLeft" Padding="15, 0, 0, 0">
-            <Text Font="Bold" Value="{stop_info.displayName}" FontSize="16" />
-            <Text Value="{stop_info.direction}" FontSize="12" TextColor="#ddd" />
+            <Text Font="Bold" FontSize="16" TextColor="#fff"  Value="{stop_info.displayName}" />
+            <Text Font="Light" FontSize="12" TextColor="#ddd" Value="{stop_info.direction}" />
           </StackPanel>
 
           <Panel Alignment="Right" Width="38" Padding="0, 0, 10, 0" HitTestMode="LocalBoundsAndChildren" Clicked="{add_favorite}">
@@ -52,15 +41,15 @@
             <Each Items="{favorite_departures}">
               <Page Clicked="{reload_favs}">
                 <StackPanel>
-                  <Text Value="{name}" FontSize="28" TextAlignment="Center" Margin="0, 30, 0, 0" />
-                  <Text Alignment="Center" Value="{direction}" TextColor="#aaa" FontSize="14" />
+                  <Text Font="Light" FontSize="28" TextColor="#fff" TextAlignment="Center" Margin="0, 30, 0, 0" Value="{name}" />
+                  <Text Font="Light" FontSize="14" TextColor="#aaa" Alignment="Center" Value="{direction}" />
 
                   <StackPanel Margin="0, 12, 0, 0">
                     <Each Items="{departures}">
                       <DockPanel Width="260" Margin="0, 0, 0, 5">
-                        <Text Dock="Left" Width="50" TextColor="#DDFF99" Value="{line}" />
-                        <Text Dock="Left" Value="{destination}" />
-                        <Text Dock="Right" Value="{timeLeft}" />
+                        <Text Dock="Left" Font="Light" FontSize="14" TextColor="#DDFF99" Width="50" Value="{line}" />
+                        <Text Dock="Left" Font="Light" FontSize="14" TextColor="#fff" Value="{destination}" />
+                        <Text Dock="Right" Font="Light" FontSize="14" TextColor="#fff" Value="{timeLeft}" />
                       </DockPanel>
                     </Each>
                   </StackPanel>
@@ -98,7 +87,7 @@
       </Panel>
 
       <Panel ux:Name="departures_bottom_panel" Alignment="Bottom" IsEnabled="{bottom_panel_active}" Height="50" Background="#A2A21F" Y="50">
-        <Text ux:Name="loading_text" Value="Laster avganger" Alignment="Center" TextColor="#fff" FontSize="12" Opacity="0" />
+        <Text ux:Name="loading_text" Font="Light" FontSize="12" TextColor="#fff" Alignment="Center" Opacity="0" Value="Laster avganger" />
         <BackButton ux:Name="back_button" Margin="15, 0, 0, 0" Opacity="0" />
 
         <WhileTrue Value="{loading_indicator}">
@@ -117,8 +106,6 @@
 
       <StopList Padding="0, 0, 0, 0"/>
       <Departures Padding="0, -200, 0, 50" />
-
-      
     </DockPanel>
   </EdgeNavigator>
 </App>
