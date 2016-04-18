@@ -1,7 +1,7 @@
-var Bussholdeplass    = require('Bussholdeplass')
-, Departure           = require('Departure')
-, FavoriteHandler     = require('FavoriteHandler')
-, Stops               = require('Stops');
+var Bussholdeplass    = require('./Components/Bussholdeplass')
+, Departure           = require('./Components/Departure')
+, FavoriteHandler     = require('./Components/FavoriteHandler')
+, Stops               = require('./Components/Stops');
 
 var env               = require('FuseJS/Environment')
 , Observable          = require('FuseJS/Observable')

@@ -1,4 +1,4 @@
-var Bussholdeplass = require('Bussholdeplass');
+var Bussholdeplass = require('./Bussholdeplass');
 
 var Stops = [
     {
