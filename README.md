@@ -1,6 +1,10 @@
 # FuseBus
 
-http://tmn.github.io/FuseBus/
+**Welcome to Sanntidsappen!**
+
+_Sanntidsappen_ is a native iOS and Android app for showing bus departures in Trondheim, Norway.
+
+---
 
 [![sanntid0](https://9u.no/media/fusebus.png)](https://9u.no/media/fusebus.png)
 
