@@ -101,7 +101,8 @@ function load_fav_data() {
     var stopDep = {
       name: stop.name,
       direction: stop.direction,
-      departures: new Observable()
+      departures: new Observable(),
+      data: stop
     };
 
     load_fav_departures(stopDep.departures, stop.locationId)
@@ -125,8 +126,15 @@ function load_fav_departures(arr, id) {
   });
 }
 
+function reload_favs() {
+  favorite_departures._values.forEach(function (e) {
+    load_fav_departures(e.departures, e.data.locationId);
+  });
+}
+
 function delete_favorite(args) {
   favorites.remove(args.data);
+
   setTimeout(function () {
     FavoriteHandler.deleteFavorite(args.data.id);
     load_fav_data();
@@ -148,9 +156,7 @@ function add_favorite() {
   load_fav_data();
 }
 
-function reload_favs() {
-  // load_fav_data();
-}
+
 
 
 /* Geolocation + nearest stops
