@@ -13,21 +13,43 @@
         "Fuse.Entities",
         "Fuse.Gestures",
         "Fuse.Navigation",
+        "Fuse.Scripting",
         "Fuse.Shapes",
         "Fuse.Triggers",
         "Fuse.Reactive",
         "Fuse.Android",
         "Fuse.Desktop",
         "Fuse.iOS",
-        "Fuse.Vibration",
-            "FuseCore",
-            "Uno.Collections",
-            "Uno.Geometry"
+        "Fuse.UserEvents",
+        "FuseCore",
+        "Uno.Collections",
+        "Uno.Geometry"
     ],
     "Mobile": {
         "Orientations": "Portrait"
     },
     "Includes": [
-        "*"
-    ]
+        "*",
+        "js/Components/*.js:Bundle"
+    ],
+    "Icon": "Assets/sanntidsappen.png",
+    "Android": {
+        "Package": "io.tmn.sanntidsappen",
+        "VersionCode": 1003,
+        "VersionName": "1.0.0-3-beta",
+        "Key": {
+            "Alias": "sanntidsappen",
+            "AliasPassword": "frisby",
+            "Store": "release.keystore",
+            "StorePassword": "frisby"
+        },
+        "Icons": {
+            "LDPI": "$(Icon)",
+            "MDPI": "$(Icon)",
+            "HDPI": "$(Icon)",
+            "XHDPI": "$(Icon)",
+            "XXHDPI": "$(Icon)",
+            "XXXHDPI": "$(Icon)"
+      }
+    }
 }
