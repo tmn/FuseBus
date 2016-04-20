@@ -18,6 +18,7 @@ var departures        = Observable()
 
 var isFav             = Observable(false);
 var isLoading         = Observable(false);
+var hasLocation       = Observable(false);
 
 var bottom_panel_active = Observable(function () {
   return loading_indicator.value || departures_active.value;
@@ -161,9 +162,11 @@ function update_nearest_stop(location) {
 
   if (location === undefined) {
     if (GeoLocation.location !== null) {
+      hasLocation.value = true;
       location = GeoLocation.location;
     }
     else {
+      hasLocation.value = false;
       return;
     }
   }
@@ -229,5 +232,6 @@ module.exports = {
   reloadHandler: reloadHandler,
 
   load_data: load_data,
-  add_favorite: add_favorite
+  add_favorite: add_favorite,
+  hasLocation: hasLocation
 };

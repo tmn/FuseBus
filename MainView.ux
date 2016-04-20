@@ -103,6 +103,12 @@
         </WhileEnabled>
       </Panel>
 
+      <WhileFalse Value="{hasLocation}">
+        <StackPanel Alignment="Center">
+          <Text Value="Aktiver stedstjenester" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
+          <Text Value="for å se nærmeste holdeplasser" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
+        </StackPanel>
+      </WhileFalse>
 
       <StopList Padding="0, 0, 0, 0"/>
       <Departures Padding="0, -200, 0, 50" />
