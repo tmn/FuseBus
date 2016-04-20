@@ -1,4 +1,4 @@
-<DockPanel ux:InnerClass="SidePanel" ux:Name="sidePanel" Background="#303C4C" Width="315">
+<DockPanel ux:InnerClass="SidePanel" ux:Name="sidePanel" Background="#303C4C" Width="95%">
   <WhileInactive Threshold="0.4">
     <Move Target="appLogo" X="-320" Duration="0.2" Delay="0.3" Easing="CircularIn" />
     <Move Target="settingsFavTitle" X="-320" Duration="0.2" Delay="0.2" Easing="CircularIn" />
@@ -20,7 +20,7 @@
     <Text Font="Bold" FontSize="16" TextAlignment="Center" TextColor="#fff" Value="FAVORITTER" />
   </StackPanel>
 
-  <ScrollView ux:Name="settingsFavList" Dock="Fill" Padding="0, 15, 0, 15">
+  <ScrollView ux:Name="settingsFavList" Dock="Fill" Padding="0, 0, 0, 15">
     <StackPanel>
         <Each Items="{favorites}">
           <Panel Margin="20, 0, 0, 0">
@@ -54,6 +54,6 @@
   </Panel>
 
   <ActivatingAnimation>
-    <Change Duration="0.1" Easing="Linear" mainAppTranslation.X="315" />
+    <Change Duration="0.1" Easing="Linear" mainAppTranslation.X="280" />
   </ActivatingAnimation>
 </DockPanel>
