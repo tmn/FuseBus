@@ -8,6 +8,7 @@
         "Fuse.Designer",
         "Fuse.Drawing",
         "Fuse.Drawing.Primitives",
+        "Fuse.Physics",
         "Fuse.Effects",
         "Fuse.Elements",
         "Fuse.Entities",
