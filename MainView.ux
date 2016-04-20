@@ -8,8 +8,10 @@
 
   <iOS.StatusBarConfig Style="Light" />
 
+  <!-- Inner classes -->
   <ux:Include File="SidePanel.ux" />
 
+  <!-- .. -->
   <EdgeNavigator ux:Name="EdgeNavigator" >
     <SidePanel EdgeNavigation.Edge="Left" />
 
@@ -86,6 +88,7 @@
         </WhileTrue>
       </Panel>
 
+      <!-- Bottom panel -->
       <Panel ux:Name="departures_bottom_panel" Alignment="Bottom" IsEnabled="{bottom_panel_active}" Height="50" Background="#A2A21F" Y="50">
         <Text ux:Name="loading_text" Font="Light" FontSize="12" TextColor="#fff" Alignment="Center" Opacity="0" Value="Laster avganger" />
         <BackButton ux:Name="back_button" Margin="15, 0, 0, 0" Opacity="0" />
@@ -110,6 +113,7 @@
         </StackPanel>
       </WhileFalse>
 
+      <!-- Other views -->
       <StopList Padding="0, 0, 0, 0"/>
       <Departures Padding="0, -200, 0, 50" />
     </DockPanel>
