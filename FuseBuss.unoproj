@@ -33,7 +33,7 @@
         "*",
         "js/Components/*.js:Bundle"
     ],
-    "Icon": "Assets/sanntidsappen.png",
+    "Icon": "Assets/sappen.png",
     "Android": {
         "Package": "io.tmn.sanntidsappen",
         "VersionCode": 1003,
