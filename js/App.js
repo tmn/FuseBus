@@ -188,6 +188,7 @@ function update_nearest_stop(location) {
 -----------------------------------------------------------------------------*/
 stop_search.addSubscriber(function () {
   var search_string = stop_search.value;
+  hasLocation.value = search_string.length > 0 && GeoLocation.location !== null;
 
   if (search_string.length < 3) {
     if (search_string.length === 0) {
