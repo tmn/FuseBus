@@ -4,11 +4,23 @@
   </Panel>
 
   <ScrollView Margin="0, 43, 0, 0">
-    <StackPanel Padding="0, 0, 0, 0">
+    <StackPanel ux:Name="hasLocationText" Alignment="Center" Background="#fff" Opacity="0">
+      <Text Value="Aktiver stedstjenester" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
+      <Text Value="for å se nærmeste holdeplasser" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
+    </StackPanel>
+
+    <StackPanel ux:Name="stopListStack" Padding="0, 0, 0, 0" Opacity="0">
       <Each Items="{filtered_view}">
         <Stop Margin="15, 0, 0, 0"/>
       </Each>
     </StackPanel>
+
+    <WhileFalse Value="{hasLocation}">
+      <Change hasLocationText.Opacity="1" Duration=".1" Easing="CircularInOut" />
+    </WhileFalse>
+    <WhileTrue Value="{hasLocation}">
+      <Change stopListStack.Opacity="1" Duration=".1" Easing="CircularOut" />
+    </WhileTrue>
   </ScrollView>
 
   <WhileTrue Value="{departures_active}">

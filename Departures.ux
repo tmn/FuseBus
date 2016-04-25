@@ -11,15 +11,19 @@
     </DockPanel>
   </ScrollView>
 
-  <DockPanel ux:Name="departuresLoading" Alignment="Center" Opacity="0">
-    <Text Value="Loading" />
-  </DockPanel>
+  <Panel ux:Name="departuresLoading" Alignment="Center">
+    <Circle ux:Name="loadingCircle" Width="60" Height="60" Opacity="0" StartAngleDegrees="0" LengthAngleDegrees="90">
+      <Stroke Width="1" Brush="#666" />
+    </Circle>
+  </Panel>
 
   <WhileFalse Value="{loading_indicator}">
     <Change departuresList.Opacity="1" Y="-1" Duration="0.2" Easing="CircularInOut" />
   </WhileFalse>
 
   <WhileTrue Value="{loading_indicator}">
-    <Change departuresLoading.Opacity="1" Delay=".2" Duration=".2" Easing="CircularInOut" />
+    <Change loadingCircle.Opacity="1" Duration=".2" Easing="CircularInOut" />
+    <Spin Target="loadingCircle" Frequency="2" />
+    <Cycle Target="loadingCircle.LengthAngleDegrees" Low="30" High="300" Frequency="0.7" />
   </WhileTrue>
 </Panel>

@@ -97,14 +97,6 @@
         </WhileEnabled>
       </Panel>
 
-      <StackPanel ux:Name="hasLocationText" Alignment="Center" Background="#fff" Opacity="0">
-        <Text Value="Aktiver stedstjenester" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
-        <Text Value="for å se nærmeste holdeplasser" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
-      </StackPanel>
-
-      <WhileFalse Value="{hasLocation}">
-        <Change hasLocationText.Opacity="1" Duration=".15" Easing="CircularInOut" />
-      </WhileFalse>
 
       <!-- Other views -->
       <StopList Padding="0, 0, 0, 0"/>
