@@ -24,6 +24,8 @@ var bottom_panel_active = Observable(function () {
   return loading_indicator.value || departures_active.value;
 });
 
+
+
 function endLoading() {
   isLoading.value = false;
 }
@@ -61,6 +63,7 @@ var stop_clicked = function (args) {
   stop_info.value = JSON.parse(JSON.stringify(args.data));
   stop_info.value.displayName = stop_info.value.name; //.length > 30 ? stop_info.value.name.toUpperCase().substring(0, 28) + ' ...' : stop_info.value.name.toUpperCase();
   isFav.value = FavoriteHandler.hasFavorite(stop_info.value.id);
+  departures_active.value = true;
   load_data();
 };
 
@@ -70,23 +73,11 @@ var load_data = function () {
       return new Departure(e.l, e.t, e.ts, e.rt, e.d);
     });
 
-    if (isLoading.value) {
-      setTimeout(function () {
-        departures.replaceAll(newDepartures);
-      }, 300);
-    } 
-    else {
-      departures.replaceAll(newDepartures);
-    }
-      
     setTimeout(function () {
+      departures.replaceAll(newDepartures);
       loading_indicator.value = false;
-      departures_active.value = true;
       endLoading();
     }, 350);
-  })
-  .catch(function (err) {
-    console.log('ERROR: ' + err.message);
   });
 };
 

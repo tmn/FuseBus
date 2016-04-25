@@ -1,5 +1,5 @@
 <Panel ux:Class="Departures" ux:Name="departures">
-  <ScrollView SnapMinTransform="false">
+  <ScrollView ux:Name="departuresList" SnapMinTransform="false" Opacity="0">
     <DockPanel Padding="0, 70, 0, 0" Margin="0">
       <Reload Dock="Top" />
 
@@ -9,9 +9,17 @@
         </Each>
       </StackPanel>
     </DockPanel>
-
-    <WhileFalse Value="{departures_active}">
-      <Move RelativeTo="Size" Y="-1" Duration="0.4" Easing="CircularInOut" />
-    </WhileFalse>
   </ScrollView>
+
+  <DockPanel ux:Name="departuresLoading" Alignment="Center" Opacity="0">
+    <Text Value="Loading" />
+  </DockPanel>
+
+  <WhileFalse Value="{loading_indicator}">
+    <Change departuresList.Opacity="1" Y="-1" Duration="0.2" Easing="CircularInOut" />
+  </WhileFalse>
+
+  <WhileTrue Value="{loading_indicator}">
+    <Change departuresLoading.Opacity="1" Delay=".2" Duration=".2" Easing="CircularInOut" />
+  </WhileTrue>
 </Panel>

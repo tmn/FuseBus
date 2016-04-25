@@ -82,35 +82,28 @@
 
         <!-- top_panel transitions -->
         <WhileTrue Value="{departures_active}">
-          <Move Target="top_panel" Y="-0.65" RelativeTo="Size" Duration="0.35" Easing="CircularInOut" />
-          <Change top_panel_home.Opacity="0" Duration=".35" Easing="CircularInOut" />
-          <Change top_panel_departures.Opacity="1" Duration=".35" Easing="CircularInOut" />
+          <Move Target="top_panel" Y="-0.65" RelativeTo="Size" Duration="0.25" Easing="CircularInOut" />
+          <Change top_panel_home.Opacity="0" Duration=".25" Easing="CircularInOut" />
+          <Change top_panel_departures.Opacity="1" Duration=".25" Easing="CircularInOut" />
         </WhileTrue>
       </Panel>
 
       <!-- Bottom panel -->
       <Panel ux:Name="departures_bottom_panel" Alignment="Bottom" IsEnabled="{bottom_panel_active}" Height="50" Background="#A2A21F" Y="50">
-        <Text ux:Name="loading_text" Font="Light" FontSize="12" TextColor="#fff" Alignment="Center" Opacity="0" Value="Laster avganger" />
-        <BackButton ux:Name="back_button" Margin="15, 0, 0, 0" Opacity="0" />
-
-        <WhileTrue Value="{loading_indicator}">
-          <Change loading_text.Opacity="1" Duration=".2" Easing="CircularInOut" />
-        </WhileTrue>
-
-        <WhileFalse Value="{loading_indicator}">
-          <Change back_button.Opacity="1" Duration=".2" Delay="0.2" Easing="CircularInOut" />
-        </WhileFalse>
+        <BackButton ux:Name="back_button" Margin="15, 0, 0, 0" />
 
         <WhileEnabled>
-          <Move RelativeTo="Size" Y="-1" Duration=".3" Easing="CircularInOut" />
+          <Move RelativeTo="Size" Y="-1" Duration=".2" Easing="CircularInOut" />
         </WhileEnabled>
       </Panel>
 
+      <StackPanel ux:Name="hasLocationText" Alignment="Center" Background="#fff" Opacity="0">
+        <Text Value="Aktiver stedstjenester" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
+        <Text Value="for å se nærmeste holdeplasser" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
+      </StackPanel>
+
       <WhileFalse Value="{hasLocation}">
-        <StackPanel Alignment="Center">
-          <Text Value="Aktiver stedstjenester" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
-          <Text Value="for å se nærmeste holdeplasser" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
-        </StackPanel>
+        <Change hasLocationText.Opacity="1" Duration=".15" Easing="CircularInOut" />
       </WhileFalse>
 
       <!-- Other views -->
