@@ -149,7 +149,7 @@
               <Stop Padding="15, 0, 0, 0">
                 <Clicked>
                   <Callback Handler="{stop_clicked}" />
-                  <Toggle Target="loading" />
+                  <Set Target="loading.Value" Value="true" />
                   <Toggle Target="departure_view" />
                 </Clicked>
               </Stop>
