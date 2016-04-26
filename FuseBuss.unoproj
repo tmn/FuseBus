@@ -1,4 +1,6 @@
 ﻿{
+    "Title": "Sanntidsappen",
+    "Version": "1.0.0",
     "RootNamespace":"",
     "Packages": [
         "Fuse.Animations",
@@ -34,10 +36,19 @@
         "js/Components/*.js:Bundle"
     ],
     "Icon": "Assets/sappen.png",
+    "iOS": {
+        "BundleIdentifier": "io.tmn.sanntidsappen",
+        "BundleName": "$(Title)",
+        "DeploymentTarget": "9.1",
+        "Devices": "iPhone",
+        "PList": {
+            "ITSAppUsesNonExemptEncryption": false
+        }
+    },
     "Android": {
         "Package": "io.tmn.sanntidsappen",
-        "VersionCode": 1003,
-        "VersionName": "1.0.0-3-beta",
+        "VersionCode": 1005,
+        "VersionName": "1.0.0-5-beta",
         "Key": {
             "Alias": "sanntidsappen",
             "AliasPassword": "frisby",
@@ -51,6 +62,13 @@
             "XHDPI": "$(Icon)",
             "XXHDPI": "$(Icon)",
             "XXXHDPI": "$(Icon)"
-      }
+        },
+        "NDK": {
+            "PlatformVersion": 16
+        },
+        "SDK": {
+            "MinVersion": 16,
+            "TargetVersion": 19
+        }
     }
 }
