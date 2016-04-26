@@ -81,26 +81,109 @@
         <Image File="Assets/Images/bus.jpg" StretchMode="UniformToFill" />
 
         <!-- top_panel transitions -->
-        <WhileTrue Value="{departures_active}">
-          <Move Target="top_panel" Y="-0.65" RelativeTo="Size" Duration="0.25" Easing="CircularInOut" />
-          <Change top_panel_home.Opacity="0" Duration=".25" Easing="CircularInOut" />
-          <Change top_panel_departures.Opacity="1" Duration=".25" Easing="CircularInOut" />
-        </WhileTrue>
+        
       </Panel>
+
+
+
+
+
+
+      <!-- Triggers! -->
+      <WhileTrue ux:Name="loading">
+        <Change loadCircle.Value="true" DelayBack="0" />
+      </WhileTrue>
+
+      <WhileTrue ux:Name="departure_view">
+        <Move Target="departuresBottomPanel" RelativeTo="Size" Y="-1" Duration=".2" Easing="CircularInOut" />
+
+        <Move Target="top_panel" Y="-0.65" RelativeTo="Size" Duration="0.25" Easing="CircularInOut" />
+        <Change top_panel_home.Opacity="0" Duration=".25" Easing="CircularInOut" />
+        <Change top_panel_departures.Opacity="1" Duration=".25" Easing="CircularInOut" />
+
+        <Move Target="stopList" RelativeTo="Size" Y="1" Duration="0.25" Easing="CircularInOut" />
+      </WhileTrue>
+
+      <WhileTrue ux:Name="loadCircle">
+        <Change loadingCircle.Opacity="1" Duration=".2" Easing="CircularInOut" />
+        <Spin Target="loadingCircle" Frequency="2" />
+        <Cycle Target="loadingCircle.LengthAngleDegrees" Low="30" High="300" Frequency="0.7" />
+      </WhileTrue>
+
+      <WhileFalse Value="{hasLocation}">
+        <Change hasLocationText.Opacity="1" Duration=".1" Easing="CircularInOut" />
+      </WhileFalse>
+
+      <WhileCount Items="{departures}" GreaterThan="0">
+        <Change departuresList.Opacity="1" Duration=".2" Delay=".4" Easing="CircularInOut" />
+        <Toggle Target="loading" Delay=".4" /> <!-- turn loading off -->
+      </WhileCount>
+
+
+
+
 
       <!-- Bottom panel -->
-      <Panel ux:Name="departures_bottom_panel" Alignment="Bottom" IsEnabled="{bottom_panel_active}" Height="50" Background="#A2A21F" Y="50">
-        <BackButton ux:Name="back_button" Margin="15, 0, 0, 0" />
-
-        <WhileEnabled>
-          <Move RelativeTo="Size" Y="-1" Duration=".2" Easing="CircularInOut" />
-        </WhileEnabled>
+      <Panel ux:Name="departuresBottomPanel" Alignment="Bottom" Height="50" Background="#A2A21F" Y="50">
+        <BackButton ux:Name="back_button" Margin="15, 0, 0, 0">
+          <Clicked>
+            <Toggle Target="departure_view" />
+          </Clicked>
+        </BackButton>
       </Panel>
 
 
-      <!-- Other views -->
-      <StopList Padding="0, 0, 0, 0"/>
-      <Departures Padding="0, -200, 0, 50" />
+
+
+
+      <!-- StopList -->      
+      <Panel ux:Name="stopList" Background="#fff" Padding="0, 0, 0, 0">
+        <Panel Alignment="Top" Background="#A2A21F" Height="43">
+          <TextEdit Height="20" PlaceholderText="Søk etter holdeplass" PlaceholderColor="#eee" Value="{stop_search}" FontSize="14" TextColor="#fff" IsMultiline="false" Margin="15, 0, 15, 0" CaretColor="#fff" Padding="0, 4, 0, 0" />
+        </Panel>
+
+        <ScrollView Margin="0, 43, 0, 0">
+          <StackPanel ux:Name="stopListStack" Padding="0, 0, 0, 0" >
+            <Each Items="{filtered_view}">
+              <Stop Margin="15, 0, 0, 0">
+                <Clicked>
+                  <Toggle Target="loading" />
+                  <Toggle Target="departure_view" />
+                </Clicked>
+              </Stop>
+            </Each>
+          </StackPanel>
+        </ScrollView>
+
+        <StackPanel ux:Name="hasLocationText" Alignment="Center" Background="#fff" Opacity="0">
+          <Text Value="Aktiver stedstjenester" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
+          <Text Value="for å se nærmeste holdeplasser" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
+        </StackPanel>
+      </Panel>
+
+
+
+
+
+      <!-- Departures -->
+      <Panel Padding="0, -200, 0, 50" >
+        <ScrollView ux:Name="departuresList" SnapMinTransform="false" Opacity="0">
+          <DockPanel Padding="0, 70, 0, 0" Margin="0">
+            <Reload Dock="Top" />
+
+            <StackPanel>
+              <Each Items="{departures}">
+                <Departure />
+              </Each>
+            </StackPanel>
+          </DockPanel>
+        </ScrollView>
+
+        <Circle ux:Name="loadingCircle" Alignment="Center" Opacity="0" Width="60" Height="60" StartAngleDegrees="0" LengthAngleDegrees="90">
+          <Stroke Width="1" Brush="#666" />
+        </Circle>
+      </Panel>
+
     </DockPanel>
   </EdgeNavigator>
 </App>
