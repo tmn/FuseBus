@@ -11,19 +11,12 @@ var departures        = Observable()
 , favorites           = Observable()
 , favorite_departures = Observable()
 , filtered_view       = Observable()
-, loading_indicator   = Observable(false)
-, departures_active   = Observable(false)
 , stop_info           = Observable()
 , stop_search         = Observable('');
 
 var isFav             = Observable(false);
 var isLoading         = Observable(false);
 var hasLocation       = Observable(false);
-
-var bottom_panel_active = Observable(function () {
-  return loading_indicator.value || departures_active.value;
-});
-
 
 
 function endLoading() {
@@ -33,7 +26,6 @@ function endLoading() {
 function reloadHandler() {
   isLoading.value = true;
   load_data();
-  // setTimeout(endLoading, 3000);
 }
 
 
@@ -52,32 +44,32 @@ var ApiReq = {
 };
 
 var go_back = function () {
-  departures_active.value = false;
   setTimeout(function () {
     departures.clear();
-  }, 400)
+  }, 250)
 };
 
 var stop_clicked = function (args) {
-  loading_indicator.value = true;
   stop_info.value = JSON.parse(JSON.stringify(args.data));
   stop_info.value.displayName = stop_info.value.name; //.length > 30 ? stop_info.value.name.toUpperCase().substring(0, 28) + ' ...' : stop_info.value.name.toUpperCase();
   isFav.value = FavoriteHandler.hasFavorite(stop_info.value.id);
-  departures_active.value = true;
   load_data();
 };
 
 var load_data = function () {
   ApiReq.get('rt/' + stop_info.value.locationId).then(function (responseObject) {
-    var newDepartures = responseObject['next'].map(function (e) {
+    responseObject.locationId = responseObject.name.match(/(\d+)/g)[0];
+
+    var newDeps = responseObject['next'].map(function (e) {
       return new Departure(e.l, e.t, e.ts, e.rt, e.d);
     });
 
-    setTimeout(function () {
-      departures.replaceAll(newDepartures);
-      loading_indicator.value = false;
-      endLoading();
-    }, 350);
+    if (responseObject.locationId == stop_info.value.locationId) {
+      setTimeout(function () {
+        departures.replaceAll(newDeps);
+        endLoading();
+      }, 250);
+    }
   });
 };
 
@@ -211,15 +203,12 @@ favorites.replaceAll(FavoriteHandler.getFavoriteList());
 /* Exports
 -----------------------------------------------------------------------------*/
 module.exports = {
-  bottom_panel_active: bottom_panel_active,
   departures: departures,
-  departures_active: departures_active,
   favorites: favorites,
   favorite_departures: favorite_departures,
   favorite_delete: delete_favorite,
   filtered_view: filtered_view,
   go_back: go_back,
-  loading_indicator: loading_indicator,
   reload_favs: reload_favs,
   stop_clicked: stop_clicked,
   stop_info: stop_info,
