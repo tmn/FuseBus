@@ -7436,13 +7436,6 @@ var Stops = [
         "latitude": 63.393987
     },
     {
-        "busStopId": 101062,
-        "locationId": "16010551",
-        "name": "Politihuset",
-        "longitude": 10.40577,
-        "latitude": 63.435906
-    },
-    {
         "busStopId": 101063,
         "locationId": "16010537",
         "name": "Tonstadkrysset 4",
@@ -16660,13 +16653,6 @@ var Stops = [
         "name": "Presthus E6",
         "longitude": 10.518634,
         "latitude": 63.424257
-    },
-    {
-        "busStopId": 102380,
-        "locationId": "16011158",
-        "name": "Graaemølna",
-        "longitude": 10.415669,
-        "latitude": 63.435106
     },
     {
         "busStopId": 102381,
