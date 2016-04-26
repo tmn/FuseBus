@@ -1,4 +1,4 @@
-<Panel ux:Class="Stop" Clicked="{stop_clicked}">
+<Panel ux:Class="Stop">
   <DockPanel Padding="0, 10, 0, 10">
     <StackPanel ux:Name="StopText">
       <Text Font="Light" FontSize="16" TextColor="#303C4C" Value="{name}" />
