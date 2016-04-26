@@ -21,6 +21,6 @@
   <Rectangle Alignment="Bottom" Height="1" Fill="#e6e6e6" />
 
   <WhilePressed>
-    <Move Target="StopText" X="5" Duration=".1" Easing="BounceOut" EasingBack="BounceIn" />
+    <Change this.Background="#efefef" />
   </WhilePressed>
 </Panel>
