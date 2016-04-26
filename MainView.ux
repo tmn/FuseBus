@@ -116,7 +116,7 @@
 
       <WhileCount Items="{departures}" GreaterThan="0">
         <Change departuresList.Opacity="1" Duration=".2" Delay=".4" Easing="CircularInOut" />
-        <Toggle Target="loading" Delay=".4" /> <!-- turn loading off -->
+        <Set Target="loading.Value" Value="false" Delay=".4" />
       </WhileCount>
 
 
@@ -127,7 +127,8 @@
       <Panel ux:Name="departuresBottomPanel" Alignment="Bottom" Height="50" Background="#A2A21F" Y="50">
         <BackButton ux:Name="back_button" Margin="15, 0, 0, 0">
           <Clicked>
-            <Toggle Target="departure_view" />
+            <Set Target="departure_view.Value" Value="false" />
+            <!-- <Toggle  /> -->
           </Clicked>
         </BackButton>
       </Panel>
@@ -145,8 +146,9 @@
         <ScrollView Margin="0, 43, 0, 0">
           <StackPanel ux:Name="stopListStack" Padding="0, 0, 0, 0" >
             <Each Items="{filtered_view}">
-              <Stop Margin="15, 0, 0, 0">
+              <Stop Padding="15, 0, 0, 0">
                 <Clicked>
+                  <Callback Handler="{stop_clicked}" />
                   <Toggle Target="loading" />
                   <Toggle Target="departure_view" />
                 </Clicked>
