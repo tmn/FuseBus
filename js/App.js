@@ -58,8 +58,7 @@ var stop_clicked = function (args) {
 
 var load_data = function () {
   ApiReq.get('rt/' + stop_info.value.locationId).then(function (responseObject) {
-    responseObject.locationId = responseObject.name.match(/(\d+)/g)[0];
-
+    responseObject.locationId = responseObject.name.match(/(\d+){4}/g)[0];
     var newDeps = responseObject['next'].map(function (e) {
       return new Departure(e.l, e.t, e.ts, e.rt, e.d);
     });
