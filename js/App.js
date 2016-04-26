@@ -66,9 +66,15 @@ var load_data = function () {
     if (responseObject.locationId == stop_info.value.locationId) {
       setTimeout(function () {
         departures.replaceAll(newDeps);
-        endLoading();
       }, 250);
     }
+
+    setTimeout(function () {
+      endLoading();
+    }, 250);
+  })
+  .catch(function (e) {
+    console.log('ERROR[2]' + e.message);
   });
 };
 
@@ -104,7 +110,7 @@ function load_fav_departures(arr, id) {
     arr.replaceAll(departures);
   })
   .catch(function (err) {
-    console.log('ERROR: ' + err.message);
+    console.log('ERROR[0]: ' + err.message);
   });
 }
 
@@ -167,7 +173,7 @@ function update_nearest_stop(location) {
     filtered_view.replaceAll(convertedStops);
   })
   .catch(function (err) {
-    console.log('ERROR: ' + err.message);
+    console.log('ERROR[1]: ' + err.message);
   });
 }
 
