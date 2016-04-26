@@ -11,7 +11,7 @@
         </DockPanel>
       </StackPanel>
 
-      <Text Dock="Right" Font="Light" FontSize="14" TextColor="#222" Margin="0, 0, 15, 0" Alignment="Center" Value="{timeLeft}" />
+      <Text Dock="Right" Font="Light" FontSize="14" TextColor="#222" Margin="0, 0, 15, 0" Alignment="Center" Value="{timeLeft}" Width="65" TextAlignment="Right" />
     </DockPanel>
   </StackPanel>
 
