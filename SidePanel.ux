@@ -7,9 +7,9 @@
   
   <Panel Dock="Top" Height="90" />
 
-  <DockPanel ux:Name="appLogo" Dock="Top">
-    <Image Dock="Left" Margin="80, 0, 0, 0" Width="50" File="Assets/Images/bus_logo.png" />
-    <StackPanel Dock="Right" Margin="0, 0, 80, 9" Alignment="Bottom" Opacity="0.5">
+  <DockPanel ux:Name="appLogo" Dock="Top" Alignment="Center">
+    <Image Dock="Left"  Width="50" File="Assets/Images/bus_logo.png" />
+    <StackPanel Dock="Left" Margin="10, 0, 0, 9" Alignment="Bottom" Opacity="0.5">
       <Text Font="Light" FontSize="12" TextColor="#fff" Alignment="Bottom" Value="SANNTIDSAPPEN" />
       <Rectangle Height="1" Fill="#fff" Alignment="Left" Width="58" Margin="1, 0, 0, 0" />
     </StackPanel>
