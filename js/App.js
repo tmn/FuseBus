@@ -9,14 +9,15 @@ var env               = require('FuseJS/Environment')
 
 var departures        = Observable()
 , favorites           = Observable()
+, favorites_updated   = Observable('Sist oppdatert: ' + getCurrentTime())
 , favorite_departures = Observable()
 , filtered_view       = Observable()
-, stop_info           = Observable()
-, stop_search         = Observable('');
-
-var isFav             = Observable(false);
-var isLoading         = Observable(false);
-var hasLocation       = Observable(false);
+, hasLocation         = Observable(false)
+, isFav               = Observable(false)
+, isLoading           = Observable(false)
+, search_string       = Observable('')
+, search_reset        = Observable()
+, stop_info           = Observable();
 
 
 function endLoading() {
@@ -28,6 +29,10 @@ function reloadHandler() {
   load_data();
 }
 
+function getCurrentTime() {
+  var current = new Date();
+  return ('0' + current.getHours()).slice(-2) + ':' + ('0' + current.getMinutes()).slice(-2);
+}
 
 /* Func
 -----------------------------------------------------------------------------*/
@@ -118,6 +123,8 @@ function reload_favs() {
   favorite_departures._values.forEach(function (e) {
     load_fav_departures(e.departures, e.data.locationId);
   });
+
+  favorites_updated.value = 'Sist oppdatert: ' + getCurrentTime();
 }
 
 function delete_favorite(args) {
@@ -180,12 +187,11 @@ function update_nearest_stop(location) {
 
 /* Search typing handler
 -----------------------------------------------------------------------------*/
-stop_search.addSubscriber(function () {
-  var search_string = stop_search.value;
-  hasLocation.value = search_string.length > 0 && GeoLocation.location !== null;
+search_string.addSubscriber(function () {
+  hasLocation.value = search_string.value.length > 0 && GeoLocation.location !== null;
 
-  if (search_string.length < 3) {
-    if (search_string.length === 0) {
+  if (search_string.value.length < 3) {
+    if (search_string.value.length === 0) {
       filtered_view.clear();
       update_nearest_stop();
     }
@@ -194,9 +200,13 @@ stop_search.addSubscriber(function () {
   }
 
   filtered_view.replaceAll(Stops.filter(function (e) {
-    return e.name.toUpperCase().indexOf(search_string.toUpperCase()) > -1;
+    return e.name.toUpperCase().indexOf(search_string.value.toUpperCase()) > -1;
   }));
 });
+
+search_reset = function () {
+  search_string.value = '';
+};
 
 
 /* Init
@@ -210,14 +220,16 @@ favorites.replaceAll(FavoriteHandler.getFavoriteList());
 module.exports = {
   departures: departures,
   favorites: favorites,
+  favorites_updated: favorites_updated,
   favorite_departures: favorite_departures,
   favorite_delete: delete_favorite,
   filtered_view: filtered_view,
   go_back: go_back,
   reload_favs: reload_favs,
+  search_string: search_string,
+  search_reset: search_reset,
   stop_clicked: stop_clicked,
   stop_info: stop_info,
-  stop_search: stop_search,
 
   isFav: isFav,
   isLoading: isLoading,
