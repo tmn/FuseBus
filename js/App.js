@@ -137,6 +137,8 @@ function delete_favorite(args) {
 }
 
 function add_favorite() {
+  isFav.value = !isFav.value;
+
   if (FavoriteHandler.hasFavorite(stop_info.value.id)) {
     FavoriteHandler.deleteFavorite(stop_info.value.id);
   }
@@ -145,7 +147,6 @@ function add_favorite() {
   }
   
   favorites.replaceAll(FavoriteHandler.getFavoriteList());
-  isFav.value = FavoriteHandler.hasFavorite(stop_info.value.id);
 
   load_fav_data();
 }
