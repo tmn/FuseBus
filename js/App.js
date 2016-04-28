@@ -113,6 +113,7 @@ function load_fav_departures(arr, id) {
     });
 
     arr.replaceAll(departures);
+    favorites_updated.value = 'Sist oppdatert: ' + getCurrentTime();
   })
   .catch(function (err) {
     console.log('ERROR[0]: ' + err.message);
@@ -123,8 +124,6 @@ function reload_favs() {
   favorite_departures._values.forEach(function (e) {
     load_fav_departures(e.departures, e.data.locationId);
   });
-
-  favorites_updated.value = 'Sist oppdatert: ' + getCurrentTime();
 }
 
 function delete_favorite(args) {
