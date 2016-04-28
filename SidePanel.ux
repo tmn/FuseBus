@@ -36,11 +36,11 @@
             <Rectangle Alignment="Bottom" Height="1" Fill="#FFF" Opacity=".1" />
 
             <RemovingAnimation>
-              <Move RelativeTo="Size" Y="-1" Duration=".3" Easing="CircularInOut" />
+              <Move RelativeTo="Size" Y="-1" Duration=".2" Easing="CircularInOut" />
             </RemovingAnimation>
 
             <LayoutAnimation>
-              <Move RelativeTo="LayoutChange" Y="1" Duration=".8" Easing="CircularInOut" />
+              <Move RelativeTo="LayoutChange" Y="1" Duration=".5" Easing="CircularInOut" />
             </LayoutAnimation>
             
             <Rectangle Fill="#303C4C" />
