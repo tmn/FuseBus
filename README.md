@@ -6,7 +6,7 @@ _Sanntidsappen_ is a native iOS and Android app for showing bus departures in Tr
 
 ---
 
-[![sanntidsappen](https://9u.no/media/fusebus.png)](https://9u.no/media/fusebus.png)
+[![sanntidsappen](https://9u.no/media/fusebus2.png)](https://9u.no/media/fusebus2.png)
 
 
 
