@@ -162,7 +162,25 @@
       <!-- StopList -->      
       <Panel ux:Name="stopList" Background="#fff" Padding="0, 0, 0, 0">
         <Panel Alignment="Top" Background="#A2A21F" Height="43">
-          <TextEdit Height="20" PlaceholderText="Søk etter holdeplass" PlaceholderColor="#eee" Value="{stop_search}" FontSize="14" TextColor="#fff" IsMultiline="false" Margin="15, 0, 15, 0" CaretColor="#fff" Padding="0, 4, 0, 0" />
+          <MagnifyingGlass Alignment="CenterLeft" X="12" Opacity=".8" />
+
+          <TextEdit Height="21" PlaceholderText="Søk etter holdeplass" PlaceholderColor="#eee" Value="{search_string}" FontSize="15" TextColor="#fff" IsMultiline="false" Margin="30, 0, 35, 0" CaretColor="#fff" Padding="0, 4, 0, 0">
+            <WhileContainsText>
+              <Change searchStringReset.Opacity="1" />
+            </WhileContainsText>
+          </TextEdit>
+
+          <Panel ux:Name="searchStringReset" Alignment="CenterRight" Margin="0, 0, 15, 0" Opacity="0" Clicked="{search_reset}" HitTestMode="LocalBoundsAndChildren">
+            <Circle Width="14" Height="14" Fill="#fff" Opacity=".8">
+              <Rectangle Fill="#A2A21F" Width="2" Height="10" Alignment="Center">
+                <Rotation Degrees="45" />
+              </Rectangle>
+
+              <Rectangle Fill="#A2A21F" Width="2" Height="10" Alignment="Center">
+                <Rotation Degrees="-45" />
+              </Rectangle>
+            </Circle>
+          </Panel>
         </Panel>
 
         <ScrollView Margin="0, 43, 0, 0">
