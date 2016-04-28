@@ -125,6 +125,10 @@
         <Set Target="loading.Value" Value="false" Delay=".4" />
       </WhileCount>
 
+      <OnBackButton>
+        <Set Target="departure_view.Value" Value="false" />
+        <Callback Handler="{go_back}" />
+      </OnBackButton>
 
 
 
