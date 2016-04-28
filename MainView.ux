@@ -131,22 +131,21 @@
 
       <!-- Bottom panel -->
       <Panel ux:Name="departuresBottomPanel" Alignment="Bottom" Y="50">
-        <Clicked>
-          <Set Target="departure_view.Value" Value="false" />
-          <Callback Handler="{go_back}" />
-        </Clicked>
+        <Rectangle Height="50" Width="65" Fill="#A2A21F" CornerRadius="75" Y="15" HitTestMode="LocalBoundsAndChildren">
+          <Panel ux:Name="backArrow" Padding="0, 0, 0, 15" Alignment="Center">
+            <Rectangle Fill="#fff" Width="2" Height="12" Alignment="Center" X="-4">
+              <Rotation Degrees="45" />
+            </Rectangle>
 
-        <Panel ux:Name="backArrow" Padding="0, 15, 0, 0">
-          <Rectangle Fill="#fff" Width="2" Height="12" Alignment="Center" X="-4">
-            <Rotation Degrees="45" />
-          </Rectangle>
-
-          <Rectangle Fill="#fff" Width="2" Height="12" Alignment="Center" X="4">
-            <Rotation Degrees="-45" />
-          </Rectangle>
-        </Panel>
-
-        <Rectangle Height="50" Width="65" Fill="#A2A21F" CornerRadius="75" Y="15" />
+            <Rectangle Fill="#fff" Width="2" Height="12" Alignment="Center" X="4">
+              <Rotation Degrees="-45" />
+            </Rectangle>
+          </Panel>
+          <Clicked>
+            <Set Target="departure_view.Value" Value="false" />
+            <Callback Handler="{go_back}" />
+          </Clicked>
+        </Rectangle>
         <Panel Background="#A2A21F" Height="6" Alignment="Bottom"/>
       </Panel>
 
@@ -185,7 +184,7 @@
 
 
       <!-- Departures -->
-      <Panel Padding="0, -192, 0, 6" >
+      <Panel Padding="0, -192, 0, 5" >
         <ScrollView ux:Name="departuresList" SnapMinTransform="false" Opacity="0">
           <DockPanel Padding="0, 70, 0, 0" Margin="0">
             <Reload Dock="Top" />
