@@ -45,12 +45,12 @@
           
           <PageControl ux:Name="favoriteControl">
             <Each Items="{favorite_departures}">
-              <Page Clicked="{reload_favs}">
+              <Page Clicked="{reload_favs}" HitTestMode="LocalBoundsAndChildren">
                 <StackPanel>
                   <Text Font="Light" FontSize="28" TextColor="#fff" TextAlignment="Center" Margin="0, 30, 0, 0" Value="{name}" />
-                  <Text Font="Light" FontSize="14" TextColor="#aaa" Alignment="Center" Value="{direction}" />
+                  <Text Font="Light" FontSize="12" TextColor="#afafaf" Alignment="Center" Value="{direction}" />
 
-                  <StackPanel Margin="0, 12, 0, 0">
+                  <StackPanel Margin="0, 10, 0, 0">
                     <Each Items="{departures}">
                       <DockPanel Width="260" Margin="0, 0, 0, 5">
                         <Text Dock="Left" Font="Light" FontSize="14" TextColor="#DDFF99" Width="50" Value="{line}" />
