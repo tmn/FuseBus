@@ -6,7 +6,7 @@ _Sanntidsappen_ is a native iOS and Android app for showing bus departures in Tr
 
 ---
 
-[![sanntid0](https://9u.no/media/fusebus.png)](https://9u.no/media/fusebus.png)
+[![sanntidsappen](https://9u.no/media/fusebus.png)](https://9u.no/media/fusebus.png)
 
 
 
@@ -24,19 +24,3 @@ fuse build --target=iOS
 
 Now, use Xcode to deploy it on your device! :)
 
-
-# Roadmap
-
-* _Pull-2-refresh_
-  * Departures __[in progress]__
-  * Nearest stops __[later]__
-* _Favorites_ - settings/sidebar
-  * Re-arrange __[planned]__
-  * ~~Delete~~
-  * ~~Add~~
-* _Favorites_ - departure view on home screen
-  * Trigger update on departure time __[planned]__
-* _Route_ - get route of a chosen departure. Let the user see which stops are on the current route. This requires new data from the API __[planned]__
-* _Notifications_ - attach alarm to departures __[later]__
-* _Loading indicator_ - get a loading indication on chosen stop
-* Better search mechanism on stops
