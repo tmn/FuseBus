@@ -1,0 +1,9 @@
+<Panel ux:Class="MagnifyingGlass">
+  <Circle Width="10" Height="9" X="0" Y="1">
+    <Stroke Brush="#fff" Width="1" />
+  </Circle>
+
+  <Rectangle Fill="#fff" Width="1" Height="5" Alignment="Center" X="4" Y="6">
+    <Rotation Degrees="-45" />
+  </Rectangle>
+</Panel>
