@@ -33,6 +33,7 @@
     },
     "Includes": [
         "*",
+        "js/Api.js:Bundle",
         "js/Components/*.js:Bundle"
     ],
     "Icon": "Assets/sappen.png",
