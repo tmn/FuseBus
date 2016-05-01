@@ -57,16 +57,6 @@
 
         <!-- Top Panel in main view -->
         <Panel ux:Name="top_panel_home">
-
-          <!--  Side panel togler -->
-          <!-- <StackPanel ux:Name="sidePanelIndicator" Alignment="TopLeft" Margin="15, 40, 0, 0" HitTestMode="LocalBoundsAndChildren">
-            <Rectangle Height="2" Width="20" Fill="#fff" />
-            <Rectangle Height="2" Width="20" Fill="#fff" Margin="0, 5, 0, 0" />
-            <Clicked>
-              <Set Navigator.Active="SidePanel" />
-            </Clicked>
-          </StackPanel> -->
-
           <PageControl ux:Name="favoriteControl">
             <Each Items="{favorite_departures}">
               <Page Clicked="{reload_favorite_departures}" HitTestMode="LocalBoundsAndChildren">
@@ -181,15 +171,33 @@
       <!-- StopList -->      
       <Panel ux:Name="stopList" Background="#fff" Padding="0, 0, 0, 0">
         <Panel Alignment="Top" Background="#A2A21F" Height="43">
-          <MagnifyingGlass Alignment="CenterLeft" X="12" Opacity=".8" />
+          <!--  Side panel togler -->
+          <Panel ux:Name="sidePanelIndicator" Width="45" Alignment="CenterLeft" Margin="0, 0, 0, 0" Padding="0" HitTestMode="LocalBoundsAndChildren">
+            <StackPanel Alignment="Center">
+              <Rectangle Height="2" Width="18" Fill="#fff">
+              </Rectangle>
+              <Rectangle Height="2" Width="18" Fill="#fff" Margin="0, 5, 0, 0">
+              </Rectangle>
+            </StackPanel>
 
-          <TextEdit Height="21" PlaceholderText="Søk etter holdeplass" PlaceholderColor="#eee" Value="{search_string}" FontSize="15" TextColor="#fff" IsMultiline="false" Margin="30, 0, 35, 0" CaretColor="#fff" Padding="0, 4, 0, 0">
+            <Rectangle Fill="#fff" Width="1" Height="43" Opacity=".1" Alignment="Right"/>
+
+            <Rectangle Fill="#fff" Opacity=".1" />
+
+            <Clicked>
+              <Set Navigator.Active="SidePanel" />
+            </Clicked>
+          </Panel>
+
+          <MagnifyingGlass Alignment="CenterLeft" X="58" Y="-3" Opacity=".8" />
+
+          <TextEdit Height="21" PlaceholderText="Søk etter holdeplass" PlaceholderColor="#eee" Value="{search_string}" FontSize="15" TextColor="#fff" IsMultiline="false" Margin="78, 0, 35, 0" CaretColor="#fff" Padding="0, 1, 0, 0">
             <WhileContainsText>
               <Change searchStringReset.Opacity="1" />
             </WhileContainsText>
           </TextEdit>
 
-          <Panel ux:Name="searchStringReset" Alignment="CenterRight" Margin="0, 0, 15, 0" Opacity="0" Clicked="{search_reset}" HitTestMode="LocalBoundsAndChildren">
+          <Panel ux:Name="searchStringReset" Alignment="CenterRight" Margin="0, 0, 15, 0" Opacity="0" Clicked="{search_reset}" HitTestMode="LocalBoundsAndChildren" Padding="5">
             <Circle Width="14" Height="14" Fill="#fff" Opacity=".8">
               <Rectangle Fill="#A2A21F" Width="2" Height="10" Alignment="Center">
                 <Rotation Degrees="45" />
