@@ -18,7 +18,7 @@
     </SidePanel>
 
     <DockPanel ux:Name="MainPanel">
-      <Translation ux:Name="mainAppTranslation" />
+      <Translation ux:Name="mainAppTranslation" RelativeTo="Size" />
 
       <Panel ux:Name="top_panel" Alignment="Top" Height="200" Dock="Top">
         <!-- Top Panel while in departures view -->

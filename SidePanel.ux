@@ -1,4 +1,4 @@
-<DockPanel ux:InnerClass="SidePanel" ux:Name="sidePanel" Background="#303C4C" Width="95%">
+<DockPanel ux:InnerClass="SidePanel" ux:Name="sidePanel" Background="#303C4C" Width="92%">
   <WhileInactive Threshold="0.4">
     <Move Target="appLogo" X="-320" Duration="0.2" Delay="0.3" Easing="CircularIn" />
     <Move Target="settingsFavTitle" X="-320" Duration="0.2" Delay="0.2" Easing="CircularIn" />
@@ -54,6 +54,6 @@
   </Panel>
 
   <ActivatingAnimation>
-    <Change Duration="0.1" Easing="Linear" mainAppTranslation.X="280" />
+    <Change Duration="0.1" Easing="Linear" mainAppTranslation.X=".92" />
   </ActivatingAnimation>
 </DockPanel>
