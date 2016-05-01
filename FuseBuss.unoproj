@@ -48,13 +48,13 @@
     },
     "Android": {
         "Package": "io.tmn.sanntidsappen",
-        "VersionCode": 1005,
-        "VersionName": "1.0.0-5-beta",
+        "VersionCode": 10081,
+        "VersionName": "1.0.0-8.1-beta",
         "Key": {
             "Alias": "sanntidsappen",
-            "AliasPassword": "frisby",
+            "AliasPassword": "",
             "Store": "release.keystore",
-            "StorePassword": "frisby"
+            "StorePassword": ""
         },
         "Icons": {
             "LDPI": "$(Icon)",

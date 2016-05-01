@@ -191,7 +191,7 @@
 
           <MagnifyingGlass Alignment="CenterLeft" X="58" Y="-3" Opacity=".8" />
 
-          <TextEdit Height="21" PlaceholderText="Søk etter holdeplass" PlaceholderColor="#eee" Value="{search_string}" FontSize="15" TextColor="#fff" IsMultiline="false" Margin="78, 0, 35, 0" CaretColor="#fff" Padding="0, 1, 0, 0">
+          <TextEdit Height="21" PlaceholderText="Søk etter holdeplass" PlaceholderColor="#eee" Value="{search_string}" FontSize="15" TextColor="#fff" IsMultiline="false" Margin="78, -3, 35, 0" CaretColor="#fff" Padding="0, 4, 0, 0">
             <WhileContainsText>
               <Change searchStringReset.Opacity="1" />
             </WhileContainsText>
