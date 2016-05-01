@@ -1,4 +1,4 @@
-<Circle ux:Class="DeleteButton" Clicked="{favorite_delete}" HitTestMode="LocalBoundsAndChildren" Dock="Left" Width="23" Height="23" Margin="0, 0, 15, 0" Padding="0">
+<Circle ux:Class="DeleteButton" HitTestMode="LocalBoundsAndChildren" Dock="Left" Width="23" Height="23" Margin="0, 0, 15, 0" Padding="0">
   <SolidColor Color="#a00" />
 
   <Rectangle Fill="#fff" Width="2" Height="10" Alignment="Center">
