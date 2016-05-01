@@ -2,17 +2,15 @@
   <Image ux:Class="Arrow" File="Assets/Images/arrow.png" Width="30" Height="30" />
 
   <Panel ux:Name="loadingPanel" Background="#fff" Alignment="Top" Dock="Top" Height="0">
-    <Text ux:Name="LoadingText" Font="Light" FontSize="12" TextColor="#888" TextAlignment="Center" Padding="0, 20, 0, 0" Opacity="0" Value="Oppdater liste" />
+    <Text ux:Name="LoadingText" Font="Light" FontSize="12" TextColor="#888" TextAlignment="Center" Padding="0, 20, 0, 0" Value="Oppdater liste" />
   </Panel>
 
   <WhileTrue ux:Name="retainSpace">
-    <Change loadingPanel.MinHeight="55" Duration="0" DurationBack=".1" Easing="CircularIn" />
-    <Change LoadingText.Opacity="1" Duration="1" />
+    <Change loadingPanel.MinHeight="55" Duration="0" DurationBack=".2" Easing="CircularIn" />
   </WhileTrue>
 
   <ScrollingAnimation Range="SnapMin">
-    <Change loadingPanel.Height="120" Duration="1" />
-    <Change LoadingText.Opacity="1" Duration="1" />
+    <Change loadingPanel.Height="140" Duration="1" />
   </ScrollingAnimation>
 
   <PullToReload  IsLoading="{is_loading}" ReloadHandler="{reload_handler}">
@@ -21,11 +19,11 @@
     </State>
 
     <State ux:Binding="PulledPastThreshold">
-      <Change LoadingText.TextColor="#A2A21F" Duration=".15" />
+      <Change LoadingText.TextColor="#A2A21F" Duration="1" />
     </State>
 
     <State ux:Binding="Loading">
-      <Change retainSpace.Value="true" DurationBack="0.3"  />
+      <Change retainSpace.Value="true" DurationBack=".2"  />
     </State>
   </PullToReload>
 </Panel>
