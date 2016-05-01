@@ -15,7 +15,7 @@
     <Change LoadingText.Opacity="1" Duration="1" />
   </ScrollingAnimation>
 
-  <PullToReload  IsLoading="{isLoading}" ReloadHandler="{reloadHandler}">
+  <PullToReload  IsLoading="{is_loading}" ReloadHandler="{reload_handler}">
     <State ux:Binding="Pulling">
 
     </State>

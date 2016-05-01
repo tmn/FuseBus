@@ -13,9 +13,11 @@
 
   <!-- .. -->
   <EdgeNavigator ux:Name="EdgeNavigator" >
-    <SidePanel EdgeNavigation.Edge="Left" />
+    <SidePanel EdgeNavigation.Edge="Left">
 
-    <DockPanel>
+    </SidePanel>
+
+    <DockPanel ux:Name="MainPanel">
       <Translation ux:Name="mainAppTranslation" />
 
       <Panel ux:Name="top_panel" Alignment="Top" Height="200" Dock="Top">
@@ -27,10 +29,10 @@
           </StackPanel>
 
           <Panel Alignment="Right" Width="38" Padding="0, 0, 10, 0" HitTestMode="LocalBoundsAndChildren" Clicked="{add_favorite}">
-            <WhileTrue Value="{isFav}">
+            <WhileTrue Value="{is_favorite}">
               <Image File="Assets/Images/StarFilled.png" Width="20" Height="20" Margin="0, 0, 0, 5" />
             </WhileTrue>
-            <WhileFalse Value="{isFav}">
+            <WhileFalse Value="{is_favorite}">
               <Image File="Assets/Images/StarUnfilled.png" Width="20" Height="20" Margin="0, 0, 0, 5" />
             </WhileFalse>
           </Panel>
@@ -38,14 +40,9 @@
 
         <!-- Top Panel in main view -->
         <Panel ux:Name="top_panel_home">
-          <!-- <StackPanel ux:Name="sidePanelIndicator" Alignment="TopLeft" Margin="15, 40, 0, 0">
-            <Rectangle Height="2" Width="20" Fill="#fff" />
-            <Rectangle Height="2" Width="20" Fill="#fff" Margin="0, 5, 0, 0" />
-          </StackPanel> -->
-          
           <PageControl ux:Name="favoriteControl">
             <Each Items="{favorite_departures}">
-              <Page Clicked="{reload_favs}" HitTestMode="LocalBoundsAndChildren">
+              <Page Clicked="{reload_favorite_departures}" HitTestMode="LocalBoundsAndChildren">
                 <StackPanel>
                   <Text Font="Light" FontSize="28" TextColor="#fff" TextAlignment="Center" Margin="0, 30, 0, 0" Value="{name}" />
                   <Text Font="Light" FontSize="12" TextColor="#afafaf" Alignment="Center" Value="{direction}" />
@@ -85,11 +82,6 @@
         </Rectangle>
 
         <Image File="Assets/Images/bus.jpg" StretchMode="UniformToFill" />
-
-        
-
-        <!-- top_panel transitions -->
-        
       </Panel>
 
 
@@ -118,7 +110,7 @@
         <Cycle Target="loadingCircle.LengthAngleDegrees" Low="30" High="300" Frequency="0.7" />
       </WhileTrue>
 
-      <WhileFalse Value="{hasLocation}">
+      <WhileFalse Value="{has_location}">
         <Change hasLocationText.Opacity="1" Duration=".1" Easing="CircularInOut" />
       </WhileFalse>
 
@@ -129,7 +121,7 @@
 
       <OnBackButton>
         <Set Target="departure_view.Value" Value="false" />
-        <Callback Handler="{go_back}" />
+        <Callback Handler="{back_button_handler}" />
       </OnBackButton>
 
 
@@ -149,7 +141,7 @@
           </Panel>
           <Clicked>
             <Set Target="departure_view.Value" Value="false" />
-            <Callback Handler="{go_back}" />
+            <Callback Handler="{back_button_handler}" />
           </Clicked>
         </Rectangle>
         <Panel Background="#A2A21F" Height="6" Alignment="Bottom"/>
@@ -185,10 +177,10 @@
 
         <ScrollView Margin="0, 43, 0, 0">
           <StackPanel ux:Name="stopListStack" Padding="0, 0, 0, 0" >
-            <Each Items="{filtered_view}">
+            <Each Items="{stop_list}">
               <Stop Padding="15, 0, 0, 0">
                 <Clicked>
-                  <Callback Handler="{stop_clicked}" />
+                  <Callback Handler="{stop_click_handler}" />
                   <Set Target="loading.Value" Value="true" />
                   <Toggle Target="departure_view" />
                 </Clicked>

@@ -1,7 +1,6 @@
-var Storage = require('FuseJS/Storage');
-var Bussholdeplass = require('./Bussholdeplass');
-
-var data = 'favorites';
+var Storage = require('FuseJS/Storage')
+, Bussholdeplass = require('./Bussholdeplass')
+, data = 'favorites';
 
 
 /* ...

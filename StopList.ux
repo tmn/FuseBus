@@ -10,15 +10,15 @@
     </StackPanel>
 
     <StackPanel ux:Name="stopListStack" Padding="0, 0, 0, 0" Opacity="0">
-      <Each Items="{filtered_view}">
+      <Each Items="{stop_list}">
         <Stop Margin="15, 0, 0, 0"/>
       </Each>
     </StackPanel>
 
-    <WhileFalse Value="{hasLocation}">
+    <WhileFalse Value="{has_location}">
       <Change hasLocationText.Opacity="1" Duration=".1" Easing="CircularInOut" />
     </WhileFalse>
-    <WhileTrue Value="{hasLocation}">
+    <WhileTrue Value="{has_location}">
       <Change stopListStack.Opacity="1" Duration=".1" Easing="CircularOut" />
     </WhileTrue>
   </ScrollView>

@@ -1,5 +1,11 @@
-var get_direction = function (locationId) {
-  if (locationId.length == 8) {
+var get_direction
+, get_direction_code;
+
+
+/* Inits
+-----------------------------------------------------------------------------*/
+get_direction = function (locationId) {
+  if (locationId.length >=5) {
     switch (parseInt(get_direction_code(locationId))) {
       case 1:  return 'til midtbyen';
       case 0:  return 'fra midtbyen';
@@ -14,8 +20,9 @@ var get_direction = function (locationId) {
   }
 };
 
-var get_direction_code = function (locationId) {
+get_direction_code = function (locationId) {
   var directionCode = parseInt(locationId.substring(4, 5));
+
   if (directionCode === 1 || directionCode === 0 || directionCode === 6 || directionCode === 7) {
     return directionCode;
   }
