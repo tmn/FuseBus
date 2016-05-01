@@ -8,17 +8,20 @@
 
   <iOS.StatusBarConfig Style="Light" />
 
-  <!-- Inner classes -->
-  <ux:Include File="SidePanel.ux" />
-
-  <!-- .. -->
-  <EdgeNavigator ux:Name="EdgeNavigator" >
-    <SidePanel EdgeNavigation.Edge="Left">
-
+  <DockPanel>
+    <EdgeNavigation />
+    <SidePanel Edge="Left" Alignment="Left">
+      <EnteringAnimation>
+        <Move X="-1" RelativeTo="Size" />
+      </EnteringAnimation>
+      <ActivatingAnimation>
+        <Change Duration="0.1" Easing="Linear" mainAppTranslation.X=".92" />
+      </ActivatingAnimation>
     </SidePanel>
 
     <DockPanel ux:Name="MainPanel">
       <Translation ux:Name="mainAppTranslation" RelativeTo="Size" />
+      
 
       <Panel ux:Name="top_panel" Alignment="Top" Height="200" Dock="Top">
         <!-- Top Panel while in departures view -->
@@ -217,7 +220,6 @@
           <Stroke Width="1" Brush="#666" />
         </Circle>
       </Panel>
-
     </DockPanel>
-  </EdgeNavigator>
+  </DockPanel>
 </App>
