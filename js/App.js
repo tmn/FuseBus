@@ -188,6 +188,17 @@ search_string.addSubscriber(function () {
   }));
 });
 
+if (env.mobile) {
+  GeoLocation.onChanged = function (location) {
+    update_nearest_stop(location);
+  }
+
+  var minimumReportInterval = 5000
+  , desiredAccuracyInMeters = 100;
+
+  GeoLocation.startListening(minimumReportInterval, desiredAccuracyInMeters);
+}
+
 
 
 /* Init
