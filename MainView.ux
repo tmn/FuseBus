@@ -252,6 +252,8 @@
           <Stroke Width="1" Brush="#666" />
         </Circle>
       </Panel>
+
+      <BottomBarBackground Dock="Bottom" IncludesKeyboard="false"/>
     </DockPanel>
   </DockPanel>
 </App>
