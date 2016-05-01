@@ -9,19 +9,33 @@
   <iOS.StatusBarConfig Style="Light" />
 
   <DockPanel>
-    <EdgeNavigation />
-    <SidePanel Edge="Left" Alignment="Left">
+    <EdgeNavigation ux:Name="Navigator" />
+
+    <!-- SIDE PANEL -->
+    <SidePanel ux:Name="SidePanel" Edge="Left" Alignment="Left">
       <EnteringAnimation>
         <Move X="-1" RelativeTo="Size" />
       </EnteringAnimation>
+
       <ActivatingAnimation>
         <Change Duration="0.1" Easing="Linear" mainAppTranslation.X=".92" />
       </ActivatingAnimation>
     </SidePanel>
 
+
+    <!-- MAIN PANEL -->
     <DockPanel ux:Name="MainPanel">
       <Translation ux:Name="mainAppTranslation" RelativeTo="Size" />
+
+      <DeactivatingAnimation>
+        <Change MainViewOverlay.Opacity=".7" Duration=".2" Easing="Linear" />
+        <Change MainPanel.HitTestMode="LocalBounds" />
+        <WhilePressed>
+          <NavigateToggle />
+        </WhilePressed>
+      </DeactivatingAnimation>
       
+      <Rectangle ux:Name="MainViewOverlay" Fill="#303C4C" Layer="Overlay" Opacity="0" HitTestMode="Children"/>
 
       <Panel ux:Name="top_panel" Alignment="Top" Height="200" Dock="Top">
         <!-- Top Panel while in departures view -->
@@ -43,6 +57,16 @@
 
         <!-- Top Panel in main view -->
         <Panel ux:Name="top_panel_home">
+
+          <!--  Side panel togler -->
+          <!-- <StackPanel ux:Name="sidePanelIndicator" Alignment="TopLeft" Margin="15, 40, 0, 0" HitTestMode="LocalBoundsAndChildren">
+            <Rectangle Height="2" Width="20" Fill="#fff" />
+            <Rectangle Height="2" Width="20" Fill="#fff" Margin="0, 5, 0, 0" />
+            <Clicked>
+              <Set Navigator.Active="SidePanel" />
+            </Clicked>
+          </StackPanel> -->
+
           <PageControl ux:Name="favoriteControl">
             <Each Items="{favorite_departures}">
               <Page Clicked="{reload_favorite_departures}" HitTestMode="LocalBoundsAndChildren">
@@ -185,7 +209,7 @@
                 <Clicked>
                   <Callback Handler="{stop_click_handler}" />
                   <Set Target="loading.Value" Value="true" />
-                  <Toggle Target="departure_view" />
+                  <Set Target="departure_view.Value" Value="true" />
                 </Clicked>
               </Stop>
             </Each>
