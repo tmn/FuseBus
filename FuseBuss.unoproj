@@ -44,12 +44,20 @@
         "Devices": "iPhone",
         "PList": {
             "ITSAppUsesNonExemptEncryption": false
+        },
+        "Icons": {
+            "iPhone_29_2x": "Assets/icon/icon_29@2x.png",
+            "iPhone_29_3x": "Assets/icon/icon_29@3x.png",
+            "iPhone_40_2x": "Assets/icon/icon_40@2x.png",
+            "iPhone_40_3x": "Assets/icon/icon_40@3x.png",
+            "iPhone_60_2x": "Assets/icon/icon_60@2x.png",
+            "iPhone_60_3x": "Assets/icon/icon_60@3x.png"
         }
     },
     "Android": {
         "Package": "io.tmn.sanntidsappen",
-        "VersionCode": 10081,
-        "VersionName": "1.0.0-8.1-beta",
+        "VersionCode": 100101,
+        "VersionName": "1.0.0",
         "Key": {
             "Alias": "sanntidsappen",
             "AliasPassword": "",
@@ -57,12 +65,12 @@
             "StorePassword": ""
         },
         "Icons": {
-            "LDPI": "$(Icon)",
-            "MDPI": "$(Icon)",
-            "HDPI": "$(Icon)",
-            "XHDPI": "$(Icon)",
-            "XXHDPI": "$(Icon)",
-            "XXXHDPI": "$(Icon)"
+            "LDPI": "Assets/icon/icon_29@2x.png",
+            "MDPI": "Assets/icon/icon_29@3x.png",
+            "HDPI": "Assets/icon/icon_40@2x.png",
+            "XHDPI": "Assets/icon/icon_40@3x.png",
+            "XXHDPI": "Assets/icon/icon_60@2x.png",
+            "XXXHDPI": "Assets/icon/icon_60@3x.png"
         },
         "NDK": {
             "PlatformVersion": 16
