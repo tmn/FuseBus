@@ -45,7 +45,7 @@
             <Text Font="Light" FontSize="12" TextColor="#ddd" Value="{stop_info.direction}" />
           </StackPanel>
 
-          <Panel Alignment="Right" Width="38" Padding="0, 0, 10, 0" HitTestMode="LocalBoundsAndChildren" Clicked="{add_favorite}">
+          <Panel Alignment="Right" Width="38" Padding="0, 0, 10, 0" HitTestMode="LocalBoundsAndChildren" Clicked="{toggle_favorite}">
             <WhileTrue Value="{is_favorite}">
               <Image File="Assets/Images/StarFilled.png" Width="20" Height="20" Margin="0, 0, 0, 5" />
             </WhileTrue>

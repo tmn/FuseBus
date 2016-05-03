@@ -20,8 +20,7 @@ var departures        = Observable()
 , search_reset        = Observable()
 , stop_info           = Observable();
 
-var add_favorite
-, back_button_handler
+var back_button_handler
 , delete_favorite
 , end_loading
 , get_current_timestamp
@@ -31,26 +30,12 @@ var add_favorite
 , reload_handler
 , search_reset
 , stop_click_handler
+, toggle_favorite
 , update_nearest_stop;
 
 
 /* FuncInits
 -----------------------------------------------------------------------------*/
-add_favorite = function () {
-  is_favorite.value = !is_favorite.value;
-
-  if (FavoriteHandler.hasFavorite(stop_info.value.id)) {
-    FavoriteHandler.deleteFavorite(stop_info.value.id);
-  }
-  else {
-    FavoriteHandler.addFavorite(stop_info.value);
-  }
-  
-  favorites.replaceAll(FavoriteHandler.getFavoriteList());
-
-  load_favorites();
-};
-
 back_button_handler = function () {
   setTimeout(function () {
     departures.clear();
@@ -139,6 +124,21 @@ stop_click_handler = function (args) {
   load_departure_data();
 };
 
+toggle_favorite = function () {
+  is_favorite.value = !is_favorite.value;
+
+  if (FavoriteHandler.hasFavorite(stop_info.value.id)) {
+    FavoriteHandler.deleteFavorite(stop_info.value.id);
+  }
+  else {
+    FavoriteHandler.addFavorite(stop_info.value);
+  }
+  
+  favorites.replaceAll(FavoriteHandler.getFavoriteList());
+
+  load_favorites();
+};
+
 update_nearest_stop = function (location) {
   if (!env.mobile) {
     return;
@@ -212,7 +212,7 @@ favorites_updated.value = 'Sist oppdatert: ' + get_current_timestamp();
 /* Exports
 -----------------------------------------------------------------------------*/
 module.exports = {
-  add_favorite: add_favorite,
+  toggle_favorite: toggle_favorite,
   back_button_handler: back_button_handler,
   departures: departures,
   favorites: favorites,
