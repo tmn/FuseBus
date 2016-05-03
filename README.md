@@ -1,4 +1,4 @@
-![Sanntidsappen](https://9u.no/media/sanntidsappen_icon.png)
+[![Sanntidsappen](http://sanntidsappen.9u.no/favicon_small.png)](http://sanntidsappen.9u.no)
 
 # Sanntidsappen
 
