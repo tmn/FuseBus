@@ -43,6 +43,7 @@ back_button_handler = function () {
 delete_favorite = function (args) {
   FavoriteHandler.deleteFavorite(args.data.id);
   favorites.remove(args.data);
+  is_favorite.value = FavoriteHandler.hasFavorite(args.data.id);
 };
 
 end_loading = function () {
@@ -70,8 +71,7 @@ load_departure_data = function () {
 };
 
 load_favorites = function () {
-  var favorites     = FavoriteHandler.getFavoriteList()
-  , new_favorites   = [];
+  var favorite_view   = [];
 
   favorites.forEach(function (stop) {
     var stopDep = {
@@ -86,10 +86,10 @@ load_favorites = function () {
       favorites_updated.value = 'Sist oppdatert: ' + get_current_timestamp();
     });
       
-    new_favorites.push(stopDep);
+    favorite_view.push(stopDep);
   });
 
-  favorite_departures.replaceAll(new_favorites);
+  favorite_departures.replaceAll(favorite_view);
 };
 
 reload_favorite_departures = function () {
@@ -128,8 +128,6 @@ toggle_favorite = function () {
   }
   
   favorites.replaceAll(FavoriteHandler.getFavoriteList());
-
-  load_favorites();
 };
 
 update_nearest_stop = function (location) {
@@ -202,9 +200,9 @@ if (env.mobile) {
 
 /* Init
 -----------------------------------------------------------------------------*/
-load_favorites();
 favorites.replaceAll(FavoriteHandler.getFavoriteList());
 favorites_updated.value = 'Sist oppdatert: ' + get_current_timestamp();
+load_favorites();
 
 
 
