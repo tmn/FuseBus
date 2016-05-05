@@ -20,10 +20,10 @@
   <ScrollView ux:Name="settingsFavList" Dock="Fill" Padding="0, 0, 0, 15">
     <StackPanel>
       <Each Items="{favorites}">
-        <DockPanel Alignment="Top" Margin="20, 0, 0, 0">
-          <DeleteButton Dock="Left" Clicked="{favorite_delete}" />
+        <Panel Alignment="Top" Margin="20, 0, 0, 0" Height="48" Background="#303C4C">
+          <DeleteButton Alignment="CenterLeft" Clicked="{favorite_delete}" />
 
-          <StackPanel Dock="Left" Padding="0, 10, 0, 10" Width="100%">
+          <StackPanel Alignment="CenterLeft" Margin="35, 0, 0, 0" Width="100%">
             <Clicked>
               <Callback Handler="{back_button_handler}" />
 
@@ -37,17 +37,17 @@
             <Text Font="Light" TextColor="#fff" FontSize="14" Value="{name}" />
             <Text Font="Light" TextColor="#fff" FontSize="12" Opacity=".5" Value="{direction}" />
           </StackPanel>
-        </DockPanel>
 
-        <Rectangle Alignment="Bottom" Height="1" Fill="#FFF" Opacity=".1" />
+          <Rectangle Alignment="Bottom" Height="1" Fill="#FFF" Opacity=".1" />
+          
+          <RemovingAnimation>
+            <Move RelativeTo="Size" Y="-1" Duration=".2" Easing="CircularInOut" />
+          </RemovingAnimation>
 
-        <RemovingAnimation>
-          <Move RelativeTo="Size" Y="-1" Duration=".2" Easing="CircularInOut" />
-        </RemovingAnimation>
-
-        <LayoutAnimation>
-          <Move RelativeTo="LayoutChange" Y="1" Duration=".5" Easing="CircularInOut" />
-        </LayoutAnimation>
+          <LayoutAnimation>
+            <Move RelativeTo="LayoutChange" Y="1" Duration=".5" Easing="CircularInOut" />
+          </LayoutAnimation>
+        </Panel>
       </Each>
     </StackPanel>
   </ScrollView>
