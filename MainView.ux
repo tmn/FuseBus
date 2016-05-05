@@ -13,6 +13,9 @@
   <DockPanel>
     <EdgeNavigation ux:Name="Navigator" />
 
+
+
+
     <!-- SIDE PANEL -->
     <SidePanel ux:Name="sidePanel" Edge="Left" Alignment="Left">
       <EnteringAnimation>
@@ -25,6 +28,9 @@
     </SidePanel>
 
 
+
+
+
     <!-- MAIN PANEL -->
     <DockPanel ux:Name="MainPanel">
       <Translation ux:Name="mainAppTranslation" RelativeTo="Size" />
@@ -32,6 +38,7 @@
       <DeactivatingAnimation>
         <Change MainViewOverlay.Opacity=".7" Duration=".2" Easing="Linear" />
         <Change MainPanel.HitTestMode="LocalBounds" />
+
         <WhilePressed>
           <NavigateToggle />
         </WhilePressed>
@@ -113,16 +120,6 @@
         <Change loadCircle.Value="true" DelayBack="0" />
       </WhileTrue>
 
-      <WhileTrue ux:Name="departure_view">
-        <Move Target="departuresBottomPanel" RelativeTo="Size" Y="-1" Duration=".2" Easing="CircularInOut" />
-
-        <Move Target="top_panel" Y="-0.62" RelativeTo="Size" Duration="0.25" Easing="CircularInOut" />
-        <Change top_panel_home.Opacity="0" Duration=".25" Easing="CircularInOut" />
-        <Change top_panel_departures.Opacity="1" Duration=".25" Easing="CircularInOut" />
-
-        <Move Target="stopList" RelativeTo="Size" Y="1" Duration="0.25" Easing="CircularInOut" />
-      </WhileTrue>
-
       <WhileTrue ux:Name="loadCircle">
         <Change loadingCircle.Opacity="1" Duration=".2" Easing="CircularInOut" />
         <Spin Target="loadingCircle" Frequency="2" />
@@ -132,6 +129,16 @@
       <WhileFalse Value="{has_location}">
         <Change hasLocationText.Opacity="1" Duration=".1" Easing="CircularInOut" />
       </WhileFalse>
+
+      <WhileTrue ux:Name="departure_view">
+        <Move Target="backPanel" RelativeTo="Size" Y="-1" Duration=".2" Easing="CircularInOut" />
+
+        <Move Target="top_panel" Y="-0.62" RelativeTo="Size" Duration="0.25" Easing="CircularInOut" />
+        <Change top_panel_home.Opacity="0" Duration=".25" Easing="CircularInOut" />
+        <Change top_panel_departures.Opacity="1" Duration=".25" Easing="CircularInOut" />
+
+        <Move Target="stopList" RelativeTo="Size" Y="1" Duration="0.25" Easing="CircularInOut" />
+      </WhileTrue>
 
       <WhileCount Items="{departures}" GreaterThan="0">
         <Change departuresList.Opacity="1" Duration=".2" Delay=".4" Easing="CircularInOut" />
@@ -146,8 +153,10 @@
 
 
 
+
+
       <!-- Bottom panel -->
-      <Panel ux:Name="departuresBottomPanel" Alignment="Bottom" Y="50">
+      <Panel ux:Name="backPanel" Alignment="Bottom" Y="50">
         <Rectangle Height="50" Width="65" Fill="#A2A21F" CornerRadius="75" Y="15" HitTestMode="LocalBoundsAndChildren">
           <Panel ux:Name="backArrow" Padding="0, 0, 0, 15" Alignment="Center">
             <Rectangle Fill="#fff" Width="2" Height="12" Alignment="Center" X="-4">
@@ -170,10 +179,11 @@
 
 
 
+
       <!-- StopList -->      
       <Panel ux:Name="stopList" Background="#fff" Padding="0, 0, 0, 0">
         <Panel Alignment="Top" Background="#A2A21F" Height="43">
-          <!--  Side panel togler -->
+
           <Panel ux:Name="sidePanelIndicator" Width="45" Alignment="CenterLeft" Margin="0, 0, 0, 0" Padding="0" HitTestMode="LocalBoundsAndChildren">
             <StackPanel Alignment="Center">
               <Rectangle Height="2" Width="18" Fill="#fff">
@@ -236,6 +246,7 @@
 
 
 
+
       <!-- Departures -->
       <Panel Padding="0, -192, 0, 5" >
         <ScrollView ux:Name="departuresList" SnapMinTransform="false" Opacity="0">
@@ -254,6 +265,10 @@
           <Stroke Width="1" Brush="#666" />
         </Circle>
       </Panel>
+
+
+
+
 
       <BottomBarBackground Dock="Bottom" IncludesKeyboard="false"/>
     </DockPanel>
