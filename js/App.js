@@ -188,6 +188,12 @@ search_string.addSubscriber(function () {
   }));
 });
 
+favorites.addSubscriber(function () {
+  setTimeout(function () {
+    load_favorites();
+  }, 600);
+});
+
 if (env.mobile) {
   GeoLocation.onChanged = function (location) {
     update_nearest_stop(location);
