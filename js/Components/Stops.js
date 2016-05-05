@@ -2122,13 +2122,13 @@ var Stops = [
         "longitude": 10.465616,
         "latitude": 63.438493
     },
-    {
-        "busStopId": 100303,
-        "locationId": "16010322",
-        "name": "Trondheim Spektrum",
-        "longitude": 10.377581,
-        "latitude": 63.426604
-    },
+    // {
+    //     "busStopId": 100303,
+    //     "locationId": "16010322",
+    //     "name": "Trondheim Spektrum",
+    //     "longitude": 10.377581,
+    //     "latitude": 63.426604
+    // },
     {
         "busStopId": 100304,
         "locationId": "16010321",
@@ -12678,13 +12678,13 @@ var Stops = [
         "longitude": 10.308815,
         "latitude": 63.450416
     },
-    {
-        "busStopId": 101812,
-        "locationId": "16010154",
-        "name": "Gudruns gate",
-        "longitude": 10.382764,
-        "latitude": 63.42519
-    },
+    // {
+    //     "busStopId": 101812,
+    //     "locationId": "16010154",
+    //     "name": "Gudruns gate",
+    //     "longitude": 10.382764,
+    //     "latitude": 63.42519
+    // },
     {
         "busStopId": 101813,
         "locationId": "16010153",
@@ -13756,13 +13756,13 @@ var Stops = [
         "longitude": 10.308734,
         "latitude": 63.45038
     },
-    {
-        "busStopId": 101966,
-        "locationId": "16011154",
-        "name": "Gudruns gate",
-        "longitude": 10.382557,
-        "latitude": 63.425182
-    },
+    // {
+    //     "busStopId": 101966,
+    //     "locationId": "16011154",
+    //     "name": "Gudruns gate",
+    //     "longitude": 10.382557,
+    //     "latitude": 63.425182
+    // },
     {
         "busStopId": 101967,
         "locationId": "16011152",
@@ -15597,13 +15597,13 @@ var Stops = [
         "longitude": 10.200029,
         "latitude": 63.451207
     },
-    {
-        "busStopId": 102229,
-        "locationId": "16011650",
-        "name": "Nidelv bru",
-        "longitude": 10.416091,
-        "latitude": 63.437063
-    },
+    // {
+    //     "busStopId": 102229,
+    //     "locationId": "16011650",
+    //     "name": "Nidelv bru",
+    //     "longitude": 10.416091,
+    //     "latitude": 63.437063
+    // },
     {
         "busStopId": 102230,
         "locationId": "16011450",
