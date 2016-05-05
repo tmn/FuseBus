@@ -27,7 +27,16 @@
             <DockPanel Alignment="Top">
               <DeleteButton Clicked="{favorite_delete}" />
 
-              <StackPanel Dock="Left" Padding="0, 12, 0, 12">
+              <StackPanel Dock="Left" Padding="0, 12, 0, 12" Width="100%">
+                <Clicked>
+                  <Callback Handler="{back_button_handler}" />
+
+                  <Set Target="loading.Value" Value="true" />
+                  <Set Target="departure_view.Value" Value="true" />
+
+                  <Callback Handler="{stop_click_handler}" Delay=".25" />
+                  <NavigateToggle />
+                </Clicked>
                 <Text Font="Light" TextColor="#fff" FontSize="14" Value="{name}" />
                 <Text Font="Light" TextColor="#fff" FontSize="12" Opacity=".5" Value="{direction}" />
               </StackPanel>
