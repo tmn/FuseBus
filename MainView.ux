@@ -140,7 +140,7 @@
 
       <OnBackButton>
         <Set Target="departure_view.Value" Value="false" />
-        <Callback Handler="{back_button_handler}" />
+        <Callback Handler="{back_button_handler}" Delay=".25" />
       </OnBackButton>
 
 
@@ -160,7 +160,7 @@
           </Panel>
           <Clicked>
             <Set Target="departure_view.Value" Value="false" />
-            <Callback Handler="{back_button_handler}" />
+            <Callback Handler="{back_button_handler}" Delay=".25" />
           </Clicked>
         </Rectangle>
         <Panel Background="#A2A21F" Height="6" Alignment="Bottom"/>
