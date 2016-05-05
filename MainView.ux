@@ -96,7 +96,7 @@
             </Circle>
           </PageIndicator>
 
-          <Text Value="{favorites_updated}" Alignment="BottomCenter" Font="Light" TextColor="#eee" FontSize="10" Padding="0, 0, 0, 12" Opacity=".2" />
+          <Text Value="{favorites_updated}" Alignment="BottomCenter" Font="Light" TextColor="#eee" FontSize="10" Padding="0, 0, 0, 12" Opacity=".3" />
         </Panel>
 
         <!-- Background of top_panel -->
@@ -241,10 +241,6 @@
           <Text Value="for å se nærmeste holdeplasser" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
         </StackPanel>
       </Panel>
-
-
-
-
 
 
       <!-- Departures -->
