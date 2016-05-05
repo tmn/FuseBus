@@ -136,14 +136,13 @@ update_nearest_stop = function (location) {
   }
 
   if (location === undefined) {
-    if (GeoLocation.location !== null) {
-      has_location.value = true;
-      location = GeoLocation.location;
-    }
-    else {
+    if (location === null) {
       has_location.value = false;
       return;
     }
+
+    has_location.value = true;
+    location = GeoLocation.location;
   }
 
   Api.get('stops/nearest/' + location.latitude + '/' + location.longitude).then(function (responseObject) {
