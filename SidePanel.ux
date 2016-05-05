@@ -4,10 +4,8 @@
     <Move Target="settingsFavTitle" X="-320" Duration="0.2" Delay="0.2" Easing="CircularIn" />
     <Move Target="settingsFavList" X="-320" Duration="0.2" Delay="0.1" Easing="CircularIn" />
   </WhileInactive>
-  
-  <Panel Dock="Top" Height="90" />
 
-  <DockPanel ux:Name="appLogo" Dock="Top" Alignment="Center">
+  <DockPanel ux:Name="appLogo" Dock="Top" Alignment="Center" Margin="0, 90, 0, 0">
     <Image Dock="Left"  Width="50" File="Assets/Images/bus_logo.png" />
     <StackPanel Dock="Left" Margin="10, 0, 0, 9" Alignment="Bottom" Opacity="0.5">
       <Text Font="Light" FontSize="12" TextColor="#fff" Alignment="Bottom" Value="SANNTIDSAPPEN" />
@@ -15,46 +13,42 @@
     </StackPanel>
   </DockPanel>
 
-
   <StackPanel ux:Name="settingsFavTitle" Dock="Top" Margin="20, 50, 20, 20">
     <Text Font="Bold" FontSize="16" TextAlignment="Center" TextColor="#fff" Value="FAVORITTER" />
   </StackPanel>
 
   <ScrollView ux:Name="settingsFavList" Dock="Fill" Padding="0, 0, 0, 15">
     <StackPanel>
-        <Each Items="{favorites}">
-          <Panel Margin="20, 0, 0, 0">
-            <DockPanel Alignment="Top">
-              <DeleteButton Clicked="{favorite_delete}" />
+      <Each Items="{favorites}">
+        <DockPanel Alignment="Top" Margin="20, 0, 0, 0">
+          <DeleteButton Dock="Left" Clicked="{favorite_delete}" />
 
-              <StackPanel Dock="Left" Padding="0, 12, 0, 12" Width="100%">
-                <Clicked>
-                  <Callback Handler="{back_button_handler}" />
+          <StackPanel Dock="Left" Padding="0, 10, 0, 10" Width="100%">
+            <Clicked>
+              <Callback Handler="{back_button_handler}" />
 
-                  <Set Target="loading.Value" Value="true" />
-                  <Set Target="departure_view.Value" Value="true" />
+              <Set Target="loading.Value" Value="true" />
+              <Set Target="departure_view.Value" Value="true" />
 
-                  <Callback Handler="{stop_click_handler}" Delay=".25" />
-                  <NavigateToggle />
-                </Clicked>
-                <Text Font="Light" TextColor="#fff" FontSize="14" Value="{name}" />
-                <Text Font="Light" TextColor="#fff" FontSize="12" Opacity=".5" Value="{direction}" />
-              </StackPanel>
-            </DockPanel>
-
-            <Rectangle Alignment="Bottom" Height="1" Fill="#FFF" Opacity=".1" />
-
-            <RemovingAnimation>
-              <Move RelativeTo="Size" Y="-1" Duration=".2" Easing="CircularInOut" />
-            </RemovingAnimation>
-
-            <LayoutAnimation>
-              <Move RelativeTo="LayoutChange" Y="1" Duration=".5" Easing="CircularInOut" />
-            </LayoutAnimation>
+              <Callback Handler="{stop_click_handler}" Delay=".25" />
+              <NavigateToggle />
+            </Clicked>
             
-            <Rectangle Fill="#303C4C" />
-          </Panel>
-        </Each>
+            <Text Font="Light" TextColor="#fff" FontSize="14" Value="{name}" />
+            <Text Font="Light" TextColor="#fff" FontSize="12" Opacity=".5" Value="{direction}" />
+          </StackPanel>
+        </DockPanel>
+
+        <Rectangle Alignment="Bottom" Height="1" Fill="#FFF" Opacity=".1" />
+
+        <RemovingAnimation>
+          <Move RelativeTo="Size" Y="-1" Duration=".2" Easing="CircularInOut" />
+        </RemovingAnimation>
+
+        <LayoutAnimation>
+          <Move RelativeTo="LayoutChange" Y="1" Duration=".5" Easing="CircularInOut" />
+        </LayoutAnimation>
+      </Each>
     </StackPanel>
   </ScrollView>
 
