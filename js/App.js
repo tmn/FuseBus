@@ -37,9 +37,7 @@ var back_button_handler
 /* FuncInits
 -----------------------------------------------------------------------------*/
 back_button_handler = function () {
-  setTimeout(function () {
-    departures.clear();
-  }, 250)
+  departures.clear();
 };
 
 delete_favorite = function (args) {
