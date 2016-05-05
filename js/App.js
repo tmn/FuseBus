@@ -41,13 +41,8 @@ back_button_handler = function () {
 };
 
 delete_favorite = function (args) {
+  FavoriteHandler.deleteFavorite(args.data.id);
   favorites.remove(args.data);
-
-  setTimeout(function () {
-    FavoriteHandler.deleteFavorite(args.data.id);
-    load_favorites();
-  }, 1150);
-  
 };
 
 end_loading = function () {
