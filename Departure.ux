@@ -1,19 +1,18 @@
 <Panel ux:Class="Departure" ClipToBounds="true">
-  <StackPanel>
-    <DockPanel>
-      <Text Dock="Left" Font="Light" FontSize="22" TextColor="#969C0E" Width="50" Margin="10, 15, 15, 15" TextAlignment="Center" Value="{line}" />
+  <DockPanel>
+    <Text Dock="Left" Font="Light" FontSize="22" TextColor="#969C0E" Width="50" Margin="10, 15, 15, 15" TextAlignment="Center" Value="{line}" />
 
-      <StackPanel Dock="Left" Alignment="Center">
-        <Text Font="Light" FontSize="15" TextColor="#222" TextAlignment="Left" Value="{destination}" />
-        <DockPanel Padding="0, 1, 0, 0">
-          <Text Dock="Left" Font="Light" FontSize="12" TextColor="#aaa" Value="Rutetid: " />
-          <Text Dock="Left" Font="Light" FontSize="12" TextColor="#aaa" Value="{org_time}" />
-        </DockPanel>
-      </StackPanel>
+    <StackPanel Dock="Left" Alignment="Center">
+      <Text Font="Light" FontSize="15" TextColor="#222" TextAlignment="Left" Value="{destination}" />
+      
+      <DockPanel Padding="0, 1, 0, 0">
+        <Text Dock="Left" Font="Light" FontSize="12" TextColor="#aaa" Value="Rutetid: " />
+        <Text Dock="Left" Font="Light" FontSize="12" TextColor="#aaa" Value="{org_time}" />
+      </DockPanel>
+    </StackPanel>
 
-      <Text Dock="Right" Font="Light" FontSize="14" TextColor="#222" Margin="0, 0, 15, 0" Alignment="Center" Value="{timeLeft}" Width="65" TextAlignment="Right" />
-    </DockPanel>
-  </StackPanel>
+    <Text Dock="Right" Font="Light" FontSize="14" TextColor="#222" Margin="0, 0, 15, 0" Alignment="Center" Value="{timeLeft}" Width="65" TextAlignment="Right" />
+  </DockPanel>
 
   <Rectangle Margin="15, 0, 0, 0" Alignment="Bottom" Height="1" Fill="#e6e6e6" />
 </Panel>
