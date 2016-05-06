@@ -59,6 +59,18 @@ getFavorites = function () {
 
     favorites = JSON.stringify(favorites);
     Storage.write(data, favorites);
+  } 
+  // Making transition to new favorite format without having to re-install the app
+  else if (Object.prototype.toString.call( JSON.parse(favorites) ) === '[object Object]') {
+    var tmp_favorites = JSON.parse(favorites);
+    var new_favorites = [];
+    
+    for (var fav in tmp_favorites) {
+      new_favorites.push(new Bussholdeplass(tmp_favorites[fav].locationId, tmp_favorites[fav].name, tmp_favorites[fav].lon, tmp_favorites[fav].lat));
+    }  
+
+    favorites = JSON.stringify(new_favorites);
+    Storage.write(data, favorites);
   }
 
   return JSON.parse(favorites);
