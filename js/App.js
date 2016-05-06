@@ -9,6 +9,7 @@ var env               = require('FuseJS/Environment')
 , Observable          = require('FuseJS/Observable');
 
 var departures        = Observable()
+, error_msg           = Observable(false)
 , favorites           = Observable()
 , favorites_updated   = Observable()
 , favorite_departures = Observable()
@@ -38,6 +39,7 @@ var back_button_handler
 -----------------------------------------------------------------------------*/
 back_button_handler = function () {
   departures.clear();
+  error_msg.value = false;
 };
 
 delete_favorite = function (args) {
@@ -66,6 +68,7 @@ load_departure_data = function () {
     }, 250);
   },
   function (error) {
+    error_msg.value = true;
     console.log('ERROR[2]' + error.message);
   });
 };
@@ -208,9 +211,9 @@ load_favorites();
 /* Exports
 -----------------------------------------------------------------------------*/
 module.exports = {
-  toggle_favorite: toggle_favorite,
   back_button_handler: back_button_handler,
   departures: departures,
+  error_msg: error_msg,
   favorites: favorites,
   favorites_updated: favorites_updated,
   favorite_departures: favorite_departures,
@@ -224,5 +227,6 @@ module.exports = {
   search_string: search_string,
   stop_click_handler: stop_click_handler,
   stop_info: stop_info,
-  stop_list: stop_list
+  stop_list: stop_list,
+  toggle_favorite: toggle_favorite
 };
