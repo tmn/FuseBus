@@ -41,9 +41,9 @@ back_button_handler = function () {
 };
 
 delete_favorite = function (args) {
-  FavoriteHandler.deleteFavorite(args.data.id);
+  FavoriteHandler.deleteFavorite(args.data.locationId);
   favorites.remove(args.data);
-  is_favorite.value = FavoriteHandler.hasFavorite(args.data.id);
+  is_favorite.value = FavoriteHandler.hasFavorite(args.data.locationId);
 };
 
 end_loading = function () {
@@ -113,21 +113,21 @@ search_reset = function () {
 stop_click_handler = function (args) {
   stop_info.value = JSON.parse(JSON.stringify(args.data));
   stop_info.value.displayName = stop_info.value.name;
-  is_favorite.value = FavoriteHandler.hasFavorite(stop_info.value.id);
+  is_favorite.value = FavoriteHandler.hasFavorite(stop_info.value.locationId);
   load_departure_data();
 };
 
 toggle_favorite = function () {
   is_favorite.value = !is_favorite.value;
 
-  if (FavoriteHandler.hasFavorite(stop_info.value.id)) {
-    FavoriteHandler.deleteFavorite(stop_info.value.id);
+  if (FavoriteHandler.hasFavorite(stop_info.value.locationId)) {
+    FavoriteHandler.deleteFavorite(stop_info.value.locationId);
   }
   else {
     FavoriteHandler.addFavorite(stop_info.value);
   }
   
-  favorites.replaceAll(FavoriteHandler.getFavoriteList());
+  favorites.replaceAll(FavoriteHandler.getFavorites());
 };
 
 update_nearest_stop = function (location) {
@@ -147,7 +147,7 @@ update_nearest_stop = function (location) {
 
   Api.get('stops/nearest/' + location.latitude + '/' + location.longitude).then(function (responseObject) {
     var convertedStops = responseObject.map(function (e) {
-      return new Bussholdeplass(e.busStopId, e.locationId, e.name, e.longitude, e.latitude, e.distance);
+      return new Bussholdeplass(e.locationId, e.name, e.longitude, e.latitude, e.distance);
     });
 
     stop_list.replaceAll(convertedStops);
@@ -199,7 +199,7 @@ if (env.mobile) {
 
 /* Init
 -----------------------------------------------------------------------------*/
-favorites.replaceAll(FavoriteHandler.getFavoriteList());
+favorites.replaceAll(FavoriteHandler.getFavorites());
 favorites_updated.value = 'Sist oppdatert: ' + get_current_timestamp();
 load_favorites();
 

@@ -37,8 +37,7 @@ get_direction_code = function (locationId) {
 
 /* ...
 -----------------------------------------------------------------------------*/
-module.exports = function (id, locationId, name, lon, lat, distance) {
-  this.id = id;
+module.exports = function (locationId, name, lon, lat, distance) {
   this.locationId = locationId;
   this.name = name;
   this.lon = lon;

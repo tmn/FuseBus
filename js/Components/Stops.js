@@ -19233,7 +19233,7 @@ var Stops = [
 ];
 
 var convertedStops = Stops.map(function (e) {
-    return new Bussholdeplass(e.busStopId, e.locationId, e.name, e.longitude, e.latitude);
+    return new Bussholdeplass(e.locationId, e.name, e.longitude, e.latitude);
 });
 
 convertedStops = convertedStops.sort(function (a, b) {
