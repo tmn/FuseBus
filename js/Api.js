@@ -23,9 +23,10 @@ var load_departures = function (location_id) {
 
       resolve({
         departures: departures,
-        location_id: responseObject.name.match(/(\d+){4}/g)[0]
+        location_id: responseObject.locationId ? responseObject.locationId : responseObject.name.match(/(\d+){4}/g)[0]
       });
-    }).catch(function (e) {
+    },
+    function (e) {
       reject({ message: 'Something went wrong' });
     });
   });
