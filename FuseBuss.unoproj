@@ -34,7 +34,8 @@
     "Includes": [
         "*",
         "js/Api.js:Bundle",
-        "js/Components/*.js:Bundle"
+        "js/Components/*.js:Bundle",
+        "js/libs/*.js:Bundle"
     ],
     "Icon": "Assets/sappen.png",
     "iOS": {
