@@ -1,4 +1,4 @@
-<App Theme="Basic" Background="#fff">
+<App>
   <JavaScript File="js/app.js" />
 
   <ux:Include File="SidePanel.ux" />
@@ -14,8 +14,6 @@
     <EdgeNavigation ux:Name="Navigator" />
 
 
-
-
     <!-- SIDE PANEL -->
     <SidePanel ux:Name="sidePanel" Edge="Left" Alignment="Left">
       <EnteringAnimation>
@@ -26,9 +24,6 @@
         <Change Duration="0.1" Easing="Linear" mainAppTranslation.X=".92" />
       </ActivatingAnimation>
     </SidePanel>
-
-
-
 
 
     <!-- MAIN PANEL -->
@@ -44,13 +39,13 @@
         </WhilePressed>
       </DeactivatingAnimation>
       
-      <Rectangle ux:Name="MainViewOverlay" Fill="#303C4C" Layer="Overlay" Opacity="0" HitTestMode="Children"/>
+      <Rectangle ux:Name="MainViewOverlay" Fill="#303C4C" Layer="Overlay" Opacity="0" HitTestMode="Children" />
 
       <Panel ux:Name="top_panel" Alignment="Top" Height="200" Dock="Top">
         <!-- Top Panel while in departures view -->
         <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="70" Opacity="0" Padding="0, 20, 0, 0" Margin="0">
           <StackPanel Alignment="CenterLeft" Padding="15, 0, 0, 0">
-            <Text Font="Bold" FontSize="16" TextColor="#fff"  Value="{stop_info.displayName}" />
+            <Text Font="Bold" FontSize="16" TextColor="#fff" Value="{stop_info.displayName}" />
             <Text Font="Light" FontSize="12" TextColor="#ddd" Value="{stop_info.direction}" />
           </StackPanel>
 
@@ -88,7 +83,7 @@
           </PageControl>
 
           <PageIndicator Navigation="favoriteControl" Alignment="BottomCenter">
-            <Circle ux:Generate="Factory" ux:Binding="DotFactory" Margin="4" Width="5" Height="5">
+            <Circle ux:Generate="Template" ux:Binding="DotTemplate" Margin="4" Width="5" Height="5">
               <SolidColor ux:Name="favDotIndicator" Color="#fff" Opacity="0.3" />
               <ActivatingAnimation>
                 <Change favDotIndicator.Opacity="1" />
@@ -172,7 +167,7 @@
             <Callback Handler="{back_button_handler}" Delay=".25" />
           </Clicked>
         </Rectangle>
-        <Panel Background="#A2A21F" Height="6" Alignment="Bottom"/>
+        <Panel Background="#A2A21F" Height="6" Alignment="Bottom" />
       </Panel>
 
 
@@ -192,7 +187,7 @@
               </Rectangle>
             </StackPanel>
 
-            <Rectangle Fill="#fff" Width="1" Height="43" Opacity=".1" Alignment="Right"/>
+            <Rectangle Fill="#fff" Width="1" Height="43" Opacity=".1" Alignment="Right" />
 
             <Rectangle Fill="#fff" Opacity=".1" />
 
@@ -202,12 +197,11 @@
           </Panel>
 
           <MagnifyingGlass Alignment="CenterLeft" X="58" Y="-3" Opacity=".8" />
-
-          <TextEdit Height="21" PlaceholderText="Søk etter holdeplass" PlaceholderColor="#eee" Value="{search_string}" FontSize="15" TextColor="#fff" IsMultiline="false" Margin="78, -3, 35, 0" CaretColor="#fff" Padding="0, 4, 0, 0">
+          <TextInput  Height="21" PlaceholderText="Søk etter holdeplass" PlaceholderColor="#eee" Value="{search_string}" FontSize="15" TextColor="#fff" Margin="78, -3, 35, 0" CaretColor="#fff" Padding="0, 4, 0, 0">
             <WhileContainsText>
               <Change searchStringReset.Opacity="1" />
             </WhileContainsText>
-          </TextEdit>
+          </TextInput>
 
           <Panel ux:Name="searchStringReset" Alignment="CenterRight" Margin="0, 0, 15, 0" Opacity="0" Clicked="{search_reset}" HitTestMode="LocalBoundsAndChildren" Padding="5">
             <Circle Width="14" Height="14" Fill="#fff" Opacity=".8">
@@ -223,7 +217,7 @@
         </Panel>
 
         <ScrollView Margin="0, 43, 0, 0">
-          <StackPanel ux:Name="stopListStack" Padding="0, 0, 0, 0" >
+          <StackPanel ux:Name="stopListStack" Padding="0, 0, 0, 0">
             <Each Items="{stop_list}">
               <Stop Padding="15, 0, 0, 0">
                 <Clicked>
@@ -244,7 +238,7 @@
 
 
       <!-- Departures -->
-      <Panel Padding="0, -192, 0, 5" >
+      <Panel Padding="0, -192, 0, 5">
         <WhileFalse Value="{error_msg}">
           <ScrollView ux:Name="departuresList" SnapMinTransform="false" Opacity="0">
             <DockPanel Padding="0, 70, 0, 0" Margin="0">
@@ -266,7 +260,7 @@
         <WhileTrue Value="{error_msg}">
           <Panel Background="#fff">
             <StackPanel Alignment="Center" Padding="25, 0, 25, 0">
-              <Text Font="Light" TextColor="#bbb" TextAlignment="Center" TextWrapping="Wrap"  Value="Noe gikk galt. Vennligst prøv igjen. Prøv en ny holdeplass om problemet vedvarer." />
+              <Text Font="Light" TextColor="#bbb" TextAlignment="Center" TextWrapping="Wrap" Value="Noe gikk galt. Vennligst prøv igjen. Prøv en ny holdeplass om problemet vedvarer." />
               <Text Padding="0, 55, 0, 0" Font="Light" TextColor="#ccc" TextAlignment="Center" TextWrapping="Wrap" Value="Feil kan rapporteres til mail@trimn.net" />
             </StackPanel>
           </Panel>
@@ -276,7 +270,7 @@
 
 
 
-      <BottomBarBackground Dock="Bottom" IncludesKeyboard="false"/>
+      <BottomBarBackground Dock="Bottom" IncludesKeyboard="false" />
     </DockPanel>
   </DockPanel>
 </App>
