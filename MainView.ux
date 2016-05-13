@@ -78,7 +78,7 @@
                       <DockPanel Width="260" Margin="0, 0, 0, 5">
                         <Text Dock="Left" Font="Light" FontSize="14" TextColor="#DDFF99" Width="50" Value="{line}" />
                         <Text Dock="Left" Font="Light" FontSize="14" TextColor="#fff" Value="{destination}" />
-                        <Text Dock="Right" Font="Light" FontSize="14" TextColor="#fff" Width="50" Value="{timeLeft}" TextAlignment="Right" />
+                        <Text TextWrapping="NoWrap" Dock="Right" Font="Light" FontSize="14" TextColor="#fff" Value="{timeLeft}" TextAlignment="Right" />
                       </DockPanel>
                     </Each>
                   </StackPanel>

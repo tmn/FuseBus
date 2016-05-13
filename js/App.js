@@ -18,7 +18,6 @@ var departures        = Observable()
 , is_favorite         = Observable(false)
 , is_loading          = Observable(false)
 , search_string       = Observable('')
-, search_reset        = Observable()
 , stop_info           = Observable();
 
 var back_button_handler
@@ -33,6 +32,8 @@ var back_button_handler
 , stop_click_handler
 , toggle_favorite
 , update_nearest_stop;
+
+
 
 
 /* FuncInits
@@ -74,7 +75,7 @@ load_departure_data = function () {
 };
 
 load_favorites = function () {
-  var favorite_view   = [];
+  var favorite_view = [];
 
   favorites.forEach(function (stop) {
     var stopDep = {
