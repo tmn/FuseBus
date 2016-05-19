@@ -18,6 +18,7 @@ var load_departures = function (location_id) {
   var promise = new Promise(function (resolve, reject) {
     get('rt/' + location_id).then(function (responseObject) {
       var departures = responseObject['next'].map(function (e) {
+        // return new Departure(e.l, e.t, e.ts, e.rt, e.d, e.r, e.tu, e.ot);
         return new Departure(e.l, e.t, e.ts, e.rt, e.d);
       });
 

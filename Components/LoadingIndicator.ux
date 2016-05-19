@@ -1,0 +1,3 @@
+<Circle ux:Class="LoadingIndicator" ux:Name="loadingCircle" Alignment="Center" Opacity="0" Width="60" Height="60" StartAngleDegrees="0" LengthAngleDegrees="90">
+  <Stroke Width="1" Brush="#666" />
+</Circle>

@@ -1,4 +1,7 @@
-<DockPanel ux:InnerClass="SidePanel" ux:Name="sidePanel" Background="#303C4C" Width="92%">
+<DockPanel ux:Class="SidePanel" ux:Name="sidePanel" Background="#303C4C" Width="92%">
+  <WhileTrue ux:Dependency="loading" />
+  <WhileTrue ux:Dependency="departure_view" />
+  
   <WhileInactive Threshold="0.4">
     <Move Target="appLogo" X="-320" Duration="0.2" Delay="0.3" Easing="CircularIn" />
     <Move Target="settingsFavTitle" X="-320" Duration="0.2" Delay="0.2" Easing="CircularIn" />

@@ -1,0 +1,19 @@
+<Panel ux:Class="StopsList">
+  <WhileTrue ux:Dependency="loading" />
+  <WhileTrue ux:Dependency="departure_view" />
+
+  <ScrollView Margin="0, 43, 0, 0">
+    <StackPanel ux:Name="stopListStack" Padding="0, 0, 0, 0">
+      <Each Items="{stop_list}">
+        <Stop Padding="15, 0, 0, 0">
+          <Clicked>
+            <Set Target="loading.Value" Value="true" />
+            <Set Target="departure_view.Value" Value="true" />
+            
+            <Callback Handler="{stop_click_handler}" />
+          </Clicked>
+        </Stop>
+      </Each>
+    </StackPanel>
+  </ScrollView>
+</Panel>

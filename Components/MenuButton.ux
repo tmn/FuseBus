@@ -1,0 +1,12 @@
+<Panel ux:Class="MenuButton" ux:Name="sidePanelIndicator" Width="45" Alignment="CenterLeft" Margin="0, 0, 0, 0" Padding="0" HitTestMode="LocalBoundsAndChildren">
+  <StackPanel Alignment="Center">
+    <Rectangle Height="2" Width="18" Fill="#fff">
+    </Rectangle>
+    <Rectangle Height="2" Width="18" Fill="#fff" Margin="0, 5, 0, 0">
+    </Rectangle>
+  </StackPanel>
+
+  <Rectangle Fill="#fff" Width="1" Height="43" Opacity=".1" Alignment="Right" />
+
+  <Rectangle Fill="#fff" Opacity=".1" />
+</Panel>

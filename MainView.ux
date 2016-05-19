@@ -1,7 +1,5 @@
 <App>
-  <JavaScript File="js/app.js" />
-
-  <ux:Include File="SidePanel.ux" />
+  <JavaScript File="js/App.js" />
 
   <Font File="Assets/Fonts/SF-UI-Text-Bold.otf" ux:Global="Bold" />
   <Font File="Assets/Fonts/SF-UI-Text-Semibold.otf" ux:Global="SemiBold" />
@@ -15,7 +13,7 @@
 
 
     <!-- SIDE PANEL -->
-    <SidePanel ux:Name="sidePanel" Edge="Left" Alignment="Left">
+    <SidePanel ux:Name="sidePanel" Edge="Left" Alignment="Left" loading="loading" departure_view="departure_view">
       <EnteringAnimation>
         <Move X="-1" RelativeTo="Size" />
       </EnteringAnimation>
@@ -42,75 +40,62 @@
       <Rectangle ux:Name="MainViewOverlay" Fill="#303C4C" Layer="Overlay" Opacity="0" HitTestMode="Children" />
 
       <Panel ux:Name="top_panel" Alignment="Top" Height="200" Dock="Top">
-        <!-- Top Panel while in departures view -->
-        <DockPanel ux:Name="top_panel_departures" Alignment="Bottom" Height="70" Opacity="0" Padding="0, 20, 0, 0" Margin="0">
-          <StackPanel Alignment="CenterLeft" Padding="15, 0, 0, 0">
-            <Text Font="Bold" FontSize="16" TextColor="#fff" Value="{stop_info.displayName}" />
-            <Text Font="Light" FontSize="12" TextColor="#ddd" Value="{stop_info.direction}" />
-          </StackPanel>
-
-          <Panel Alignment="Right" Width="38" Padding="0, 0, 10, 0" HitTestMode="LocalBoundsAndChildren" Clicked="{toggle_favorite}">
-            <WhileTrue Value="{is_favorite}">
-              <Image File="Assets/Images/StarFilled.png" Width="20" Height="20" Margin="0, 0, 0, 5" />
-            </WhileTrue>
-            <WhileFalse Value="{is_favorite}">
-              <Image File="Assets/Images/StarUnfilled.png" Width="20" Height="20" Margin="0, 0, 0, 5" />
-            </WhileFalse>
-          </Panel>
-        </DockPanel>
-
-        <!-- Top Panel in main view -->
-        <Panel ux:Name="top_panel_home">
-          <PageControl ux:Name="favoriteControl">
-            <Each Items="{favorite_departures}">
-              <Page Clicked="{reload_favorite_departures}" HitTestMode="LocalBoundsAndChildren">
-                <StackPanel>
-                  <Text Font="Light" FontSize="28" TextColor="#fff" TextAlignment="Center" Margin="0, 30, 0, 0" Value="{name}" />
-                  <Text Font="Light" FontSize="12" TextColor="#afafaf" Alignment="Center" Value="{direction}" />
-
-                  <StackPanel Margin="0, 10, 0, 0">
-                    <Each Items="{departures}">
-                      <DockPanel Width="260" Margin="0, 0, 0, 5">
-                        <Text Dock="Left" Font="Light" FontSize="14" TextColor="#DDFF99" Width="50" Value="{line}" />
-                        <Text Dock="Left" Font="Light" FontSize="14" TextColor="#fff" Value="{destination}" />
-                        <Text TextWrapping="NoWrap" Dock="Right" Font="Light" FontSize="14" TextColor="#fff" Value="{timeLeft}" TextAlignment="Right" />
-                      </DockPanel>
-                    </Each>
-                  </StackPanel>
-                </StackPanel>
-              </Page>
-            </Each>
-          </PageControl>
-
-          <PageIndicator Navigation="favoriteControl" Alignment="BottomCenter">
-            <Circle ux:Generate="Template" ux:Binding="DotTemplate" Margin="4" Width="5" Height="5">
-              <SolidColor ux:Name="favDotIndicator" Color="#fff" Opacity="0.3" />
-              <ActivatingAnimation>
-                <Change favDotIndicator.Opacity="1" />
-              </ActivatingAnimation>
-            </Circle>
-          </PageIndicator>
-
-          <Text Value="{favorites_updated}" Alignment="BottomCenter" Font="Light" TextColor="#eee" FontSize="10" Padding="0, 0, 0, 12" Opacity=".3" />
-        </Panel>
+        <MainHeader ux:Name="top_panel_home" />
+        <DepartureHeader ux:Name="top_panel_departures" Alignment="Bottom" Height="70" Opacity="0" Padding="0, 20, 0, 0" Margin="0" />
 
         <!-- Background of top_panel -->
-        <Rectangle Height="200" Opacity=".95">
+        <Rectangle Layer="Background" Height="200" Opacity=".95">
           <LinearGradient StartPoint="0, 0" EndPoint="0, 1">
             <GradientStop Offset="-.6" Color="#5E6F83" />
             <GradientStop Offset="1" Color="#303C4C" />
           </LinearGradient>
         </Rectangle>
 
-        <Image File="Assets/Images/bus.jpg" StretchMode="UniformToFill" />
+        <Image Layer="Background" File="Assets/Images/bus.jpg" StretchMode="UniformToFill" />
       </Panel>
 
+      <LoadingIndicator ux:Name="loadingCircle" Layer="Background"/>
+
+      <StackPanel ux:Name="hasLocationText" Layer="Background" Alignment="Center" Background="#fff" Opacity="0">
+        <Text Value="Aktiver stedstjenester" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
+        <Text Value="for å se nærmeste holdeplasser" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
+      </StackPanel>
+
+
+      <!-- Bottom panel -->
+      <BackPanel ux:Name="backPanel" Alignment="Bottom" Y="50">
+        <Clicked>
+          <Set Target="departure_view.Value" Value="false" />
+          <Callback Handler="{back_button_handler}" Delay=".25" />
+        </Clicked>
+      </BackPanel>
+
+
+      <!-- StopList -->
+      <Panel ux:Name="searchPanel">
+        <Panel Alignment="Top" Background="#A2A21F" Height="43">
+          <MenuButton>
+            <Clicked>
+              <Set Navigator.Active="sidePanel" />
+            </Clicked>
+          </MenuButton>
+
+          <SearchField Alignment="Top" Height="43" />
+        </Panel>
+
+        <StopsList Background="#fff" Padding="0, 0, 0, 0" loading="loading" departure_view="departure_view" />
+      </Panel>
+
+      <!-- Departures -->
+      <Departures Padding="0, -192, 0, 5" loading="loading"  />
+
+      <!-- Android specific BottomBar -->
+      <BottomBarBackground Dock="Bottom" IncludesKeyboard="false" />
 
 
 
 
-
-      <!-- Triggers! -->
+      <!-- Triggers -->
       <WhileTrue ux:Name="loading">
         <Change loadCircle.Value="true" DelayBack="0" />
       </WhileTrue>
@@ -132,145 +117,14 @@
         <Change top_panel_home.Opacity="0" Duration=".25" Easing="CircularInOut" />
         <Change top_panel_departures.Opacity="1" Duration=".25" Easing="CircularInOut" />
 
-        <Move Target="stopList" RelativeTo="Size" Y="1" Duration="0.25" Easing="CircularInOut" />
+        <Move Target="searchPanel" RelativeTo="Size" Y="1" Duration="0.25" Easing="CircularInOut" />
       </WhileTrue>
-
-      <WhileCount Items="{departures}" GreaterThan="0">
-        <Change departuresList.Opacity="1" Duration=".2" Delay=".4" Easing="CircularInOut" />
-        <Set Target="loading.Value" Value="false" Delay=".4" />
-      </WhileCount>
 
       <OnBackButton>
         <Set Target="departure_view.Value" Value="false" />
         <Callback Handler="{back_button_handler}" Delay=".25" />
       </OnBackButton>
-
-
-
-
-
-
-      <!-- Bottom panel -->
-      <Panel ux:Name="backPanel" Alignment="Bottom" Y="50">
-        <Rectangle Height="50" Width="65" Fill="#A2A21F" CornerRadius="75" Y="15" HitTestMode="LocalBoundsAndChildren">
-          <Panel ux:Name="backArrow" Padding="0, 0, 0, 15" Alignment="Center">
-            <Rectangle Fill="#fff" Width="2" Height="12" Alignment="Center" X="-4">
-              <Rotation Degrees="45" />
-            </Rectangle>
-
-            <Rectangle Fill="#fff" Width="2" Height="12" Alignment="Center" X="4">
-              <Rotation Degrees="-45" />
-            </Rectangle>
-          </Panel>
-          <Clicked>
-            <Set Target="departure_view.Value" Value="false" />
-            <Callback Handler="{back_button_handler}" Delay=".25" />
-          </Clicked>
-        </Rectangle>
-        <Panel Background="#A2A21F" Height="6" Alignment="Bottom" />
-      </Panel>
-
-
-
-
-
-
-      <!-- StopList -->      
-      <Panel ux:Name="stopList" Background="#fff" Padding="0, 0, 0, 0">
-        <Panel Alignment="Top" Background="#A2A21F" Height="43">
-
-          <Panel ux:Name="sidePanelIndicator" Width="45" Alignment="CenterLeft" Margin="0, 0, 0, 0" Padding="0" HitTestMode="LocalBoundsAndChildren">
-            <StackPanel Alignment="Center">
-              <Rectangle Height="2" Width="18" Fill="#fff">
-              </Rectangle>
-              <Rectangle Height="2" Width="18" Fill="#fff" Margin="0, 5, 0, 0">
-              </Rectangle>
-            </StackPanel>
-
-            <Rectangle Fill="#fff" Width="1" Height="43" Opacity=".1" Alignment="Right" />
-
-            <Rectangle Fill="#fff" Opacity=".1" />
-
-            <Clicked>
-              <Set Navigator.Active="sidePanel" />
-            </Clicked>
-          </Panel>
-
-          <MagnifyingGlass Alignment="CenterLeft" X="58" Y="-3" Opacity=".8" />
-          <TextInput  Height="21" PlaceholderText="Søk etter holdeplass" PlaceholderColor="#eee" Value="{search_string}" FontSize="15" TextColor="#fff" Margin="78, -3, 35, 0" CaretColor="#fff" Padding="0, 4, 0, 0">
-            <WhileContainsText>
-              <Change searchStringReset.Opacity="1" />
-            </WhileContainsText>
-          </TextInput>
-
-          <Panel ux:Name="searchStringReset" Alignment="CenterRight" Margin="0, 0, 15, 0" Opacity="0" Clicked="{search_reset}" HitTestMode="LocalBoundsAndChildren" Padding="5">
-            <Circle Width="14" Height="14" Fill="#fff" Opacity=".8">
-              <Rectangle Fill="#A2A21F" Width="2" Height="10" Alignment="Center">
-                <Rotation Degrees="45" />
-              </Rectangle>
-
-              <Rectangle Fill="#A2A21F" Width="2" Height="10" Alignment="Center">
-                <Rotation Degrees="-45" />
-              </Rectangle>
-            </Circle>
-          </Panel>
-        </Panel>
-
-        <ScrollView Margin="0, 43, 0, 0">
-          <StackPanel ux:Name="stopListStack" Padding="0, 0, 0, 0">
-            <Each Items="{stop_list}">
-              <Stop Padding="15, 0, 0, 0">
-                <Clicked>
-                  <Callback Handler="{stop_click_handler}" />
-                  <Set Target="loading.Value" Value="true" />
-                  <Set Target="departure_view.Value" Value="true" />
-                </Clicked>
-              </Stop>
-            </Each>
-          </StackPanel>
-        </ScrollView>
-
-        <StackPanel ux:Name="hasLocationText" Alignment="Center" Background="#fff" Opacity="0">
-          <Text Value="Aktiver stedstjenester" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
-          <Text Value="for å se nærmeste holdeplasser" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
-        </StackPanel>
-      </Panel>
-
-
-      <!-- Departures -->
-      <Panel Padding="0, -192, 0, 5">
-        <WhileFalse Value="{error_msg}">
-          <ScrollView ux:Name="departuresList" SnapMinTransform="false" Opacity="0">
-            <DockPanel Padding="0, 70, 0, 0" Margin="0">
-              <Reload Dock="Top" />
-
-              <StackPanel>
-                <Each Items="{departures}">
-                  <Departure />
-                </Each>
-              </StackPanel>
-            </DockPanel>
-          </ScrollView>
-
-          <Circle ux:Name="loadingCircle" Alignment="Center" Opacity="0" Width="60" Height="60" StartAngleDegrees="0" LengthAngleDegrees="90">
-            <Stroke Width="1" Brush="#666" />
-          </Circle>
-        </WhileFalse>
-
-        <WhileTrue Value="{error_msg}">
-          <Panel Background="#fff">
-            <StackPanel Alignment="Center" Padding="25, 0, 25, 0">
-              <Text Font="Light" TextColor="#bbb" TextAlignment="Center" TextWrapping="Wrap" Value="Noe gikk galt. Vennligst prøv igjen. Prøv en ny holdeplass om problemet vedvarer." />
-              <Text Padding="0, 55, 0, 0" Font="Light" TextColor="#ccc" TextAlignment="Center" TextWrapping="Wrap" Value="Feil kan rapporteres til mail@trimn.net" />
-            </StackPanel>
-          </Panel>
-        </WhileTrue>
-      </Panel>
-
-
-
-
-      <BottomBarBackground Dock="Bottom" IncludesKeyboard="false" />
+      <!-- // Triggers -->
     </DockPanel>
   </DockPanel>
 </App>

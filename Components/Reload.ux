@@ -1,5 +1,5 @@
 <Panel ux:Class="Reload" ClipToBounds="True">
-  <Image ux:Class="Arrow" File="Assets/Images/arrow.png" Width="30" Height="30" />
+  <Image ux:Class="Arrow" File="../Assets/Images/arrow.png" Width="30" Height="30" />
 
   <Panel ux:Name="loadingPanel" Background="#fff" Alignment="Top" Dock="Top" Height="0">
     <Text ux:Name="LoadingText" Font="Light" FontSize="12" TextColor="#888" TextAlignment="Center" Padding="0, 20, 0, 0" Value="Oppdater liste" />

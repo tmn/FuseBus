@@ -1,0 +1,20 @@
+<Panel ux:Class="SearchField">
+  <MagnifyingGlass Alignment="CenterLeft" X="58" Y="-3" Opacity=".8" />
+  <TextInput  Height="21" PlaceholderText="Søk etter holdeplass" PlaceholderColor="#eee" Value="{search_string}" FontSize="15" TextColor="#fff" Margin="78, -3, 35, 0" CaretColor="#fff" Padding="0, 4, 0, 0">
+    <WhileContainsText>
+      <Change searchStringReset.Opacity="1" />
+    </WhileContainsText>
+  </TextInput>
+
+  <Panel ux:Name="searchStringReset" Alignment="CenterRight" Margin="0, 0, 15, 0" Opacity="0" Clicked="{search_reset}" HitTestMode="LocalBoundsAndChildren" Padding="5">
+    <Circle Width="14" Height="14" Fill="#fff" Opacity=".8">
+      <Rectangle Fill="#A2A21F" Width="2" Height="10" Alignment="Center">
+        <Rotation Degrees="45" />
+      </Rectangle>
+
+      <Rectangle Fill="#A2A21F" Width="2" Height="10" Alignment="Center">
+        <Rotation Degrees="-45" />
+      </Rectangle>
+    </Circle>
+  </Panel>
+</Panel>

@@ -1,0 +1,33 @@
+<Panel ux:Class="MainHeader">
+  <PageControl ux:Name="favoriteControl">
+    <Each Items="{favorite_departures}">
+      <Page Clicked="{reload_favorite_departures}" HitTestMode="LocalBoundsAndChildren">
+        <StackPanel>
+          <Text Font="Light" FontSize="28" TextColor="#fff" TextAlignment="Center" Margin="0, 30, 0, 0" Value="{name}" />
+          <Text Font="Light" FontSize="12" TextColor="#afafaf" Alignment="Center" Value="{direction}" />
+
+          <StackPanel Margin="0, 10, 0, 0">
+            <Each Items="{departures}">
+              <DockPanel Width="260" Margin="0, 0, 0, 5">
+                <Text Dock="Left" Font="Light" FontSize="14" TextColor="#DDFF99" Width="50" Value="{line}" />
+                <Text Dock="Left" Font="Light" FontSize="14" TextColor="#fff" Value="{destination}" />
+                <Text TextWrapping="NoWrap" Dock="Right" Font="Light" FontSize="14" TextColor="#fff" Value="{timeLeft}" TextAlignment="Right" />
+              </DockPanel>
+            </Each>
+          </StackPanel>
+        </StackPanel>
+      </Page>
+    </Each>
+  </PageControl>
+
+  <PageIndicator Navigation="favoriteControl" Alignment="BottomCenter">
+    <Circle ux:Generate="Template" ux:Binding="DotTemplate" Margin="4" Width="5" Height="5">
+      <SolidColor ux:Name="favDotIndicator" Color="#fff" Opacity="0.3" />
+      <ActivatingAnimation>
+        <Change favDotIndicator.Opacity="1" />
+      </ActivatingAnimation>
+    </Circle>
+  </PageIndicator>
+
+  <Text Value="{favorites_updated}" Alignment="BottomCenter" Font="Light" TextColor="#eee" FontSize="10" Padding="0, 0, 0, 12" Opacity=".3" />
+</Panel>
