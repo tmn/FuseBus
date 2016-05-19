@@ -1,24 +1,24 @@
-var Api               = require('./Api')
-, Bussholdeplass      = require('./Components/Bussholdeplass')
-, Departure           = require('./Components/Departure')
-, FavoriteHandler     = require('./Components/FavoriteHandler')
-, Stops               = require('./Components/Stops');
+var Api                       = require('./Api')
+, Bussholdeplass              = require('./Components/Bussholdeplass')
+, Departure                   = require('./Components/Departure')
+, FavoriteHandler             = require('./Components/FavoriteHandler')
+, Stops                       = require('./Components/Stops');
 
-var env               = require('FuseJS/Environment')
-, GeoLocation         = require('FuseJS/GeoLocation')
-, Observable          = require('FuseJS/Observable');
+var env                       = require('FuseJS/Environment')
+, GeoLocation                 = require('FuseJS/GeoLocation')
+, Observable                  = require('FuseJS/Observable');
 
-var departures        = Observable()
-, error_msg           = Observable(false)
-, favorites           = Observable()
-, favorites_updated   = Observable()
-, favorite_departures = Observable()
-, stop_list           = Observable()
-, has_location        = Observable(false)
-, is_favorite         = Observable(false)
-, is_loading          = Observable(false)
-, search_string       = Observable('')
-, stop_info           = Observable();
+var departures                = Observable()
+, error_msg                   = Observable(false)
+, favorites                   = Observable()
+, favorites_updated           = Observable()
+, favorite_departures         = Observable()
+, stop_list                   = Observable()
+, displayLocationWarning      = Observable(true)
+, is_favorite                 = Observable(false)
+, is_loading                  = Observable(false)
+, search_string               = Observable('')
+, stop_info                   = Observable();
 
 var back_button_handler
 , delete_favorite
@@ -141,11 +141,11 @@ update_nearest_stop = function (location) {
 
   if (location === undefined) {
     if (location === null) {
-      has_location.value = false;
+      displayLocationWarning.value = true;
       return;
     }
 
-    has_location.value = true;
+    displayLocationWarning.value = false;
     location = GeoLocation.location;
   }
 
@@ -166,7 +166,7 @@ update_nearest_stop = function (location) {
 /* Listeners
 -----------------------------------------------------------------------------*/
 search_string.addSubscriber(function () {
-  has_location.value = search_string.value.length > 0 && GeoLocation.location !== null;
+  displayLocationWarning.value = search_string.value.length <= 0 || GeoLocation.location === null;
 
   if (search_string.value.length < 3) {
     if (search_string.value.length === 0) {
@@ -188,6 +188,14 @@ favorites.addSubscriber(function () {
   }, 600);
 });
 
+
+
+
+/* Init
+-----------------------------------------------------------------------------*/
+favorites.replaceAll(FavoriteHandler.getFavorites());
+favorites_updated.value = 'Sist oppdatert: ' + get_current_timestamp();
+load_favorites();
 if (env.mobile) {
   GeoLocation.onChanged = function (location) {
     update_nearest_stop(location);
@@ -201,25 +209,17 @@ if (env.mobile) {
 
 
 
-/* Init
------------------------------------------------------------------------------*/
-favorites.replaceAll(FavoriteHandler.getFavorites());
-favorites_updated.value = 'Sist oppdatert: ' + get_current_timestamp();
-load_favorites();
-
-
-
 /* Exports
 -----------------------------------------------------------------------------*/
 module.exports = {
   back_button_handler: back_button_handler,
   departures: departures,
+  displayLocationWarning: displayLocationWarning,
   error_msg: error_msg,
   favorites: favorites,
   favorites_updated: favorites_updated,
   favorite_departures: favorite_departures,
   favorite_delete: delete_favorite,
-  has_location: has_location,
   is_favorite: is_favorite,
   is_loading: is_loading,
   reload_favorite_departures: reload_favorite_departures,
