@@ -29,5 +29,5 @@
     </Circle>
   </PageIndicator>
 
-  <Text Value="{favorites_updated}" Alignment="BottomCenter" Font="Light" TextColor="#eee" FontSize="10" Padding="0, 0, 0, 12" Opacity=".3" />
+  <Text Value="{favorites_updated}" Alignment="BottomCenter" Font="Light" TextColor="#eee" FontSize="10" Padding="0, 0, 0, 10" Opacity=".3" />
 </Panel>
