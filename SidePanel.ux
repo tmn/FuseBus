@@ -1,6 +1,6 @@
 <DockPanel ux:Class="SidePanel" ux:Name="sidePanel" Background="#303C4C" Width="92%">
   <WhileTrue ux:Dependency="loading" />
-  <WhileTrue ux:Dependency="departure_view" />
+  <WhileTrue ux:Dependency="departureView" />
   
   <WhileInactive Threshold="0.4">
     <Move Target="appLogo" X="-320" Duration="0.2" Delay="0.3" Easing="CircularIn" />
@@ -31,7 +31,7 @@
               <Callback Handler="{back_button_handler}" />
 
               <Set Target="loading.Value" Value="true" />
-              <Set Target="departure_view.Value" Value="true" />
+              <Set Target="departureView.Value" Value="true" />
 
               <Callback Handler="{stop_click_handler}" Delay=".25" />
               <NavigateToggle />

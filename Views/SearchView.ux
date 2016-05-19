@@ -1,7 +1,7 @@
 <Panel ux:Class="SearchView">
   <EdgeNavigation ux:Dependency="sidePanelNavigation" />
   <WhileTrue ux:Dependency="loading" />
-  <WhileTrue ux:Dependency="departure_view" />
+  <WhileTrue ux:Dependency="departureView" />
 
   <Panel Alignment="Top" Background="#A2A21F" Height="43">
     <MenuButton>
@@ -13,5 +13,5 @@
     <SearchField Alignment="Top" Height="43" />
   </Panel>
 
-  <StopsList Background="#fff" Padding="0, 0, 0, 0" loading="loading" departure_view="departure_view" />
+  <StopsList Background="#fff" Padding="0, 0, 0, 0" loading="loading" departureView="departureView" />
 </Panel>

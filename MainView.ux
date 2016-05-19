@@ -13,7 +13,7 @@
 
 
     <!-- SIDE PANEL -->
-    <SidePanel ux:Name="sidePanel" Edge="Left" Alignment="Left" loading="loading" departure_view="departure_view">
+    <SidePanel ux:Name="sidePanel" Edge="Left" Alignment="Left" loading="loading" departureView="departureView">
       <EnteringAnimation>
         <Move X="-1" RelativeTo="Size" />
       </EnteringAnimation>
@@ -25,25 +25,26 @@
 
 
     <!-- MAIN PANEL -->
-    <DockPanel ux:Name="MainPanel">
+    <DockPanel ux:Name="mainPanel">
       <Translation ux:Name="mainAppTranslation" RelativeTo="Size" />
 
       <DeactivatingAnimation>
-        <Change MainViewOverlay.Opacity=".7" Duration=".2" Easing="Linear" />
-        <Change MainPanel.HitTestMode="LocalBounds" />
+        <Change mainViewOverlay.Opacity=".7" Duration=".2" Easing="Linear" />
+        <Change mainPanel.HitTestMode="LocalBounds" />
 
         <WhilePressed>
           <NavigateToggle />
         </WhilePressed>
       </DeactivatingAnimation>
       
-      <Rectangle ux:Name="MainViewOverlay" Fill="#303C4C" Layer="Overlay" Opacity="0" HitTestMode="Children" />
+      <Rectangle ux:Name="mainViewOverlay" Fill="#303C4C" Layer="Overlay" Opacity="0" HitTestMode="Children" />
 
-      <Panel ux:Name="top_panel" Alignment="Top" Height="200" Dock="Top">
-        <MainHeader ux:Name="top_panel_home" />
-        <DepartureHeader ux:Name="top_panel_departures" Alignment="Bottom" Height="70" Opacity="0" Padding="0, 20, 0, 0" Margin="0" />
+      <!-- Top panel-->
+      <Panel ux:Name="topPanel" Alignment="Top" Height="200" Dock="Top">
+        <MainHeader ux:Name="topPanelHome" />
+        <DepartureHeader ux:Name="topPanelDepartures" Alignment="Bottom" Height="70" Opacity="0" Padding="0, 20, 0, 0" Margin="0" />
 
-        <!-- Background of top_panel -->
+        <!-- Background of topPanel -->
         <Rectangle Layer="Background" Height="200" Opacity=".95">
           <LinearGradient StartPoint="0, 0" EndPoint="0, 1">
             <GradientStop Offset="-.6" Color="#5E6F83" />
@@ -56,7 +57,7 @@
 
       <LoadingIndicator ux:Name="loadingCircle" Layer="Background"/>
 
-      <StackPanel ux:Name="hasLocationText" Layer="Background" Alignment="Center" Background="#fff" Opacity="0">
+      <StackPanel ux:Name="hasLocationText" Alignment="Center" Background="#fff" Opacity="0" HitTestMode="None">
         <Text Value="Aktiver stedstjenester" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
         <Text Value="for å se nærmeste holdeplasser" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
       </StackPanel>
@@ -65,14 +66,13 @@
       <!-- Bottom panel -->
       <BackPanel ux:Name="backPanel" Alignment="Bottom" Y="50">
         <Clicked>
-          <Set Target="departure_view.Value" Value="false" />
+          <Set Target="departureView.Value" Value="false" />
           <Callback Handler="{back_button_handler}" Delay=".25" />
         </Clicked>
       </BackPanel>
 
 
-      <!-- StopList -->
-      <Panel ux:Name="searchPanel">
+      <Panel ux:Name="stopSearchPanel">
         <Panel Alignment="Top" Background="#A2A21F" Height="43">
           <MenuButton>
             <Clicked>
@@ -83,11 +83,10 @@
           <SearchField Alignment="Top" Height="43" />
         </Panel>
 
-        <StopsList Background="#fff" Padding="0, 0, 0, 0" loading="loading" departure_view="departure_view" />
+        <StopsList Background="#fff" Padding="0, 0, 0, 0" loading="loading" departureView="departureView" />
       </Panel>
 
-      <!-- Departures -->
-      <Departures Padding="0, -192, 0, 5" loading="loading"  />
+      <Departures ux:Name="departures_view" Padding="0, -192, 0, 5" loading="loading"  />
 
       <!-- Android specific BottomBar -->
       <BottomBarBackground Dock="Bottom" IncludesKeyboard="false" />
@@ -110,18 +109,18 @@
         <Change hasLocationText.Opacity="1" Duration=".1" Easing="CircularInOut" />
       </WhileFalse>
 
-      <WhileTrue ux:Name="departure_view">
+      <WhileTrue ux:Name="departureView">
         <Move Target="backPanel" RelativeTo="Size" Y="-1" Duration=".2" Easing="CircularInOut" />
 
-        <Move Target="top_panel" Y="-0.62" RelativeTo="Size" Duration="0.25" Easing="CircularInOut" />
-        <Change top_panel_home.Opacity="0" Duration=".25" Easing="CircularInOut" />
-        <Change top_panel_departures.Opacity="1" Duration=".25" Easing="CircularInOut" />
+        <Move Target="topPanel" Y="-0.62" RelativeTo="Size" Duration="0.25" Easing="CircularInOut" />
+        <Change topPanelHome.Opacity="0" Duration=".25" Easing="CircularInOut" />
+        <Change topPanelDepartures.Opacity="1" Duration=".25" Easing="CircularInOut" />
 
-        <Move Target="searchPanel" RelativeTo="Size" Y="1" Duration="0.25" Easing="CircularInOut" />
+        <Move Target="stopSearchPanel" RelativeTo="Size" Y="1" Duration="0.25" Easing="CircularInOut" />
       </WhileTrue>
 
       <OnBackButton>
-        <Set Target="departure_view.Value" Value="false" />
+        <Set Target="departureView.Value" Value="false" />
         <Callback Handler="{back_button_handler}" Delay=".25" />
       </OnBackButton>
       <!-- // Triggers -->
