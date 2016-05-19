@@ -8,11 +8,40 @@
 
   <iOS.StatusBarConfig Style="Light" />
 
+  <WhileTrue ux:Name="loading">
+    <Change loadCircle.Value="true" DelayBack="0" />
+  </WhileTrue>
+
+  <WhileTrue ux:Name="loadCircle">
+    <Change loadingCircle.Opacity="1" Duration=".2" Easing="CircularInOut" />
+    <Spin Target="loadingCircle" Frequency="2" />
+    <Cycle Target="loadingCircle.LengthAngleDegrees" Low="30" High="300" Frequency="0.7" />
+  </WhileTrue>
+
+  <WhileTrue Value="{displayLocationWarning}">
+    <Change hasLocationText.Opacity="1" Duration=".1" Easing="CircularInOut" />
+  </WhileTrue>
+
+  <WhileTrue ux:Name="departureView">
+    <Move Target="backPanel" RelativeTo="Size" Y="-1" Duration=".2" Easing="CircularInOut" />
+
+    <Move Target="topPanel" Y="-0.62" RelativeTo="Size" Duration="0.25" Easing="CircularInOut" />
+    <Change topPanelHome.Opacity="0" Duration=".25" Easing="CircularInOut" />
+    <Change topPanelDepartures.Opacity="1" Duration=".25" Easing="CircularInOut" />
+
+    <Move Target="stopSearchPanel" RelativeTo="Size" Y="1" Duration="0.25" Easing="CircularInOut" />
+  </WhileTrue>
+
+  <OnBackButton>
+    <Set Target="departureView.Value" Value="false" />
+    <Callback Handler="{back_button_handler}" Delay=".25" />
+  </OnBackButton>
+
+  
+
   <DockPanel>
     <EdgeNavigation ux:Name="Navigator" />
 
-
-    <!-- SIDE PANEL -->
     <SidePanel ux:Name="sidePanel" Edge="Left" Alignment="Left" loading="loading" departureView="departureView">
       <EnteringAnimation>
         <Move X="-1" RelativeTo="Size" />
@@ -90,40 +119,6 @@
 
       <!-- Android specific BottomBar -->
       <BottomBarBackground Dock="Bottom" IncludesKeyboard="false" />
-
-
-
-
-      <!-- Triggers -->
-      <WhileTrue ux:Name="loading">
-        <Change loadCircle.Value="true" DelayBack="0" />
-      </WhileTrue>
-
-      <WhileTrue ux:Name="loadCircle">
-        <Change loadingCircle.Opacity="1" Duration=".2" Easing="CircularInOut" />
-        <Spin Target="loadingCircle" Frequency="2" />
-        <Cycle Target="loadingCircle.LengthAngleDegrees" Low="30" High="300" Frequency="0.7" />
-      </WhileTrue>
-
-      <WhileFalse Value="{has_location}">
-        <Change hasLocationText.Opacity="1" Duration=".1" Easing="CircularInOut" />
-      </WhileFalse>
-
-      <WhileTrue ux:Name="departureView">
-        <Move Target="backPanel" RelativeTo="Size" Y="-1" Duration=".2" Easing="CircularInOut" />
-
-        <Move Target="topPanel" Y="-0.62" RelativeTo="Size" Duration="0.25" Easing="CircularInOut" />
-        <Change topPanelHome.Opacity="0" Duration=".25" Easing="CircularInOut" />
-        <Change topPanelDepartures.Opacity="1" Duration=".25" Easing="CircularInOut" />
-
-        <Move Target="stopSearchPanel" RelativeTo="Size" Y="1" Duration="0.25" Easing="CircularInOut" />
-      </WhileTrue>
-
-      <OnBackButton>
-        <Set Target="departureView.Value" Value="false" />
-        <Callback Handler="{back_button_handler}" Delay=".25" />
-      </OnBackButton>
-      <!-- // Triggers -->
     </DockPanel>
   </DockPanel>
 </App>
