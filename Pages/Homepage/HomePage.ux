@@ -49,14 +49,38 @@
 
 
     <!-- Favorite grid -->
-    <Grid ux:Name="favDash" Rows="180" Alignment="Top">
-      <FavoriteDashboard DepartureLocation="Solsiden" Direction="til midtbyen">
-        <Favorite Destination="Tyholt" TimeLeft="5 min" Line="22" />
-        <Favorite Destination="Dragvoll" TimeLeft="ca 7 min" Line="9" />
-        <Favorite Destination="Tyholt" TimeLeft="35 min" Line="22" />
-        <Favorite Destination="Tyholt" TimeLeft="ca 19:05" Line="22" />
-        <Favorite Destination="Tyholt" TimeLeft="19:35" Line="22" />
-      </FavoriteDashboard>
-    </Grid>
+    <DockPanel ux:Name="favDash" Alignment="Top">
+      <PageControl ux:Name="slides" IsRouterOutlet="false">
+        <FavoriteDashboard DepartureLocation="Solsiden" Direction="til midtbyen">
+          <Favorite Destination="Tyholt" TimeLeft="5 min" Line="22" />
+          <Favorite Destination="Dragvoll" TimeLeft="ca 7 min" Line="9" />
+          <Favorite Destination="Tyholt" TimeLeft="35 min" Line="22" />
+          <Favorite Destination="Tyholt" TimeLeft="ca 19:05" Line="22" />
+          <Favorite Destination="Tyholt" TimeLeft="19:35" Line="22" />
+        </FavoriteDashboard>
+        <FavoriteDashboard DepartureLocation="Solsiden" Direction="til midtbyen">
+          <Favorite Destination="Tyholt" TimeLeft="5 min" Line="22" />
+          <Favorite Destination="Dragvoll" TimeLeft="ca 7 min" Line="9" />
+          <Favorite Destination="Tyholt" TimeLeft="35 min" Line="22" />
+          <Favorite Destination="Tyholt" TimeLeft="ca 19:05" Line="22" />
+          <Favorite Destination="Tyholt" TimeLeft="19:35" Line="22" />
+        </FavoriteDashboard>
+      </PageControl>
+
+      <PageIndicator Dock="Bottom" Alignment="Center" Navigation="slides">
+        <Circle ux:Template="Dot" Width="5" Height="5" Margin="3">
+            <SolidColor ux:Name="dotStrokeBody" Color="#0000" />
+
+            <Stroke ux:Name="dotStroke" Width="2">
+              <SolidColor ux:Name="dotStrokeColor" Color="#bbb" />
+            </Stroke>
+
+            <ActivatingAnimation>
+              <Change dotStrokeBody.Color="#aaa" />
+              <Change dotStrokeColor.Color="#aaa" />
+            </ActivatingAnimation>
+        </Circle>
+      </PageIndicator>
+    </DockPanel>
   </DockPanel>
 </Page>
