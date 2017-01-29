@@ -9,7 +9,6 @@
     <Navigator DefaultPath="main" SwipeBack="Right">
       <Sanntidsappen.HomePage ux:Template="main" router="router" />
       <Sanntidsappen.Departures ux:Template="departures" router="router" />
-      <Sanntidsappen.Favorites ux:Template="favorites" router="router" />
     </Navigator>
   </ClientPanel>
 </App>
