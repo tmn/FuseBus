@@ -1,21 +1,18 @@
 ﻿{
     "Title": "Sanntidsappen",
-    "Version": "1.3.0",
+    "Version": "2.0.0",
     "RootNamespace":"",
     "Packages": [
         "Fuse",
         "FuseJS",
-        "Fuse.GeoLocation",
-        "Fuse.BasicTheme"
+        "Fuse.GeoLocation"
     ],
     "Mobile": {
         "Orientations": "Portrait"
     },
     "Includes": [
         "*",
-        "js/Api.js:Bundle",
-        "js/Components/*.js:Bundle",
-        "js/libs/*.js:Bundle"
+        "*.js:Bundle"
     ],
     "Icon": "Assets/sappen.png",
     "iOS": {

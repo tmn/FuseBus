@@ -1,0 +1,10 @@
+<StackPanel ux:Class="FavoriteDashboard" Color="LightGray" Padding="40,5,40,5" DepartureLocation="..." Direction="...">
+  <string ux:Property="DepartureLocation" />
+  <string ux:Property="Direction" />
+
+  <Text Value="{ReadProperty DepartureLocation}" FontSize="14" TextAlignment="Center" />
+  <Text Value="{ReadProperty Direction}" FontSize="12" TextAlignment="Center" TextColor="#aaa" />
+  <Grid Rows="auto,auto,auto,auto,auto">
+    <Each TemplateSource="this" />
+  </Grid>
+</StackPanel>

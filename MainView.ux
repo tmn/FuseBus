@@ -1,124 +1,15 @@
 <App>
-  <JavaScript File="js/App.js" />
+  <Router ux:Name="router" />
+  <JavaScript File="MainView.js" />
+  <iOS.StatusBarConfig Style="Dark" />
 
-  <Font File="Assets/Fonts/SF-UI-Text-Bold.otf" ux:Global="Bold" />
-  <Font File="Assets/Fonts/SF-UI-Text-Semibold.otf" ux:Global="SemiBold" />
-  <Font File="Assets/Fonts/SF-UI-Text-Regular.otf" ux:Global="Regular" />
-  <Font File="Assets/Fonts/SF-UI-Text-Light.otf" ux:Global="Light" />
+  <ColorPalette />
 
-  <iOS.StatusBarConfig Style="Light" />
-
-  <WhileTrue ux:Name="loading">
-    <Change loadCircle.Value="true" DelayBack="0" />
-  </WhileTrue>
-
-  <WhileTrue ux:Name="loadCircle">
-    <Change loadingCircle.Opacity="1" Duration=".2" Easing="CircularInOut" />
-    <Spin Target="loadingCircle" Frequency="2" />
-    <Cycle Target="loadingCircle.LengthAngleDegrees" Low="30" High="300" Frequency="0.7" />
-  </WhileTrue>
-
-  <WhileTrue Value="{displayLocationWarning}">
-    <Change hasLocationText.Opacity="1" Duration=".1" Easing="CircularInOut" />
-  </WhileTrue>
-
-  <WhileTrue ux:Name="departureView">
-    <Move Target="backPanel" RelativeTo="Size" Y="-1" Duration=".2" Easing="CircularInOut" />
-
-    <Move Target="topPanel" Y="-0.62" RelativeTo="Size" Duration="0.25" Easing="CircularInOut" />
-    <Change topPanelHome.Opacity="0" Duration=".25" Easing="CircularInOut" />
-    <Change topPanelDepartures.Opacity="1" Duration=".25" Easing="CircularInOut" />
-
-    <Move Target="stopSearchPanel" RelativeTo="Size" Y="1" Duration="0.25" Easing="CircularInOut" />
-  </WhileTrue>
-
-  <OnBackButton>
-    <Set Target="departureView.Value" Value="false" />
-    <Callback Handler="{back_button_handler}" Delay=".25" />
-  </OnBackButton>
-
-  
-
-  <DockPanel>
-    <EdgeNavigation ux:Name="Navigator" />
-
-    <SidePanel ux:Name="sidePanel" Edge="Left" Alignment="Left" loading="loading" departureView="departureView">
-      <EnteringAnimation>
-        <Move X="-1" RelativeTo="Size" />
-      </EnteringAnimation>
-
-      <ActivatingAnimation>
-        <Change Duration="0.1" Easing="Linear" mainAppTranslation.X=".92" />
-      </ActivatingAnimation>
-    </SidePanel>
-
-
-    <!-- MAIN PANEL -->
-    <DockPanel ux:Name="mainPanel">
-      <Translation ux:Name="mainAppTranslation" RelativeTo="Size" />
-
-      <DeactivatingAnimation>
-        <Change mainViewOverlay.Opacity=".7" Duration=".2" Easing="Linear" />
-        <Change mainPanel.HitTestMode="LocalBounds" />
-
-        <WhilePressed>
-          <NavigateToggle />
-        </WhilePressed>
-      </DeactivatingAnimation>
-      
-      <Rectangle ux:Name="mainViewOverlay" Fill="#303C4C" Layer="Overlay" Opacity="0" HitTestMode="Children" />
-
-      <!-- Top panel-->
-      <Panel ux:Name="topPanel" Alignment="Top" Height="200" Dock="Top">
-        <MainHeader ux:Name="topPanelHome" />
-        <DepartureHeader ux:Name="topPanelDepartures" Alignment="Bottom" Height="70" Opacity="0" Padding="0, 20, 0, 0" Margin="0" />
-
-        <!-- Background of topPanel -->
-        <Rectangle Layer="Background" Height="200" Opacity=".95">
-          <LinearGradient StartPoint="0, 0" EndPoint="0, 1">
-            <GradientStop Offset="-.6" Color="#5E6F83" />
-            <GradientStop Offset="1" Color="#303C4C" />
-          </LinearGradient>
-        </Rectangle>
-
-        <Image Layer="Background" File="Assets/Images/bus.jpg" StretchMode="UniformToFill" />
-      </Panel>
-
-      <LoadingIndicator ux:Name="loadingCircle" Layer="Background"/>
-
-      <StackPanel ux:Name="hasLocationText" Alignment="Center" Background="#fff" Opacity="0" HitTestMode="None">
-        <Text Value="Aktiver stedstjenester" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
-        <Text Value="for å se nærmeste holdeplasser" Font="Light" FontSize="20" TextColor="#bbb" TextAlignment="Center" />
-      </StackPanel>
-
-
-      <!-- Bottom panel -->
-      <BackPanel ux:Name="backPanel" Alignment="Bottom" Y="50">
-        <Clicked>
-          <Set Target="departureView.Value" Value="false" />
-          <Callback Handler="{back_button_handler}" Delay=".25" />
-        </Clicked>
-      </BackPanel>
-
-
-      <Panel ux:Name="stopSearchPanel">
-        <Panel Alignment="Top" Background="#A2A21F" Height="43">
-          <MenuButton>
-            <Clicked>
-              <Set Navigator.Active="sidePanel" />
-            </Clicked>
-          </MenuButton>
-
-          <SearchField Alignment="Top" Height="43" />
-        </Panel>
-
-        <StopsList Background="#fff" Padding="0, 0, 0, 0" loading="loading" departureView="departureView" />
-      </Panel>
-
-      <Departures ux:Name="departures_view" Padding="0, -192, 0, 5" loading="loading"  />
-
-      <!-- Android specific BottomBar -->
-      <BottomBarBackground Dock="Bottom" IncludesKeyboard="false" />
-    </DockPanel>
-  </DockPanel>
+  <ClientPanel Color="LightGray">
+    <Navigator DefaultPath="main" SwipeBack="Right">
+      <Sanntidsappen.HomePage ux:Template="main" router="router" />
+      <Sanntidsappen.Departures ux:Template="departures" router="router" />
+      <Sanntidsappen.Favorites ux:Template="favorites" router="router" />
+    </Navigator>
+  </ClientPanel>
 </App>

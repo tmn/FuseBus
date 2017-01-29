@@ -1,18 +1,16 @@
-<Panel ux:Class="Stop">
-  <DockPanel Padding="0, 10, 0, 10">
-    <StackPanel ux:Name="StopText">
-      <Text Font="Light" FontSize="16" TextColor="#303C4C" Value="{name}" />
-      <Text Font="Light" FontSize="12" TextColor="#aaa" Value="{direction}" />
+<Panel ux:Class="Stop" Direction="..." Margin="15, 0, 0, 0" HitTestMode="LocalBoundsAndChildren">
+  <string ux:Property="StopName" />
+  <string ux:Property="Direction" />
+
+  <Grid Columns="1*, 50">
+    <StackPanel Padding="0, 10, 10, 10">
+      <Text Value="{ReadProperty this.StopName}" />
+      <Text Value="{ReadProperty this.Direction}" TextColor="#aaa" FontSize="12" />
     </StackPanel>
 
-    <Text Font="Light" FontSize="12" TextColor="#aaa" TextAlignment="Left" Alignment="CenterRight" Padding="0, 0, 60, 0" Value="{distance}" />
-
-    <DownArrow Alignment="CenterRight" Margin="0, 0, 20, 0" />
-  </DockPanel>
-
-  <Rectangle Alignment="Bottom" Height="1" Fill="#e6e6e6" />
-
-  <WhilePressed>
-    <Change this.Background="#efefef" />
-  </WhilePressed>
+    <Image File="../Assets/Icons/chevron.png" Alignment="Left" Width="50" Height="30" Clicked="{go_back}" Color="saDarkBlue">
+      <Rotation Degrees="180" />
+    </Image>
+  </Grid>
+  <Rectangle Height="1" Fill="#0000000a" Alignment="Bottom" />
 </Panel>

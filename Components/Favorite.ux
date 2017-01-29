@@ -1,0 +1,9 @@
+<Grid ux:Class="Favorite" Columns="45,1*,55" Height="20" Margin="5,5,5,0">
+  <string ux:Property="Destination" />
+  <string ux:Property="TimeLeft" />
+  <int ux:Property="Line" />
+
+  <Text Value="{ReadProperty Line}" FontSize="13" />
+  <Text Value="{ReadProperty Destination}" FontSize="13" />
+  <Text Value="{ReadProperty TimeLeft}" FontSize="13" />
+</Grid>

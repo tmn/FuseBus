@@ -1,0 +1,39 @@
+<Page ux:Class="Sanntidsappen.Departures" Freeze="WhileNavigating">
+  <Router ux:Dependency="router" />
+
+  <JavaScript File="Departures.js" />
+
+  <Deactivated Handler="{cleanupAfterInactive}" />
+
+  <DockPanel Color="White">
+    <Panel Dock="Top" Color="LightGray" Height="80">
+        <Panel Alignment="Left" Width="65" Clicked="{goBack}" HitTestMode="LocalBoundsAndChildren">
+          <Image File="../../Assets/Icons/arrow.png" Color="#888" Alignment="Left" Width="50" Height="30" />
+        </Panel>
+        <StackPanel Alignment="VerticalCenter">
+          <Text Value="{name}" TextColor="#888" TextAlignment="Center" FontSize="18" />
+          <Text Value="{direction}" TextColor="#888" TextAlignment="Center" FontSize="13" />
+        </StackPanel>
+    </Panel>
+
+    <WhileEmpty Items="{departures}">
+      <StackPanel>
+        <LoadingIndicator ux:Name="loadingCircle" Layer="Background"/>
+      </StackPanel>
+
+      <Change loadingCircle.Opacity="1" Duration=".2" Easing="CircularInOut" />
+      <Spin Target="loadingCircle" Frequency="2" />
+      <Cycle Target="loadingCircle.LengthAngleDegrees" Low="30" High="300" Frequency="0.7" />
+    </WhileEmpty>
+
+    <ScrollView>
+      <StackPanel>
+        <Each Items="{departures}">
+          <Deferred>
+            <Departure Destination="{destination}" ExpectedTime="{time}" AimedTime="{aimedTime}" Line="{line}" TimeLeft="{timeLeft}" Error="{error}" />
+          </Deferred>
+        </Each>
+      </StackPanel>
+    </ScrollView>
+  </DockPanel>
+</Page>

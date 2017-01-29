@@ -1,0 +1,57 @@
+<Page ux:Class="Sanntidsappen.HomePage" Freeze="WhileNavigating">
+  <Router ux:Dependency="router" />
+  <JavaScript File="HomePage.js" />
+
+  <DockPanel>
+    <!-- Search field -->
+    <Panel ux:Name="TopBar" Dock="Top" Margin="20,20,20,10" Height="40" Alignment="Top" Color="LightGray">
+      <TextInput PlaceholderText="Søk etter holdeplass" Padding="10, 0, 10, 0" FontSize="14" PlaceholderColor="#ABAAAB" Value="{search_string}">
+        <Clicked>
+          <GiveFocus />
+        </Clicked>
+
+        <Rectangle Layer="Background" CornerRadius="4" Color="White">
+          <Stroke ux:Name="SearchBarStroke" Width="1" Color="#F9F9F9"/>
+          <Shadow ux:Name="SearchBarShadow" Distance="1" Color="#00000019" Size="1" Angle="90" />
+        </Rectangle>
+      </TextInput>
+    </Panel>
+
+    <!-- List of stops -->
+    <WhileEmpty Items="{stops}">
+      <Panel>
+        <StackPanel Alignment="Center">
+          <Text Value="Aktiver stedstjenester for å se liste over de nærmeste holdeplassene" TextWrapping="Wrap" TextAlignment="Center" />
+        </StackPanel>
+        <WhileKeyboardVisible>
+          <Move Y="-0.15" RelativeTo="Size" Duration="0.3" Easing="QuadraticInOut" EasingBack="QuadraticIn"/>
+        </WhileKeyboardVisible>
+      </Panel>
+    </WhileEmpty>
+
+    <ScrollView ClipToBounds="false">
+      <StackPanel>
+        <Panel Height="180" />
+        <StackPanel Color="White">
+          <Each Items="{stops}">
+            <Deferred>
+              <Stop StopName="{name}" Direction="{d}" Clicked="{gotoDepartures}" />
+            </Deferred>
+          </Each>
+        </StackPanel>
+      </StackPanel>
+    </ScrollView>
+
+
+    <!-- Favorite grid -->
+    <Grid ux:Name="favDash" Rows="180" Alignment="Top">
+      <FavoriteDashboard DepartureLocation="Solsiden" Direction="til midtbyen">
+        <Favorite Destination="Tyholt" TimeLeft="5 min" Line="22" />
+        <Favorite Destination="Dragvoll" TimeLeft="ca 7 min" Line="9" />
+        <Favorite Destination="Tyholt" TimeLeft="35 min" Line="22" />
+        <Favorite Destination="Tyholt" TimeLeft="ca 19:05" Line="22" />
+        <Favorite Destination="Tyholt" TimeLeft="19:35" Line="22" />
+      </FavoriteDashboard>
+    </Grid>
+  </DockPanel>
+</Page>

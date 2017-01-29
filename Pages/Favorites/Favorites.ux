@@ -1,0 +1,6 @@
+<Panel ux:Class="Sanntidsappen.Favorites">
+  <Router ux:Dependency="router" />
+  <JavaScript File="Favorites.js" />
+
+
+</Panel>

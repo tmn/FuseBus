@@ -1,9 +1,0 @@
-<Panel ux:Class="DownArrow">
-  <Rectangle Width="1" Height="8" Margin="5, 0, 0, 0" Fill="#303C4C">
-    <Rotation Degrees="45" />
-  </Rectangle>
-
-  <Rectangle Width="1" Height="8" Margin="0, 0, 6, 0" Fill="#303C4C">
-    <Rotation Degrees="-45" />
-  </Rectangle>
-</Panel>
