@@ -18,7 +18,7 @@
     "iOS": {
         "BundleIdentifier": "io.tmn.sanntidsappen",
         "BundleName": "$(Title)",
-        "DeploymentTarget": "9.1",
+        "DeploymentTarget": "10.2",
         "Devices": "iPhone",
         "Plist": {
             "ITSAppUsesNonExemptEncryption": false
@@ -35,7 +35,7 @@
     "Android": {
         "Package": "io.tmn.sanntidsappen",
         "VersionCode": 130000,
-        "VersionName": "1.3.0",
+        "VersionName": "2.0.0",
         "Key": {
             "Alias": "sanntidsappen",
             "AliasPassword": "",
