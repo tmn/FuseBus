@@ -56,7 +56,8 @@ function CreateStop(stop) {
   return {
     name: stop.name,
     id: stop.locationId,
-    distance: stop.distance
+    distance: stop.distance,
+    d: stop.d
   };
 }
 
