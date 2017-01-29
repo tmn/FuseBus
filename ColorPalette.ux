@@ -3,5 +3,6 @@
   <float4 ux:Global="saDarkBlue"      ux:Value="#303C4C" />
   
   <float4 ux:Global="Red"             ux:Value="#ff0000" />
-  <float4 ux:Global="LightGray"       ux:Value="#f4f4f4"   />
+  <float4 ux:Global="LightGray"       ux:Value="#f4f4f4" />
+  <float4 ux:Global="Gray"            ux:Value="#e0e0e0" />
 </Panel>
