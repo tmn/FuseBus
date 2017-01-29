@@ -6,3 +6,4 @@ build/
 *.sublime-workspace
 
 SF-UI-*
+.DS_Store
