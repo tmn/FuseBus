@@ -9,6 +9,10 @@ _Sanntidsappen_ is a native iOS and Android app for real time public transport i
 [![sanntidsappen](https://9u.no/media/fusebus4.png)](https://9u.no/media/fusebus3.png)
 
 
+## v2.0
+
+Version 2 of Sanntidsappen is a complete rewrite based on Fuse 0.33.0, and is work in progress. Version 2.0 is located in the 2.0 branch of this repository.
+
 
 ## Build and run!
 
