@@ -35,7 +35,7 @@
         <StackPanel Color="White">
           <Each Items="{stops}">
             <Deferred>
-              <Stop StopName="{name}" Direction="{d}" Clicked="{gotoDepartures}" />
+              <Stop StopName="{name}" Direction="{d}" Clicked="{gotoDepartures}" Distance="{distance}" />
             </Deferred>
           </Each>
         </StackPanel>
