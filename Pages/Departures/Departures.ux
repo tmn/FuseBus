@@ -10,10 +10,15 @@
         <Panel Alignment="Left" Width="65" Clicked="{goBack}" HitTestMode="LocalBoundsAndChildren">
           <Image File="../../Assets/Icons/arrow.png" Color="#888" Alignment="Left" Width="50" Height="30" />
         </Panel>
+
         <StackPanel Alignment="VerticalCenter">
           <Text Value="{name}" TextColor="#888" TextAlignment="Center" FontSize="18" />
           <Text Value="{direction}" TextColor="#888" TextAlignment="Center" FontSize="13" />
         </StackPanel>
+
+        <Panel Alignment="Right" Width="50" HitTestMode="LocalBoundsAndChildren">
+          <Image File="../../Assets/Images/StarUnfilled.png" Width="23" Color="#aaaaaa" />
+        </Panel>
     </Panel>
 
     <WhileEmpty Items="{departures}">
