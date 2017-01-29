@@ -34,7 +34,7 @@
       </Panel>
     </WhileEmpty>
 
-    <ScrollView ClipToBounds="false">
+    <ScrollView ClipToBounds="false" HitTestMode="LocalVisualAndChildren">
       <StackPanel>
         <Panel Height="180" />
         <StackPanel Color="White">
