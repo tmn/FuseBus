@@ -36,7 +36,7 @@
 
     <ScrollView ClipToBounds="false" HitTestMode="LocalVisualAndChildren">
       <StackPanel>
-        <Panel Height="180" />
+        <Panel Height="190" />
         <StackPanel Color="White">
           <Each Items="{stops}">
             <Deferred>
