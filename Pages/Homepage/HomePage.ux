@@ -4,7 +4,7 @@
 
   <DockPanel>
     <!-- Search field -->
-    <Panel ux:Name="TopBar" Dock="Top" Margin="20,20,20,10" Height="40" Alignment="Top" Color="LightGray">
+    <DockPanel ux:Name="TopBar" Dock="Top" Margin="20,20,20,10" Height="40" Alignment="Top" Color="LightGray">
       <TextInput PlaceholderText="Søk etter holdeplass" Padding="10, 0, 10, 0" FontSize="14" PlaceholderColor="#ABAAAB" Value="{search_string}">
         <Clicked>
           <GiveFocus />
@@ -15,7 +15,12 @@
           <Shadow ux:Name="SearchBarShadow" Distance="1" Color="#00000019" Size="1" Angle="90" />
         </Rectangle>
       </TextInput>
-    </Panel>
+
+      <Panel Dock="Right" Width="40" Margin="2,0,0,0" Color="Gray">
+        <Text Value="Se" Alignment="VerticalCenter" TextAlignment="Center" />
+      </Panel>
+
+    </DockPanel>
 
     <!-- List of stops -->
     <WhileEmpty Items="{stops}">
