@@ -1,11 +1,20 @@
-<Panel ux:Class="Stop" Direction="..." Margin="15, 0, 0, 0" HitTestMode="LocalBoundsAndChildren">
+<Panel ux:Class="Stop" Direction="..." Margin="15, 0, 0, 0" HitTestMode="LocalBoundsAndChildren" Distance="">
   <string ux:Property="StopName" />
   <string ux:Property="Direction" />
+  <string ux:Property="Distance" />
 
   <Grid Columns="1*, 50">
     <StackPanel Padding="0, 10, 10, 10">
-      <Text Value="{ReadProperty this.StopName}" />
-      <Text Value="{ReadProperty this.Direction}" TextColor="#aaa" FontSize="12" />
+      <Text Value="{ReadProperty StopName}" />
+      <Grid Columns="auto,auto">
+        <Text Value="{ReadProperty Direction}" TextColor="#aaa" FontSize="12" />
+        <Grid Columns="auto,auto">
+          <WhileTrue Value="{distancePresent}">
+            <Text Value=" - {ReadProperty Distance}" TextColor="#aaa" FontSize="12" />
+            <Text Value=" m" TextColor="#aaa" FontSize="12" />
+          </WhileTrue>
+        </Grid>
+      </Grid>
     </StackPanel>
 
     <Image File="../Assets/Icons/chevron.png" Alignment="Left" Width="50" Height="30" Clicked="{go_back}" Color="saDarkBlue">
